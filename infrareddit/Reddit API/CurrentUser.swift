@@ -101,7 +101,24 @@ class CurrentUser: ObservableObject {
     }
     
     func refreshOAuth2Token(_ token: String) {
+        let queryItems = [
+            URLQueryItem(name: "grant_type", value: "refresh"),
+            URLQueryItem(name: "token", value: token),
+            URLQueryItem(name: "redirect_uri", value: "infrareddit://token"),
+        ]
         
+        oAuth2Request(queryItems) { result in
+            switch result {
+            case .success(let token):
+                // Save to CoreData
+                break
+            case .failure(let failure):
+                // ???
+                break
+            }
+            
+        }
+
     }
 }
 
