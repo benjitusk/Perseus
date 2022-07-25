@@ -8,22 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		088864EE288DC8A500EF5B92 /* infraredditApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864ED288DC8A500EF5B92 /* infraredditApp.swift */; };
-		088864F0288DC8A500EF5B92 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864EF288DC8A500EF5B92 /* ContentView.swift */; };
+		088864F0288DC8A500EF5B92 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864EF288DC8A500EF5B92 /* RootView.swift */; };
 		088864F2288DC8A800EF5B92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088864F1288DC8A800EF5B92 /* Assets.xcassets */; };
 		088864F5288DC8A800EF5B92 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088864F4288DC8A800EF5B92 /* Preview Assets.xcassets */; };
 		088864F7288DC8A800EF5B92 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864F6288DC8A800EF5B92 /* Persistence.swift */; };
 		088864FA288DC8A800EF5B92 /* infrareddit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 088864F8288DC8A800EF5B92 /* infrareddit.xcdatamodeld */; };
+		08886504288DDE3700EF5B92 /* Class Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886503288DDE3700EF5B92 /* Class Extensions.swift */; };
+		0888650A288DE7F700EF5B92 /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886509288DE7F700EF5B92 /* Reddit.swift */; };
+		0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0888650B288DE83A00EF5B92 /* CurrentUser.swift */; };
+		08909127288E04CD00F2A2D2 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08909126288E04CD00F2A2D2 /* UI.swift */; };
+		0890912A288E29B900F2A2D2 /* RedditToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08909129288E29B900F2A2D2 /* RedditToken.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		088864EA288DC8A500EF5B92 /* infrareddit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = infrareddit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		088864ED288DC8A500EF5B92 /* infraredditApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infraredditApp.swift; sourceTree = "<group>"; };
-		088864EF288DC8A500EF5B92 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		088864EF288DC8A500EF5B92 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		088864F1288DC8A800EF5B92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		088864F4288DC8A800EF5B92 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		088864F6288DC8A800EF5B92 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		088864F9288DC8A800EF5B92 /* infrareddit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = infrareddit.xcdatamodel; sourceTree = "<group>"; };
 		088864FB288DC8A800EF5B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08886501288DDABD00EF5B92 /* infrareddit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = infrareddit.entitlements; sourceTree = "<group>"; };
+		08886503288DDE3700EF5B92 /* Class Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Class Extensions.swift"; sourceTree = "<group>"; };
+		08886509288DE7F700EF5B92 /* Reddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
+		0888650B288DE83A00EF5B92 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		08909126288E04CD00F2A2D2 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		08909128288E06B200F2A2D2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		08909129288E29B900F2A2D2 /* RedditToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditToken.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +68,15 @@
 		088864EC288DC8A500EF5B92 /* infrareddit */ = {
 			isa = PBXGroup;
 			children = (
+				08909125288E04B700F2A2D2 /* Helpers */,
+				08886508288DE7D800EF5B92 /* Reddit API */,
+				08886507288DE7D300EF5B92 /* Models */,
+				08886506288DE7CA00EF5B92 /* Views */,
+				08886505288DE7C200EF5B92 /* Structure */,
+				08886501288DDABD00EF5B92 /* infrareddit.entitlements */,
 				088864ED288DC8A500EF5B92 /* infraredditApp.swift */,
-				088864EF288DC8A500EF5B92 /* ContentView.swift */,
+				088864EF288DC8A500EF5B92 /* RootView.swift */,
+				08909128288E06B200F2A2D2 /* Config.xcconfig */,
 				088864F1288DC8A800EF5B92 /* Assets.xcassets */,
 				088864F6288DC8A800EF5B92 /* Persistence.swift */,
 				088864FB288DC8A800EF5B92 /* Info.plist */,
@@ -73,6 +92,46 @@
 				088864F4288DC8A800EF5B92 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		08886505288DE7C200EF5B92 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Structure;
+			sourceTree = "<group>";
+		};
+		08886506288DE7CA00EF5B92 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		08886507288DE7D300EF5B92 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				08909129288E29B900F2A2D2 /* RedditToken.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		08886508288DE7D800EF5B92 /* Reddit API */ = {
+			isa = PBXGroup;
+			children = (
+				08886509288DE7F700EF5B92 /* Reddit.swift */,
+				0888650B288DE83A00EF5B92 /* CurrentUser.swift */,
+			);
+			path = "Reddit API";
+			sourceTree = "<group>";
+		};
+		08909125288E04B700F2A2D2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				08886503288DDE3700EF5B92 /* Class Extensions.swift */,
+				08909126288E04CD00F2A2D2 /* UI.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +205,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				088864FA288DC8A800EF5B92 /* infrareddit.xcdatamodeld in Sources */,
+				08909127288E04CD00F2A2D2 /* UI.swift in Sources */,
+				0888650A288DE7F700EF5B92 /* Reddit.swift in Sources */,
 				088864F7288DC8A800EF5B92 /* Persistence.swift in Sources */,
-				088864F0288DC8A500EF5B92 /* ContentView.swift in Sources */,
+				08886504288DDE3700EF5B92 /* Class Extensions.swift in Sources */,
+				088864F0288DC8A500EF5B92 /* RootView.swift in Sources */,
+				0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */,
 				088864EE288DC8A500EF5B92 /* infraredditApp.swift in Sources */,
+				0890912A288E29B900F2A2D2 /* RedditToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +221,7 @@
 /* Begin XCBuildConfiguration section */
 		088864FC288DC8A800EF5B92 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08909128288E06B200F2A2D2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -217,6 +282,7 @@
 		};
 		088864FD288DC8A800EF5B92 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08909128288E06B200F2A2D2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -274,12 +340,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = infrareddit/infrareddit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"infrareddit/Preview Content\"";
 				DEVELOPMENT_TEAM = 5LUU6WJ66B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = infrareddit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -303,12 +371,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = infrareddit/infrareddit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"infrareddit/Preview Content\"";
 				DEVELOPMENT_TEAM = 5LUU6WJ66B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = infrareddit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
