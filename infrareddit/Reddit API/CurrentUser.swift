@@ -48,7 +48,7 @@ class CurrentUser: ObservableObject {
 
     }
     
-    private func oAuth2Request(_ queryItems: [URLQueryItem], completion: @escaping (Result<Data, Error>) -> Void) {
+    private func oAuth2Request(_ queryItems: [URLQueryItem], completion: @escaping (Result<RedditToken, Error>) -> Void) {
         let clientID = Bundle.main.infoDictionary?["CLIENT_ID"] as! String
         let clientPassword = "" // Intentionally blank, only for easier readability
         let loginEncodedData = "\(clientID):\(clientPassword)".data(using: .utf8)!.base64EncodedString()
@@ -65,10 +65,12 @@ class CurrentUser: ObservableObject {
                 completion(.failure(error))
             }
             if (data != nil && data?.count != 0) {
-                completion(.success(data!))
-                // Need to get the text to JSON
-                let tokenData = try! JSONDecoder().decode(RedditToken.self, from: data!)
-                print(tokenData)
+                let token = try? JSONDecoder().decode(RedditToken.self, from: data!)
+                if let token = token {
+                    completion(.success(token))
+                } else {
+                    completion(.failure(OAuth2Error.invalidResponse))
+                }
             } else {
                 completion(.failure(OAuth2Error.noResponse))
             }
@@ -87,11 +89,12 @@ class CurrentUser: ObservableObject {
         
         oAuth2Request(queryItems) { result in
             switch result {
-            case .success(let tokenData):
-                let token = try! JSONDecoder().decode(RedditToken.self, from: tokenData)
+            case .success(let token):
                 // Save to CoreData
+                break
             case .failure(let failure):
-                <#code#>
+                // ???
+                break
             }
             
         }
@@ -105,4 +108,5 @@ class CurrentUser: ObservableObject {
 enum OAuth2Error: Error {
     case noResponse
     case unauthorized
+    case invalidResponse
 }
