@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SubredditView: View {
-    @StateObject var model = SubredditModel(subredditName: "all")
+    @StateObject var model = SubredditModel(subredditName: "swift")
     var body: some View {
         NavigationView {
             ScrollView {
@@ -23,22 +23,20 @@ struct SubredditView: View {
                         Text("Load subreddit feed")
                             .foregroundColor(.white)
                             .padding()
+                            .background(Color.blue)
+                            .cornerRadius(8)
                     }
                 }
-                Button(action: model.load) {
-                    Text("Load subreddit feed")
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                }
             }
+            .navigationTitle("r/" + (model.subreddit?.name.capitalized ?? ""))
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
 
 struct SubredditView_Previews: PreviewProvider {
     static var previews: some View {
-        SubredditView()
+        RootView()
+            .environmentObject(CurrentUser.shared)
     }
 }
