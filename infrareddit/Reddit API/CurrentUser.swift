@@ -10,6 +10,7 @@ import UIKit
 
 // Should be an Environment Object, not an Observed Singleton (see https://developer.apple.com/forums/thread/704622 for more info)
 class CurrentUser: ObservableObject {
+    static var shared = CurrentUser()
     /// The Current User should have the follwing properties:
     /// `isLoggedIn: Bool`
     /// `authCode: String`
@@ -20,12 +21,26 @@ class CurrentUser: ObservableObject {
     var authCode: String?
     var authState: String?
     var username: String?
-    var token: String?
-    init() {
-        // Check CoreData for an authCode, authState and refreshToken code
-        // If they exist, make a call to the Reddit API to confirm the
+    var token: RedditToken?
+    private init() {
+        // Check Keychain for an oauth token.
+        // If it exists, make a call to the Reddit API to confirm the
         // credentials are valid
+        
         self.isLoggedIn = false
+        loadTokenFromKeychain()
+        if self.token != nil {
+            self.isLoggedIn = true
+        }
+    }
+    
+    func loadTokenFromKeychain() {
+        let token = KeychainHelper.shared.read(service: "oauth-token", account: "reddit.com", type: RedditToken.self)
+        if token != nil {
+            self.isLoggedIn = true
+        }
+        self.token = token
+        print("loadTokenFromKeychain -> \(token)")
     }
     
     func signInPrompt() {
@@ -69,10 +84,10 @@ class CurrentUser: ObservableObject {
                 if let token = token {
                     completion(.success(token))
                 } else {
-                    completion(.failure(OAuth2Error.invalidResponse))
+                    completion(.failure(RedditError.invalidResponse))
                 }
             } else {
-                completion(.failure(OAuth2Error.noResponse))
+                completion(.failure(RedditError.noResponse))
             }
         }.resume()
     }
@@ -90,10 +105,16 @@ class CurrentUser: ObservableObject {
         oAuth2Request(queryItems) { result in
             switch result {
             case .success(let token):
-                // Save to CoreData
+                self.token = token
+                // Save to the Keychain
+                KeychainHelper.shared.save(token, service: "oauth-token", account: "reddit.com")
+                print("OAuth Token: \(token)")
+                DispatchQueue.main.async {
+                    self.isLoggedIn = true
+                }
                 break
             case .failure(let failure):
-                // ???
+                print("An error occured while refreshing the OAuth token: \(failure.localizedDescription)")
                 break
             }
             
@@ -110,20 +131,21 @@ class CurrentUser: ObservableObject {
         oAuth2Request(queryItems) { result in
             switch result {
             case .success(let token):
-                // Save to CoreData
+                self.token = token
+                self.isLoggedIn = true
+                // Save to Keychain
+                KeychainHelper.shared.save(token, service: "oauth-token", account: "reddit.com")
                 break
             case .failure(let failure):
-                // ???
+                // Sign out the user
+                self.token = nil
+                self.isLoggedIn = false
+                KeychainHelper.shared.delete(service: "oauth-token", account: "reddit.com")
+                print("An error occured while refreshing the OAuth token: \(failure.localizedDescription)")
                 break
             }
             
         }
 
     }
-}
-
-enum OAuth2Error: Error {
-    case noResponse
-    case unauthorized
-    case invalidResponse
 }
