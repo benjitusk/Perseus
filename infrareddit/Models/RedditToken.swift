@@ -6,15 +6,13 @@
 //
 
 import Foundation
-struct RedditToken: Decodable {
+struct RedditToken: Codable {
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case tokenType = "token_type"
         case expiry = "expires_in"
-        case refreshToken = "refresh_token"
     }
     let accessToken: String
     let tokenType: String
     let expiry: Int
-    let refreshToken: String
 }
