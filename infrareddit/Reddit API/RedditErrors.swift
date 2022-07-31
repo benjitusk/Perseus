@@ -12,6 +12,7 @@ enum RedditError: Error {
     case unauthorized
     case userNotLoggedIn
     case unknownError
+    case decodingError
 }
 
 extension RedditError: LocalizedError {
@@ -27,6 +28,8 @@ extension RedditError: LocalizedError {
             return "The requested operation could not be performed becuase the authenticated user does not have sufficient permissions."
         case .noResponse:
             return "The server did not return a response."
+        case .decodingError:
+            return "There was an error decoding the data."
         }
         
     }
