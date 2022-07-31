@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class Comment: Created, Votable {
+class Comment: RedditThing {
     /// The time of creation
     var createdAt: Date
     /// Number of upvotes (includes own)
@@ -38,5 +38,12 @@ class Comment: Created, Votable {
         self.data = data
         self.approvedBy = approvedBy
         self.author = author
+    }
+    enum CodingKeys: String, CodingKey {
+        case createdAt
+    }
+    
+    required init(from decoder: Decoder) throws {
+        throw "Not implemented yet :)"
     }
 }
