@@ -38,7 +38,7 @@ struct Reddit {
         } else {
             queryParameters.append(URLQueryItem(name: "before", value: beforeID))
         }
-        makeRedditAPIRequest(urlPath: subreddit.name, parameters: queryParameters) { result in
+        makeRedditAPIRequest(urlPath: subreddit.relativeURL, parameters: queryParameters, debugMode: true) { result in
             switch result {
             case .success(let submissionsData):
                 let listing = try? JSONDecoder().decode(Listing<Submission>.self, from: submissionsData)
