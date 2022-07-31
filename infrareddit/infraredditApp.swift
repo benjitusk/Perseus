@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct infraredditApp: App {
     let persistenceController = PersistenceController.shared
-    @ObservedObject var currentUser = CurrentUser()
+    @ObservedObject var currentUser = CurrentUser.shared
 
     var body: some Scene {
         WindowGroup {
@@ -30,6 +30,7 @@ struct infraredditApp: App {
                             print("Suspected token auth, but no state and code found.")
                             return
                         }
+                        print("Performing OAuth2TokenRequest(authCode: \(code), state")
                         currentUser.requestOAuth2Token(authCode: code, state: state)
                         break
                     case nil:
