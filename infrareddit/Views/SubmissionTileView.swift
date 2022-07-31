@@ -1,5 +1,5 @@
 //
-//  SubmissionView.swift
+//  SubmissionTileView.swift
 //  infrareddit
 //
 //  Created by Benji Tusk on 7/27/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SubmissionView: View {
+struct SubmissionTileView: View {
     let submission: Submission
     var body: some View {
         VStack {
@@ -17,7 +17,7 @@ struct SubmissionView: View {
                         .bold()
                     Spacer()
                 }
-                .padding()
+                .padding(.bottom, 5)
                 Text(submission.selfText)
 //                    .padding()
             }
@@ -45,15 +45,18 @@ struct SubmissionView: View {
         )
         .cornerRadius(10)
         .shadow(radius: 10)
+        .padding(5)
         
     }
 }
 
 struct SubmissionView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            SubredditView()
+        ScrollView {
+            SubmissionTileView(submission: .sample)
+            SubmissionTileView(submission: .sample)
+            SubmissionTileView(submission: .sample)
         }
-        .padding()
+//        .padding()
     }
 }

@@ -10,11 +10,18 @@ import SwiftUI
 struct SubredditView: View {
     @StateObject var model = SubredditModel(subredditName: "all")
     var body: some View {
-        ScrollView {
-            VStack {
-                if let submissions = model.submissions {
-                    ForEach(submissions) { submission in
-                        SubmissionView(submission: submission)
+        NavigationView {
+            ScrollView {
+                VStack {
+                    if let submissions = model.submissions {
+                        ForEach(submissions) { submission in
+                            SubmissionTileView(submission: submission)
+                                .padding()
+                        }
+                    }
+                    Button(action: model.load) {
+                        Text("Load subreddit feed")
+                            .foregroundColor(.white)
                             .padding()
                     }
                 }
