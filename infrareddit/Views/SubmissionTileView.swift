@@ -83,7 +83,7 @@ struct SubmissionTileView: View {
     }
 }
 
-struct SubmissionView_Previews: PreviewProvider {
+struct SubmissionTileView_Previews: PreviewProvider {
     static var previews: some View {
             HomeFeedView()
 //        .padding()
