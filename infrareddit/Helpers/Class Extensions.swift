@@ -17,3 +17,13 @@ extension String: LocalizedError {
     /// https://stackoverflow.com/a/40629365/13368672
     public var errorDescription: String? { return self }
 }
+
+extension Data {
+    var prettyJson: String? {
+        guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+              let prettyPrintedString = String(data: data, encoding:.utf8) else { return nil }
+
+        return prettyPrintedString
+    }
+}
