@@ -25,6 +25,7 @@ final class Submission: RedditThing {
     let selfText: String
     let subredditID: String
     let subredditName: String
+    let submissionType: SubmissionType
     let thumbnailURL: URL?
     let title: String
     let totalAwardCount: Int
@@ -151,18 +152,21 @@ final class Submission: RedditThing {
         case viewCount = "view_count"
         case visited
         case voteRatio = "upvote_ratio"
-        case whitelistStatus = "whitelist_status"    }
+        case whitelistStatus = "whitelist_status"
+    }
+    
     enum RootKeys: CodingKey {
         case kind, data
     }
     
     enum SubmissionType: String, Decodable {
-        case link
+        /// A post that only contains text
         case text
-        case any
+        /// A post containing media or a link
+        case link
     }
     
-    init(title: String, selfText: String, author: Author, upVotes: Int, downVotes: Int, totalAwardCount: Int, isOriginalContent: Bool, thumbnailURL: URL?, createdAt: Date, isArchived: Bool, isNSFW: Bool, isPinned: Bool, isMediaOnly: Bool, isLocked: Bool, id: String, subredditID: String, commentCount: Int, permalink: String, isStickied: Bool, voteRatio: Double, subredditName: String) {
+    init(title: String, selfText: String, author: Author, upVotes: Int, downVotes: Int, totalAwardCount: Int, isOriginalContent: Bool, thumbnailURL: URL?, createdAt: Date, isArchived: Bool, isNSFW: Bool, isPinned: Bool, isMediaOnly: Bool, isLocked: Bool, id: String, subredditID: String, commentCount: Int, permalink: String, isStickied: Bool, voteRatio: Double, subredditName: String, submissionType: SubmissionType) {
         self.title = title
         self.selfText = selfText
         self.author = author
@@ -185,12 +189,11 @@ final class Submission: RedditThing {
         self.voteRatio = voteRatio
         self.subredditName = subredditName
         self.preview = nil
+        self.submissionType = submissionType
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RootKeys.self).nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
-        title = try container.decode(String.self, forKey: .title)
-        selfText = try container.decode(String.self, forKey: .selfText)
         
         // Author data
         if let authorID = try container.decodeIfPresent(String.self, forKey: .authorID) {
@@ -206,11 +209,6 @@ final class Submission: RedditThing {
         } else {
             author = Author.deletedUser
         }
-        
-        upVotes = try container.decode(Int.self, forKey: .upvoteCount)
-        downVotes = try container.decode(Int.self, forKey: .downvoteCount)
-        totalAwardCount = try container.decode(Int.self, forKey: .awardCount)
-        isOriginalContent = try container.decode(Bool.self, forKey: .isOriginalContent)
         if let thumbnail = try container.decode(String?.self, forKey: .thumbnail),
            thumbnail.hasPrefix("http") {
             thumbnailURL = URL(string: thumbnail)!
@@ -218,20 +216,33 @@ final class Submission: RedditThing {
             thumbnailURL = nil
         }
         let createdAtTimestamp = try container.decode(Int.self, forKey: .createdAtUTC)
-        createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp))
-        isArchived = try container.decode(Bool.self, forKey: .archived)
-        isNSFW = try container.decode(Bool.self, forKey: .isNSFW)
-        isPinned = try container.decode(Bool.self, forKey: .pinned)
-        isMediaOnly = try container.decode(Bool.self, forKey: .mediaOnly)
-        isLocked = try container.decode(Bool.self, forKey: .locked)
-        id = try container.decode(String.self, forKey: .fullName)
-        subredditID = try container.decode(String.self, forKey: .subredditID)
+        if try container.decode(Bool.self, forKey: .isSelf) {
+            submissionType = .text
+        } else {
+            submissionType = .link
+        }
+        
+        
         commentCount = try container.decode(Int.self, forKey: .commentCount)
-        permalink  = try container.decode(String.self, forKey: .permalink)
+        createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp))
+        downVotes = try container.decode(Int.self, forKey: .downvoteCount)
+        id = try container.decode(String.self, forKey: .fullName)
+        isArchived = try container.decode(Bool.self, forKey: .archived)
+        isLocked = try container.decode(Bool.self, forKey: .locked)
+        isMediaOnly = try container.decode(Bool.self, forKey: .mediaOnly)
+        isNSFW = try container.decode(Bool.self, forKey: .isNSFW)
+        isOriginalContent = try container.decode(Bool.self, forKey: .isOriginalContent)
+        isPinned = try container.decode(Bool.self, forKey: .pinned)
         isStickied = try container.decode(Bool.self, forKey: .stickied)
-        voteRatio = try container.decode(Double.self, forKey: .voteRatio)
-        subredditName = try container.decode(String.self, forKey: .subredditName)
+        permalink  = try container.decode(String.self, forKey: .permalink)
         preview = try? container.decode(RedditImageContainer.self, forKey: .preview)
+        selfText = try container.decode(String.self, forKey: .selfText)
+        subredditID = try container.decode(String.self, forKey: .subredditID)
+        subredditName = try container.decode(String.self, forKey: .subredditName)
+        title = try container.decode(String.self, forKey: .title)
+        totalAwardCount = try container.decode(Int.self, forKey: .awardCount)
+        upVotes = try container.decode(Int.self, forKey: .upvoteCount)
+        voteRatio = try container.decode(Double.self, forKey: .voteRatio)
     }
     
     static var sample = Submission(title: "Test submission!",
@@ -254,7 +265,8 @@ final class Submission: RedditThing {
                                    permalink: "link to nowhere",
                                    isStickied: false,
                                    voteRatio: 0.98,
-                                   subredditName: "AppDev"
+                                   subredditName: "AppDev",
+                                   submissionType: .text
     )
 }
 
