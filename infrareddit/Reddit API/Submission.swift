@@ -8,30 +8,28 @@
 import Foundation
 final class Submission: RedditThing {
     
-    let title: String
-    let selfText: String
-    let authorName: String
-    let authorID: String
-    let upVotes: Int
-    let downVotes: Int
-    let totalAwardCount: Int
-    let isOriginalContent: Bool
-    let thumbnailURL: URL?
-    let createdAt: Date
-    let isArchived: Bool
-    let isNSFW: Bool
-    let isPinned: Bool
-//    let awards = [Award]
-    let isMediaOnly: Bool
-    let isLocked: Bool
-    let id: String
-    let subredditID: String
+    let author: Author
     let commentCount: Int
-    let permalink: String
+    let createdAt: Date
+    let downVotes: Int
+    let id: String
+    let isArchived: Bool
+    let isLocked: Bool
+    let isMediaOnly: Bool
+    let isNSFW: Bool
+    let isOriginalContent: Bool
+    let isPinned: Bool
     let isStickied: Bool
-    let voteRatio: Double
+    let permalink: String
+    let preview: RedditImageContainer?
+    let selfText: String
+    let subredditID: String
     let subredditName: String
-    
+    let thumbnailURL: URL?
+    let title: String
+    let totalAwardCount: Int
+    let upVotes: Int
+    let voteRatio: Double
     enum CodingKeys: String, CodingKey {
         
         // Mod Data
@@ -105,6 +103,7 @@ final class Submission: RedditThing {
         case isOriginalContent = "is_original_content"
         case secureMedia = "secure_media"
         case isRedditMediaDomain = "is_reddit_media_domain"
+        case preview
         case isMeta = "is_meta"
         case category
         case secureMediaEmbed = "secure_media_embed"
@@ -186,6 +185,7 @@ final class Submission: RedditThing {
         self.isStickied = isStickied
         self.voteRatio = voteRatio
         self.subredditName = subredditName
+        self.preview = nil
     }
     
     init(from decoder: Decoder) throws {
@@ -212,7 +212,12 @@ final class Submission: RedditThing {
         downVotes = try container.decode(Int.self, forKey: .downvoteCount)
         totalAwardCount = try container.decode(Int.self, forKey: .awardCount)
         isOriginalContent = try container.decode(Bool.self, forKey: .isOriginalContent)
-        thumbnailURL = nil // MARK: Fix submission init
+        if let thumbnail = try container.decode(String?.self, forKey: .thumbnail),
+           thumbnail.hasPrefix("http") {
+            thumbnailURL = URL(string: thumbnail)!
+        } else {
+            thumbnailURL = nil
+        }
         let createdAtTimestamp = try container.decode(Int.self, forKey: .createdAtUTC)
         createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp))
         isArchived = try container.decode(Bool.self, forKey: .archived)
@@ -227,7 +232,9 @@ final class Submission: RedditThing {
         isStickied = try container.decode(Bool.self, forKey: .stickied)
         voteRatio = try container.decode(Double.self, forKey: .voteRatio)
         subredditName = try container.decode(String.self, forKey: .subredditName)
+        preview = try? container.decode(RedditImageContainer.self, forKey: .preview)
     }
+    
     static var sample = Submission(title: "Test submission!",
                                    selfText: "This is a test submission used for aiding in the development of InfraReddit, a Reddit client for iOS. I really hope development goes smoothly! I'll keep you updated as I go. Wish me luck!!",
                                    author: .sample,
@@ -251,3 +258,18 @@ final class Submission: RedditThing {
                                    subredditName: "AppDev"
     )
 }
+
+struct RedditImageContainer: Decodable {
+    struct Image: Decodable {
+        struct ImageSource: Decodable {
+            let url: String
+            let width: Int
+            let height: Int
+        }
+        let source: ImageSource
+        let resolutions: [ImageSource]
+    }
+    let images: [RedditImageContainer.Image]
+    let enabled: Bool
+}
+

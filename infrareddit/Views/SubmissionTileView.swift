@@ -8,40 +8,73 @@
 import SwiftUI
 
 struct SubmissionTileView: View {
+
     let submission: Submission
     var body: some View {
         VStack {
-            VStack {
+            VStack(spacing: 10) {
                 HStack {
-                    Text(.init(submission.title))
-                        .bold()
+                    Text("r/**\(submission.subredditName)**")
                     Spacer()
+                    Label("\(submission.upVotes)", systemImage: "arrow.up")
                 }
-                .padding(.bottom, 5)
-                Text(submission.selfText)
-//                    .padding()
+                HStack {
+                    Text("u/**\(submission.author.username)**")
+                    Spacer()
+                    Label("\(submission.commentCount)", systemImage: "text.bubble")
+                }
+
             }
-            .padding()
+            .font(.caption)
+            .foregroundColor(.gray)
+            .padding(.top)
+            .padding(.horizontal)
+            
+            SingleAxisGeometryReader(axis: .horizontal) { width in
+                VStack {
+                    HStack {
+                        Text(.init(submission.title))
+                            .bold()
+                        Spacer()
+                    }
+                    .padding()
+                    if let preview = submission.preview {
+                            AsyncImage(url: URL(string: preview.images.first!.source.url)) { phase in
+                                if let image = phase.image {
+                                    HStack(alignment: .top) {
+                                        withAnimation {
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                        }
+                                    }
+                                    .frame(maxHeight: 650, alignment: .top)
+                                } else if let error = phase.error {
+                                    Color.red
+                                        .overlay(Text(error.localizedDescription))
+                                } else {
+                                    Color.blue
+                                }
+                            }
+                    } else {
+                        if !submission.selfText.isEmpty {
+                            Text(submission.selfText)
+                                .padding(.horizontal)
+                                .padding(.bottom)
+                                .lineLimit(3)
+                        }
+                    }
+                }
+            }
             .background(
                 Color.white
             )
             .cornerRadius(10)
             .shadow(radius: 10)
             
-            HStack {
-                Text("/u/" + submission.authorName)
-                Text("•")
-                Text("/r/" + submission.subredditName)
-                Spacer()
-                Label("\(submission.upVotes)", systemImage: "arrow.up")
-                Label("\(submission.downVotes)", systemImage: "arrow.down")
-            }
-            .foregroundColor(.gray)
-            .padding(.horizontal)
-            .padding(.vertical, 5)
         }
         .background(
-            Color.white
+            Color(UIColor.systemBackground)
         )
         .cornerRadius(10)
         .shadow(radius: 10)
@@ -52,11 +85,7 @@ struct SubmissionTileView: View {
 
 struct SubmissionView_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollView {
-            SubmissionTileView(submission: .sample)
-            SubmissionTileView(submission: .sample)
-            SubmissionTileView(submission: .sample)
-        }
+            HomeFeedView()
 //        .padding()
     }
 }
