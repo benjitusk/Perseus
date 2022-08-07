@@ -22,10 +22,10 @@ final class KeychainHelper {
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
             kSecAttrAccount: account,
-        ] as CFDictionary
+        ] as [String: Any]
         
         // add data in query to keychain
-        let status = SecItemAdd(query, nil)
+        let status = SecItemAdd(query as CFDictionary, nil)
         
         switch status {
         case errSecSuccess:
@@ -52,16 +52,24 @@ final class KeychainHelper {
     ///     - account: The 'service" for which you are fetching data. This must be the same string used when saving the data
     /// - Returns: `Data`, if the read was successful, and `nil`, if it failed
     func read(service: String, account: String) -> Data? {
-        let query = [
-            kSecAttrService: service,
-            kSecAttrAccount: account,
-            kSecClass: kSecClassGenericPassword,
-            kSecValueData: true
-        ] as CFDictionary
-        
+        let query: [String: AnyObject] = [
+            // kSecAttrService,  kSecAttrAccount, and kSecClass
+            // uniquely identify the item to read in Keychain
+            kSecAttrService as String: service as AnyObject,
+            kSecAttrAccount as String: account as AnyObject,
+            kSecClass as String: kSecClassGenericPassword,
+            
+            // kSecMatchLimitOne indicates keychain should read
+            // only the most recent item matching this query
+            kSecMatchLimit as String: kSecMatchLimitOne,
+
+            // kSecReturnData is set to kCFBooleanTrue in order
+            // to retrieve the data for the item
+            kSecReturnData as String: kCFBooleanTrue
+        ]
+
         var result: AnyObject?
-        SecItemCopyMatching(query, &result)
-        
+        SecItemCopyMatching(query as CFDictionary, &result)
         return (result as? Data)
     }
     
