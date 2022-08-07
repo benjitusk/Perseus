@@ -84,75 +84,74 @@ final class Submission: RedditThing {
         case linkFlairType = "link_flair_type"
         
         // Other fields
-        case selfText = "selftext"
-        case saved = "saved"
-        case gilded
-        case clicked
-        case title
-        case hidden
-        case downvoteCount = "downs"
-        case thumbnailHeight = "thumbnail_height"
-        case topAwardedType = "top_awarded_type"
-        case scoreHidden = "hide_score"
-        case fullName = "name"
-        case voteRatio = "upvote_ratio"
-        case upvoteCount = "ups"
-        case awardCount = "total_awards_received"
-        case mediaEmbed = "media_embed"
-        case thumbnailWidth = "thumbnail_width"
-        case isOriginalContent = "is_original_content"
-        case secureMedia = "secure_media"
-        case isRedditMediaDomain = "is_reddit_media_domain"
-        case preview
-        case isMeta = "is_meta"
-        case category
-        case secureMediaEmbed = "secure_media_embed"
-        case score
-        case approvedBy = "approved_by"
-        case isCreatedFromAdsUI = "is_created_from_ads_ui"
-        case authorHasPremium = "author_premium"
-        case thumbnail
-        case edited
-        case gildings
-        case contentCategories = "content_categories"
-        case isSelf = "is_self"
-        case created
-        case domain
-        case allowLiveComments = "allow_live_comments"
-        case selfTextHTML = "selftext_html"
-        case likes
-        case suggestedSort = "suggested_sort"
-        case viewCount = "view_count"
-        case archived
-        case noFollow = "no_follow"
-        case isCrosspostable = "is_crosspostable"
-        case pinned
-        case isNSFW = "over_18"
         case allAwards = "all_awardings"
+        case allowLiveComments = "allow_live_comments"
+        case approvedBy = "approved_by"
+        case archived
+        case authorHasPremium = "author_premium"
+        case awardCount = "total_awards_received"
         case awarders
-        case mediaOnly = "media_only"
         case canGild = "can_gild"
-        case spoiler
-        case locked
-        case treatmentTags = "treatment_tags"
-        case visited
-        case distinguished
-        case id
-        case isRobotIndexable = "is_robot_indexable"
-        case discussionType = "discussionType"
+        case category
+        case clicked
         case commentCount = "num_comments"
-        case sendReplies = "send_replies"
-        case whitelistStatus = "whitelist_status"
+        case contentCategories = "content_categories"
         case contestMode = "contest_mode"
-        case permalink
-        case parentWhitelistStatus = "parent_whitelist_status"
-        case stickied
-        case url
+        case created
         case createdAtUTC = "created_utc"
         case crosspostCount = "num_crosspost"
-        case media
+        case discussionType = "discussionType"
+        case distinguished
+        case domain
+        case downvoteCount = "downs"
+        case edited
+        case fullName = "name"
+        case gilded
+        case gildings
+        case hidden
+        case id
+        case isCreatedFromAdsUI = "is_created_from_ads_ui"
+        case isCrosspostable = "is_crosspostable"
+        case isMeta = "is_meta"
+        case isNSFW = "over_18"
+        case isOriginalContent = "is_original_content"
+        case isRedditMediaDomain = "is_reddit_media_domain"
+        case isRobotIndexable = "is_robot_indexable"
+        case isSelf = "is_self"
         case isVideo = "is_video"
-    }
+        case likes
+        case locked
+        case media
+        case mediaEmbed = "media_embed"
+        case mediaOnly = "media_only"
+        case noFollow = "no_follow"
+        case parentWhitelistStatus = "parent_whitelist_status"
+        case permalink
+        case pinned
+        case preview
+        case saved = "saved"
+        case score
+        case scoreHidden = "hide_score"
+        case secureMedia = "secure_media"
+        case secureMediaEmbed = "secure_media_embed"
+        case selfText = "selftext"
+        case selfTextHTML = "selftext_html"
+        case sendReplies = "send_replies"
+        case spoiler
+        case stickied
+        case suggestedSort = "suggested_sort"
+        case thumbnail
+        case thumbnailHeight = "thumbnail_height"
+        case thumbnailWidth = "thumbnail_width"
+        case title
+        case topAwardedType = "top_awarded_type"
+        case treatmentTags = "treatment_tags"
+        case upvoteCount = "ups"
+        case url
+        case viewCount = "view_count"
+        case visited
+        case voteRatio = "upvote_ratio"
+        case whitelistStatus = "whitelist_status"    }
     enum RootKeys: CodingKey {
         case kind, data
     }
