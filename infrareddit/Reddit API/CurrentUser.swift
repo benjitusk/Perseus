@@ -148,4 +148,20 @@ class CurrentUser: ObservableObject {
         }
 
     }
+    
+    func signOut() {
+        self.token = nil
+        DispatchQueue.main.async {
+            self.isLoggedIn = false
+        }
+        KeychainHelper.shared.delete(service: "oauth-token", account: "reddit.com")
+    }
+    func signIn(with token: RedditToken) {
+        self.token = token
+        self.token?.expiry = Int(Date.now.timeIntervalSince1970) + token.expiry
+        DispatchQueue.main.async {
+            self.isLoggedIn = true
+        }
+        KeychainHelper.shared.save(self.token, service: "oauth-token", account: "reddit.com")
+    }
 }
