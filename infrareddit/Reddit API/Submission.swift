@@ -164,11 +164,10 @@ final class Submission: RedditThing {
         case any
     }
     
-    init(title: String, selfText: String, authorName: String, authorID: String, upVotes: Int, downVotes: Int, totalAwardCount: Int, isOriginalContent: Bool, thumbnailURL: URL?, createdAt: Date, isArchived: Bool, isNSFW: Bool, isPinned: Bool, isMediaOnly: Bool, isLocked: Bool, id: String, subredditID: String, commentCount: Int, permalink: String, isStickied: Bool, voteRatio: Double, subredditName: String) {
+    init(title: String, selfText: String, author: Author, upVotes: Int, downVotes: Int, totalAwardCount: Int, isOriginalContent: Bool, thumbnailURL: URL?, createdAt: Date, isArchived: Bool, isNSFW: Bool, isPinned: Bool, isMediaOnly: Bool, isLocked: Bool, id: String, subredditID: String, commentCount: Int, permalink: String, isStickied: Bool, voteRatio: Double, subredditName: String) {
         self.title = title
         self.selfText = selfText
-        self.authorName = authorName
-        self.authorID = authorID
+        self.author = author
         self.upVotes = upVotes
         self.downVotes = downVotes
         self.totalAwardCount = totalAwardCount
@@ -193,8 +192,22 @@ final class Submission: RedditThing {
         let container = try decoder.container(keyedBy: RootKeys.self).nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
         title = try container.decode(String.self, forKey: .title)
         selfText = try container.decode(String.self, forKey: .selfText)
-        authorName = try container.decode(String.self, forKey: .authorName)
-        authorID = try container.decode(String.self, forKey: .authorID)
+        
+        // Author data
+        if let authorID = try container.decodeIfPresent(String.self, forKey: .authorID) {
+            let authorUsername = try container.decode(String.self, forKey: .authorName)
+            let authorIsBlocked = try container.decode(Bool.self, forKey: .authorIsBlocked)
+            let authorHasPatreonFlair = try container.decode(Bool.self, forKey: .authorPatreonFlair)
+            let authorHasPremium = try container.decode(Bool.self, forKey: .authorHasPremium)
+            author = Author(username: authorUsername,
+                            id: authorID,
+                            isBlocked: authorIsBlocked,
+                            patreonFlair: authorHasPatreonFlair,
+                            hasPremium: authorHasPremium)
+        } else {
+            author = Author.deletedUser
+        }
+        
         upVotes = try container.decode(Int.self, forKey: .upvoteCount)
         downVotes = try container.decode(Int.self, forKey: .downvoteCount)
         totalAwardCount = try container.decode(Int.self, forKey: .awardCount)
@@ -217,8 +230,7 @@ final class Submission: RedditThing {
     }
     static var sample = Submission(title: "Test submission!",
                                    selfText: "This is a test submission used for aiding in the development of InfraReddit, a Reddit client for iOS. I really hope development goes smoothly! I'll keep you updated as I go. Wish me luck!!",
-                                   authorName: "benjitusk",
-                                   authorID: "INVALID_ID",
+                                   author: .sample,
                                    upVotes: 84_928,
                                    downVotes: 290,
                                    totalAwardCount: 19,
