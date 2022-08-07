@@ -31,6 +31,13 @@ class CurrentUser: ObservableObject {
         loadTokenFromKeychain()
         if self.token != nil {
             self.isLoggedIn = true
+            if token!.expiry < Int(Date.now.timeIntervalSince1970) {
+                Task.detached {
+                    await self.refreshOAuth2Token(self.token!)
+                }
+            }        
+        } else {
+            self.signInPrompt()
         }
     }
     
@@ -40,7 +47,6 @@ class CurrentUser: ObservableObject {
             self.isLoggedIn = true
         }
         self.token = token
-        print("loadTokenFromKeychain -> \(token)")
     }
     
     func signInPrompt() {
@@ -94,7 +100,8 @@ class CurrentUser: ObservableObject {
     
     func requestOAuth2Token(authCode: String, state authState: String) {
         guard authState == self.authState else {
-            fatalError("Weird circumstance where we are finishing a different auth request than the one we started?! (AUTH1F)")
+            return
+//            fatalError("Weird circumstance where we are finishing a different auth request than the one we started?! (AUTH1F)")
         }
         let queryItems = [
             URLQueryItem(name: "grant_type", value: "authorization_code"),
@@ -105,42 +112,31 @@ class CurrentUser: ObservableObject {
         oAuth2Request(queryItems) { result in
             switch result {
             case .success(let token):
-                self.token = token
-                // Save to the Keychain
-                KeychainHelper.shared.save(token, service: "oauth-token", account: "reddit.com")
+                self.signIn(with: token)
                 print("OAuth Token: \(token)")
-                DispatchQueue.main.async {
-                    self.isLoggedIn = true
-                }
-                break
             case .failure(let failure):
                 print("An error occured while refreshing the OAuth token: \(failure.localizedDescription)")
-                break
+                self.signOut()
             }
             
         }
     }
     
-    func refreshOAuth2Token(_ token: String) {
+    func refreshOAuth2Token(_ token: RedditToken) async {
+        print("refreshing token")
         let queryItems = [
-            URLQueryItem(name: "grant_type", value: "refresh"),
-            URLQueryItem(name: "token", value: token),
-            URLQueryItem(name: "redirect_uri", value: "infrareddit://token"),
+            URLQueryItem(name: "grant_type", value: "refresh_token"),
+            URLQueryItem(name: "token", value: token.refreshToken),
         ]
         
         oAuth2Request(queryItems) { result in
             switch result {
             case .success(let token):
-                self.token = token
-                self.isLoggedIn = true
-                // Save to Keychain
-                KeychainHelper.shared.save(token, service: "oauth-token", account: "reddit.com")
+                self.signIn(with: token)
                 break
             case .failure(let failure):
                 // Sign out the user
-                self.token = nil
-                self.isLoggedIn = false
-                KeychainHelper.shared.delete(service: "oauth-token", account: "reddit.com")
+                self.signOut()
                 print("An error occured while refreshing the OAuth token: \(failure.localizedDescription)")
                 break
             }
