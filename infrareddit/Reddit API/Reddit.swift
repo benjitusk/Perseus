@@ -10,11 +10,11 @@ import Foundation
 typealias RedditResult<T> = Result<T, RedditError>
 
 struct Reddit {
-    static func getSubredditByName(_ name: String, completion: @escaping (_: RedditResult<Subreddit>) -> Void) {
+    static func getSubredditByName(_ name: String, completion: @escaping (_: RedditResult<StandardSubreddit>) -> Void) {
         makeRedditAPIRequest(urlPath: "/r/\(name)/about") { result in
             switch result {
             case .success(let subredditData):
-                if let subreddit = try? JSONDecoder().decode(Subreddit.self, from: subredditData) {
+                if let subreddit = try? JSONDecoder().decode(StandardSubreddit.self, from: subredditData) {
                     completion(.success(subreddit))
                     return
                 } else {
@@ -31,40 +31,78 @@ struct Reddit {
         }
     }
     
-    static func getSubredditListing(subreddit: Subreddit, before beforeID: String?, after afterID: String?, completion: @escaping (_: Result<[Submission], RedditError>) -> Void) {
+    static func getCustomSubmissionsListing(for apiPath: String, before: String?, after: String?, completion: @escaping (_: RedditResult<Listing<Submission>>) -> Void) {
         var queryParameters: [URLQueryItem] = []
-        if afterID != nil {
-            queryParameters.append(URLQueryItem(name: "after", value: afterID))
+        if after != nil {
+            queryParameters.append(URLQueryItem(name: "after", value: after))
         } else {
-            queryParameters.append(URLQueryItem(name: "before", value: beforeID))
+            queryParameters.append(URLQueryItem(name: "before", value: before))
         }
-        makeRedditAPIRequest(urlPath: subreddit.relativeURL, parameters: queryParameters, debugMode: true) { result in
+        queryParameters.append(URLQueryItem(name: "limit", value: "20"))
+        makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters, debugMode: true) { result in
             switch result {
-            case .success(let submissionsData):
-                let listing = try? JSONDecoder().decode(Listing<Submission>.self, from: submissionsData)
-                if let listing = listing {
-                    completion(.success(listing.children))
+            case .success(let data):
+                if let listing = try? JSONDecoder().decode(Listing<Submission>.self, from: data) {
+                    completion(.success(listing))
                     return
                 } else {
-                    print("Error decoding listing for subreddit \(subreddit.name)")
                     completion(.failure(.decodingError))
-                    return
                 }
-                // Decode submissionData
             case .failure(let error):
-                print("getSubredditListing(subreddit: \(subreddit.name), before: \(beforeID ?? "nil"), after: \(afterID ?? "nil") failed:\n\(error.localizedDescription)")
+                print("An error occured while performing your custom API call: \(error.localizedDescription)")
                 completion(.failure(error))
             }
         }
     }
     
-    private static func makeRedditAPIRequest(urlPath: String, parameters: [URLQueryItem] = [], debugMode: Bool = false, completion: @escaping (_: RedditResult<Data>) -> Void) {
+    static func getSubredditListing(subreddit: Subreddit, before: String?, after: String?, completion: @escaping (_: Result<Listing<Submission>, RedditError>) -> Void) {
+        var queryParameters: [URLQueryItem] = []
+        if after != nil {
+            queryParameters.append(URLQueryItem(name: "after", value: after))
+        } else {
+            queryParameters.append(URLQueryItem(name: "before", value: before))
+        }
+        queryParameters.append(URLQueryItem(name: "limit", value: "1"))
+        var urlPath = ""
+        if let subreddit = subreddit as? StandardSubreddit {
+            urlPath = "r/\(subreddit.displayName)"
+        } else if let subreddit = subreddit as? SpecialSubreddit {
+            urlPath = subreddit.apiURL
+        }
+        makeRedditAPIRequest(urlPath: urlPath, parameters: queryParameters, debugMode: true, overrideAuth: false) { result in
+            switch result {
+            case .success(let submissionsData):
+                if let listing = try? JSONDecoder().decode(Listing<Submission>.self, from: submissionsData) {
+                    completion(.success(listing))
+                    return
+                } else {
+                    print("Error decoding listing for subreddit \(subreddit.displayName)")
+                    completion(.failure(.decodingError))
+                    return
+                }
+            case .failure(let error):
+                print("getSubredditListing(subreddit: \(subreddit.displayName), before: \(before ?? "nil"), after: \(after ?? "nil") failed:\n\(error.localizedDescription)")
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private static func makeRedditAPIRequest(urlPath: String, parameters: [URLQueryItem] = [], debugMode: Bool = false, overrideAuth: Bool? = nil, completion: @escaping (_: RedditResult<Data>) -> Void) {
         var apiPath = urlPath
         var redditDomain = ".reddit.com"
-        if CurrentUser.shared.isLoggedIn {
-            redditDomain = "oauth" + redditDomain
+
+        if let overrideAuth = overrideAuth {
+            if overrideAuth {
+                redditDomain = "oauth" + redditDomain
+            } else {
+                redditDomain = "api" + redditDomain
+            }
         } else {
-            redditDomain = "api" + redditDomain
+            if CurrentUser.shared.isLoggedIn {
+                redditDomain = "oauth" + redditDomain
+            } else {
+                redditDomain = "api" + redditDomain
+            }
         }
         
         
@@ -81,17 +119,33 @@ struct Reddit {
             // If the user is logged in, include the OAuth2 Token with the request
             print("User token: \(CurrentUser.shared.token?.accessToken ?? "nil")")
         }
-        if CurrentUser.shared.isLoggedIn {
-            guard let token = CurrentUser.shared.token else {
-                // If the user is registered as logged in, but
-                // the token is nil, something weird happened.
-                // Cancel the action and return the relevent error
-                CurrentUser.shared.isLoggedIn = false
-                completion(.failure(.userNotLoggedIn))
-                return
+        
+        // If overrideAuth is nil, default to adding token if logged in
+        // otherwise, if specified to be true,
+        
+        if let overrideAuth = overrideAuth {
+            if overrideAuth {
+                guard let token = CurrentUser.shared.token else {
+                    // If the user is registered as logged in, but
+                    // the token is nil, something weird happened.
+                    // Cancel the action and return the relevent error
+                    CurrentUser.shared.isLoggedIn = false
+                    completion(.failure(.userNotLoggedIn))
+                    return
+                }
+                request.allHTTPHeaderFields = ["Authorization": "bearer \(token.accessToken)"]
             }
-            request.allHTTPHeaderFields = ["Authorization": "bearer \(token)"]
+        } else {
+            if CurrentUser.shared.isLoggedIn {
+                guard let token = CurrentUser.shared.token else {
+                    CurrentUser.shared.isLoggedIn = false
+                    completion(.failure(.userNotLoggedIn))
+                    return
+                }
+                request.allHTTPHeaderFields = ["Authorization": "bearer \(token.accessToken)"]
+            }
         }
+        
         if debugMode {
             print(url.debugDescription)
         }
@@ -124,12 +178,9 @@ protocol RedditThing: Decodable, Identifiable {
     associatedtype CodingKeys: RawRepresentable where CodingKeys.RawValue: StringProtocol
 }
 
-protocol Votable: RedditThing {
-    var upVotes: Int { get set }
-    var downVotes: Int { get set }
-    var liked: Bool? { get set} // true = upvote; false = downvote; nil = no vote/no auth
-}
-
-protocol Created: RedditThing {
-    var createdAt: Date { get }
+protocol Subreddit {
+    
+    var displayName: String { get }
+    
+    func getPosts(by sortingMethod: StandardSubreddit.SortingMethod, before: String?, after: String?, completion: @escaping (_: RedditResult<Listing<Submission>>) -> Void)
 }

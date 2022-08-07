@@ -11,18 +11,16 @@ import CoreData
 struct RootView: View {
     @EnvironmentObject var currentUser: CurrentUser
     var body: some View {
-        VStack {
-            SubredditView()
-            Text("This should be a feed from r/all")
-            if !currentUser.isLoggedIn {
-                Button(action: currentUser.signInPrompt) {
-                    Text("Login")
+        TabView {
+            HomeFeedView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
                 }
-            } else {
-                Text("You're already logged in!")
-            }
+            AccountView()
+                .tabItem {
+                    Label("Account", systemImage: "person.crop.circle.fill")
+                }
         }
-        .padding()
 
         .environmentObject(currentUser)
     }

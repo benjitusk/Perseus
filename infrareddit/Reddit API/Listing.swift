@@ -9,7 +9,7 @@ import Foundation
 final class Listing<RedditData: RedditThing>: Decodable {
     let after: String?
     let dist: Int
-    let children: [RedditData]
+    var children: [RedditData]
     let before: String?
     
     enum RootKeys: CodingKey {

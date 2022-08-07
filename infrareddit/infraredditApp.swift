@@ -30,7 +30,6 @@ struct infraredditApp: App {
                             print("Suspected token auth, but no state and code found.")
                             return
                         }
-                        print("Performing OAuth2TokenRequest(authCode: \(code), state")
                         currentUser.requestOAuth2Token(authCode: code, state: state)
                         break
                     case nil:
