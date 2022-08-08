@@ -125,6 +125,12 @@
 		08886505288DE7C200EF5B92 /* Structure */ = {
 			isa = PBXGroup;
 			children = (
+				0890912F288F669000F2A2D2 /* Submission.swift */,
+				08909131288F66A900F2A2D2 /* Subreddit.swift */,
+				08909133288F80CD00F2A2D2 /* Comment.swift */,
+				08909135288F9A9B00F2A2D2 /* RedditErrors.swift */,
+				089091392892236E00F2A2D2 /* Listing.swift */,
+				087AF84028A03F8300D568CC /* Author.swift */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -156,12 +162,6 @@
 			children = (
 				08886509288DE7F700EF5B92 /* Reddit.swift */,
 				0888650B288DE83A00EF5B92 /* CurrentUser.swift */,
-				0890912F288F669000F2A2D2 /* Submission.swift */,
-				08909131288F66A900F2A2D2 /* Subreddit.swift */,
-				08909133288F80CD00F2A2D2 /* Comment.swift */,
-				08909135288F9A9B00F2A2D2 /* RedditErrors.swift */,
-				089091392892236E00F2A2D2 /* Listing.swift */,
-				087AF84028A03F8300D568CC /* Author.swift */,
 			);
 			path = "Reddit API";
 			sourceTree = "<group>";
@@ -408,6 +408,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = infrareddit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Orion;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -439,6 +441,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = infrareddit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Orion;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
