@@ -6,6 +6,8 @@ There's just something special about making your own app, y'know? I want to make
 
 There's this endless stream of content on Reddit, and, as the developer, I can dictate how it should be layed out and styled. There's something just magical about that idea to me.
 
+Furthermore, I feel like the moderation tools on the iOS Reddit apps have room to be improved on, and what better way to address that issue than to DIY!
+
 ### Are you going to monetize this app?
 As of now, I have no intention of doing so, but as things change, I will update this section accordingly.
 
