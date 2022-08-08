@@ -80,7 +80,7 @@
 		088864E1288DC8A500EF5B92 = {
 			isa = PBXGroup;
 			children = (
-				088864EC288DC8A500EF5B92 /* infrareddit */,
+				088864EC288DC8A500EF5B92 /* Orion */,
 				088864EB288DC8A500EF5B92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,7 +93,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		088864EC288DC8A500EF5B92 /* infrareddit */ = {
+		088864EC288DC8A500EF5B92 /* Orion */ = {
 			isa = PBXGroup;
 			children = (
 				08909125288E04B700F2A2D2 /* Helpers */,
@@ -111,7 +111,7 @@
 				088864F8288DC8A800EF5B92 /* infrareddit.xcdatamodeld */,
 				088864F3288DC8A800EF5B92 /* Preview Content */,
 			);
-			path = infrareddit;
+			path = Orion;
 			sourceTree = "<group>";
 		};
 		088864F3288DC8A800EF5B92 /* Preview Content */ = {
@@ -213,7 +213,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 088864E5288DC8A500EF5B92 /* Build configuration list for PBXProject "infrareddit" */;
+			buildConfigurationList = 088864E5288DC8A500EF5B92 /* Build configuration list for PBXProject "Orion" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -464,7 +464,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		088864E5288DC8A500EF5B92 /* Build configuration list for PBXProject "infrareddit" */ = {
+		088864E5288DC8A500EF5B92 /* Build configuration list for PBXProject "Orion" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				088864FC288DC8A800EF5B92 /* Debug */,
