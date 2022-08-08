@@ -7,5 +7,8 @@
 
 import Foundation
 class SubmissionModel: ObservableObject {
-    
+    let submission: Submission
+    init(_ submission: Submission) {
+        self.submission = submission
+    }
 }

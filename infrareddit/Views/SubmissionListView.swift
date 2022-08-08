@@ -17,7 +17,7 @@ struct SubmissionListView: View {
             LazyVStack {
                 if let listing = model.listing {
                     ForEach(listing.children) { submission in
-                        NavigationLink(destination: Text("by" + submission.author.username)) {
+                        NavigationLink(destination: SubmissionView(submission)) {
                             SubmissionTileView(submission: submission)
                         }
                         .buttonStyle(EmptyButtonStyle())

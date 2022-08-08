@@ -55,6 +55,10 @@ struct Reddit {
         }
     }
     
+    static func getRedditThingByID<RedditData: RedditThing>(get type: RedditData.Type, for id: String, completion: @escaping (_: RedditResult<RedditData>) -> Void) {
+        
+    }
+    
     static func getSubredditListing(subreddit: Subreddit, before: String?, after: String?, completion: @escaping (_: Result<Listing<Submission>, RedditError>) -> Void) {
         var queryParameters: [URLQueryItem] = []
         if after != nil {
