@@ -56,7 +56,22 @@ struct Reddit {
     }
     
     static func getRedditThingByID<RedditData: RedditThing>(get type: RedditData.Type, for id: String, completion: @escaping (_: RedditResult<RedditData>) -> Void) {
-        
+        makeRedditAPIRequest(urlPath: "/api/info", parameters: [URLQueryItem(name: "id", value: id)]) { result in
+            switch result {
+            case .success(let data):
+                if let listing = try? JSONDecoder().decode(Listing<RedditData>.self, from: data) {
+                    if let firstElement = listing.children.first {
+                        completion(.success(firstElement))
+                    } else {
+                        completion(.failure(.noResponse))
+                    }
+                } else {
+                    completion(.failure(.decodingError))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     static func getSubredditListing(subreddit: Subreddit, before: String?, after: String?, completion: @escaping (_: Result<Listing<Submission>, RedditError>) -> Void) {
