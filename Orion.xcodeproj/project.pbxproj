@@ -10,7 +10,7 @@
 		087AF84128A03F8300D568CC /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84028A03F8300D568CC /* Author.swift */; };
 		087AF84328A0500400D568CC /* SubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84228A0500400D568CC /* SubmissionView.swift */; };
 		087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84428A0504100D568CC /* SubmissionModel.swift */; };
-		088864EE288DC8A500EF5B92 /* infraredditApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864ED288DC8A500EF5B92 /* infraredditApp.swift */; };
+		088864EE288DC8A500EF5B92 /* orionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864ED288DC8A500EF5B92 /* orionApp.swift */; };
 		088864F0288DC8A500EF5B92 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864EF288DC8A500EF5B92 /* RootView.swift */; };
 		088864F2288DC8A800EF5B92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088864F1288DC8A800EF5B92 /* Assets.xcassets */; };
 		088864F5288DC8A800EF5B92 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088864F4288DC8A800EF5B92 /* Preview Assets.xcassets */; };
@@ -38,15 +38,15 @@
 		087AF84028A03F8300D568CC /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		087AF84228A0500400D568CC /* SubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionView.swift; sourceTree = "<group>"; };
 		087AF84428A0504100D568CC /* SubmissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionModel.swift; sourceTree = "<group>"; };
-		088864EA288DC8A500EF5B92 /* infrareddit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = infrareddit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		088864ED288DC8A500EF5B92 /* infraredditApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infraredditApp.swift; sourceTree = "<group>"; };
+		088864EA288DC8A500EF5B92 /* orion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = orion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		088864ED288DC8A500EF5B92 /* orionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orionApp.swift; sourceTree = "<group>"; };
 		088864EF288DC8A500EF5B92 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		088864F1288DC8A800EF5B92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		088864F4288DC8A800EF5B92 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		088864F6288DC8A800EF5B92 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		088864F9288DC8A800EF5B92 /* infrareddit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = infrareddit.xcdatamodel; sourceTree = "<group>"; };
 		088864FB288DC8A800EF5B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08886501288DDABD00EF5B92 /* infrareddit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = infrareddit.entitlements; sourceTree = "<group>"; };
+		08886501288DDABD00EF5B92 /* orion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = orion.entitlements; sourceTree = "<group>"; };
 		08886503288DDE3700EF5B92 /* Class Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Class Extensions.swift"; sourceTree = "<group>"; };
 		08886509288DE7F700EF5B92 /* Reddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
 		0888650B288DE83A00EF5B92 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		088864EB288DC8A500EF5B92 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				088864EA288DC8A500EF5B92 /* infrareddit.app */,
+				088864EA288DC8A500EF5B92 /* orion.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,8 +101,8 @@
 				08886507288DE7D300EF5B92 /* Models */,
 				08886506288DE7CA00EF5B92 /* Views */,
 				08886505288DE7C200EF5B92 /* Structure */,
-				08886501288DDABD00EF5B92 /* infrareddit.entitlements */,
-				088864ED288DC8A500EF5B92 /* infraredditApp.swift */,
+				08886501288DDABD00EF5B92 /* orion.entitlements */,
+				088864ED288DC8A500EF5B92 /* orionApp.swift */,
 				088864EF288DC8A500EF5B92 /* RootView.swift */,
 				08909128288E06B200F2A2D2 /* Config.xcconfig */,
 				088864F1288DC8A800EF5B92 /* Assets.xcassets */,
@@ -179,9 +179,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		088864E9288DC8A500EF5B92 /* infrareddit */ = {
+		088864E9288DC8A500EF5B92 /* orion */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 088864FE288DC8A800EF5B92 /* Build configuration list for PBXNativeTarget "infrareddit" */;
+			buildConfigurationList = 088864FE288DC8A800EF5B92 /* Build configuration list for PBXNativeTarget "orion" */;
 			buildPhases = (
 				088864E6288DC8A500EF5B92 /* Sources */,
 				088864E7288DC8A500EF5B92 /* Frameworks */,
@@ -191,11 +191,11 @@
 			);
 			dependencies = (
 			);
-			name = infrareddit;
+			name = orion;
 			packageProductDependencies = (
 			);
 			productName = infrareddit;
-			productReference = 088864EA288DC8A500EF5B92 /* infrareddit.app */;
+			productReference = 088864EA288DC8A500EF5B92 /* orion.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -228,7 +228,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				088864E9288DC8A500EF5B92 /* infrareddit */,
+				088864E9288DC8A500EF5B92 /* orion */,
 			);
 		};
 /* End PBXProject section */
@@ -269,7 +269,7 @@
 				088864F0288DC8A500EF5B92 /* RootView.swift in Sources */,
 				0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */,
 				08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */,
-				088864EE288DC8A500EF5B92 /* infraredditApp.swift in Sources */,
+				088864EE288DC8A500EF5B92 /* orionApp.swift in Sources */,
 				0890913C2892335600F2A2D2 /* SubmissionTileView.swift in Sources */,
 				087AF84328A0500400D568CC /* SubmissionView.swift in Sources */,
 				0890912A288E29B900F2A2D2 /* RedditToken.swift in Sources */,
@@ -400,14 +400,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = infrareddit/infrareddit.entitlements;
+				CODE_SIGN_ENTITLEMENTS = orion/orion.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"infrareddit/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"orion/Preview Content\"";
 				DEVELOPMENT_TEAM = 5LUU6WJ66B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = infrareddit/Info.plist;
+				INFOPLIST_FILE = orion/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Orion;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -433,14 +433,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = infrareddit/infrareddit.entitlements;
+				CODE_SIGN_ENTITLEMENTS = orion/orion.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"infrareddit/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"orion/Preview Content\"";
 				DEVELOPMENT_TEAM = 5LUU6WJ66B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = infrareddit/Info.plist;
+				INFOPLIST_FILE = orion/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Orion;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -473,7 +473,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		088864FE288DC8A800EF5B92 /* Build configuration list for PBXNativeTarget "infrareddit" */ = {
+		088864FE288DC8A800EF5B92 /* Build configuration list for PBXNativeTarget "orion" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				088864FF288DC8A800EF5B92 /* Debug */,

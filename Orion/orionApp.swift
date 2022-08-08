@@ -1,5 +1,5 @@
 //
-//  infraredditApp.swift
+//  orionApp.swift
 //  infrareddit
 //
 //  Created by Benji Tusk on 7/24/22.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct infraredditApp: App {
+struct orionApp: App {
     let persistenceController = PersistenceController.shared
     @ObservedObject var currentUser = CurrentUser.shared
 
