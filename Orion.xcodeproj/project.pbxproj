@@ -31,6 +31,7 @@
 		089091412897474100F2A2D2 /* SubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091402897474100F2A2D2 /* SubmissionListView.swift */; };
 		0890914528974B9600F2A2D2 /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890914428974B9600F2A2D2 /* HomeFeedView.swift */; };
 		089091472897847700F2A2D2 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091462897847700F2A2D2 /* AccountView.swift */; };
+		08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A528A20F6900D7FC51 /* VoteButtonView.swift */; };
 		08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		089091402897474100F2A2D2 /* SubmissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListView.swift; sourceTree = "<group>"; };
 		0890914428974B9600F2A2D2 /* HomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
 		089091462897847700F2A2D2 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		08B975A528A20F6900D7FC51 /* VoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtonView.swift; sourceTree = "<group>"; };
 		08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				0890914428974B9600F2A2D2 /* HomeFeedView.swift */,
 				089091462897847700F2A2D2 /* AccountView.swift */,
 				087AF84228A0500400D568CC /* SubmissionView.swift */,
+				08B975A528A20F6900D7FC51 /* VoteButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */,
 				08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */,
 				088864EE288DC8A500EF5B92 /* orionApp.swift in Sources */,
+				08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */,
 				0890913C2892335600F2A2D2 /* SubmissionTileView.swift in Sources */,
 				087AF84328A0500400D568CC /* SubmissionView.swift in Sources */,
 				0890912A288E29B900F2A2D2 /* RedditToken.swift in Sources */,
