@@ -21,6 +21,8 @@ struct SubmissionView: View {
                         Text("r/\(model.submission.subredditName)")
                         Text(" • ")
                         Text(model.submission.createdAt.timeAgoDisplay())
+//                        Text(" • ")
+//                        Text("u/\(model.submission.author.username)")
                         Spacer()
                     }
                     .foregroundColor(.gray)
@@ -56,7 +58,12 @@ struct SubmissionView: View {
                         }
                     }
                     
-                    Text(model.submission.commentCount.description)
+                    HStack {
+                        VoteButtonView(submission: $model.submission, isUp: true)
+                        VoteButtonView(submission: $model.submission, isUp: false)
+                        Spacer()
+                    }
+                    .padding()
                 }
                 .background(
                     Color.white
@@ -65,6 +72,7 @@ struct SubmissionView: View {
             }
             .background(
                 Color.white
+                    .cornerRadius(7)
                     .shadow(radius: 10)
             )
             
