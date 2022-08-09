@@ -41,3 +41,31 @@ struct EmptyButtonStyle: ButtonStyle {
         configuration.label
     }
 }
+
+struct NestedPreview: View {
+    @State var submission: Submission? = nil
+    @State var error: Error? = nil
+    var body: some View {
+        VStack {
+            if let submission = submission {
+                SubmissionView(submission)
+            } else {
+                Text("Loading your submission...")
+                ProgressView()
+                    .onAppear {
+                        Reddit.getRedditThingByID(get: Submission.self, for: "t3_9dlyi3") { result in
+                            switch result {
+                            case .success(let submission):
+                                self.submission = submission
+                            case .failure(let error):
+                                self.error = error
+                            }
+                        }
+                    }
+            }
+            if let error = self.error {
+                Text(error.localizedDescription)
+            }
+        }
+    }
+}
