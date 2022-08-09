@@ -12,28 +12,12 @@ struct SubmissionTileView: View {
     let submission: Submission
     var body: some View {
         VStack {
-            VStack(spacing: 10) {
-                HStack {
-                    Text("r/**\(submission.subredditName)**")
-                    Spacer()
-                    Label("\(submission.upVotes)", systemImage: "arrow.up")
-                }
-                HStack {
-                    Text("u/**\(submission.author.username)**")
-                    Spacer()
-                    Label("\(submission.commentCount)", systemImage: "text.bubble")
-                }
-
-            }
-            .font(.caption)
-            .foregroundColor(.gray)
-            .padding(.top)
-            .padding(.horizontal)
             
             SingleAxisGeometryReader(axis: .horizontal) { width in
                 VStack {
                     HStack {
-                        Text(.init(submission.title))
+                        Text(submission.title)
+                            .fixedSize(horizontal: false, vertical: true)
                             .bold()
                         Spacer()
                     }
@@ -66,11 +50,24 @@ struct SubmissionTileView: View {
                     }
                 }
             }
+
             .background(
                 Color.white
             )
             .cornerRadius(10)
             .shadow(radius: 10)
+            VStack(spacing: 10) {
+                HStack {
+                    Text("r/**\(submission.subredditName)**")
+                    Spacer()
+                    Label("\(submission.upVotes)", systemImage: "arrow.up")
+                    Label("\(submission.commentCount)", systemImage: "text.bubble")
+                }
+            }
+            .font(.caption)
+            .foregroundColor(.gray)
+            .padding(.vertical, 5)
+            .padding(.horizontal)
             
         }
         .background(
