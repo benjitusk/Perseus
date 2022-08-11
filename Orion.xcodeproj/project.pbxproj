@@ -27,12 +27,12 @@
 		08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08909135288F9A9B00F2A2D2 /* RedditErrors.swift */; };
 		089091382890976600F2A2D2 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091372890976600F2A2D2 /* Keychain.swift */; };
 		0890913A2892236E00F2A2D2 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091392892236E00F2A2D2 /* Listing.swift */; };
-		0890913C2892335600F2A2D2 /* SubmissionTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890913B2892335600F2A2D2 /* SubmissionTileView.swift */; };
-		089091412897474100F2A2D2 /* SubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091402897474100F2A2D2 /* SubmissionListView.swift */; };
-		0890914528974B9600F2A2D2 /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890914428974B9600F2A2D2 /* HomeFeedView.swift */; };
 		089091472897847700F2A2D2 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091462897847700F2A2D2 /* AccountView.swift */; };
 		08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A528A20F6900D7FC51 /* VoteButtonView.swift */; };
 		08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */; };
+		83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */; };
+		83B2FB5728A4DFC9002553B5 /* SubmissionTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */; };
+		83B2FB5828A4DFC9002553B5 /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +52,6 @@
 		08886509288DE7F700EF5B92 /* Reddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
 		0888650B288DE83A00EF5B92 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		08909126288E04CD00F2A2D2 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
-		08909128288E06B200F2A2D2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		08909129288E29B900F2A2D2 /* RedditToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditToken.swift; sourceTree = "<group>"; };
 		0890912F288F669000F2A2D2 /* Submission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
 		08909131288F66A900F2A2D2 /* Subreddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subreddit.swift; sourceTree = "<group>"; };
@@ -60,12 +59,12 @@
 		08909135288F9A9B00F2A2D2 /* RedditErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditErrors.swift; sourceTree = "<group>"; };
 		089091372890976600F2A2D2 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		089091392892236E00F2A2D2 /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
-		0890913B2892335600F2A2D2 /* SubmissionTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionTileView.swift; sourceTree = "<group>"; };
-		089091402897474100F2A2D2 /* SubmissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListView.swift; sourceTree = "<group>"; };
-		0890914428974B9600F2A2D2 /* HomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
 		089091462897847700F2A2D2 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		08B975A528A20F6900D7FC51 /* VoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtonView.swift; sourceTree = "<group>"; };
 		08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListModel.swift; sourceTree = "<group>"; };
+		83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListView.swift; sourceTree = "<group>"; };
+		83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionTileView.swift; sourceTree = "<group>"; };
+		83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +105,6 @@
 				08886501288DDABD00EF5B92 /* orion.entitlements */,
 				088864ED288DC8A500EF5B92 /* orionApp.swift */,
 				088864EF288DC8A500EF5B92 /* RootView.swift */,
-				08909128288E06B200F2A2D2 /* Config.xcconfig */,
 				088864F1288DC8A800EF5B92 /* Assets.xcassets */,
 				088864F6288DC8A800EF5B92 /* Persistence.swift */,
 				088864FB288DC8A800EF5B92 /* Info.plist */,
@@ -140,9 +138,9 @@
 		08886506288DE7CA00EF5B92 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0890913B2892335600F2A2D2 /* SubmissionTileView.swift */,
-				089091402897474100F2A2D2 /* SubmissionListView.swift */,
-				0890914428974B9600F2A2D2 /* HomeFeedView.swift */,
+				83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */,
+				83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */,
+				83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */,
 				089091462897847700F2A2D2 /* AccountView.swift */,
 				087AF84228A0500400D568CC /* SubmissionView.swift */,
 				08B975A528A20F6900D7FC51 /* VoteButtonView.swift */,
@@ -258,23 +256,23 @@
 				0888650A288DE7F700EF5B92 /* Reddit.swift in Sources */,
 				08909134288F80CD00F2A2D2 /* Comment.swift in Sources */,
 				089091472897847700F2A2D2 /* AccountView.swift in Sources */,
+				83B2FB5828A4DFC9002553B5 /* HomeFeedView.swift in Sources */,
 				08909130288F669000F2A2D2 /* Submission.swift in Sources */,
 				089091382890976600F2A2D2 /* Keychain.swift in Sources */,
 				0890913A2892236E00F2A2D2 /* Listing.swift in Sources */,
+				83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */,
 				087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */,
 				08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */,
 				08909132288F66A900F2A2D2 /* Subreddit.swift in Sources */,
-				0890914528974B9600F2A2D2 /* HomeFeedView.swift in Sources */,
+				83B2FB5728A4DFC9002553B5 /* SubmissionTileView.swift in Sources */,
 				088864F7288DC8A800EF5B92 /* Persistence.swift in Sources */,
 				087AF84128A03F8300D568CC /* Author.swift in Sources */,
 				08886504288DDE3700EF5B92 /* Class Extensions.swift in Sources */,
-				089091412897474100F2A2D2 /* SubmissionListView.swift in Sources */,
 				088864F0288DC8A500EF5B92 /* RootView.swift in Sources */,
 				0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */,
 				08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */,
 				088864EE288DC8A500EF5B92 /* orionApp.swift in Sources */,
 				08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */,
-				0890913C2892335600F2A2D2 /* SubmissionTileView.swift in Sources */,
 				087AF84328A0500400D568CC /* SubmissionView.swift in Sources */,
 				0890912A288E29B900F2A2D2 /* RedditToken.swift in Sources */,
 			);
@@ -285,7 +283,6 @@
 /* Begin XCBuildConfiguration section */
 		088864FC288DC8A800EF5B92 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08909128288E06B200F2A2D2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -346,7 +343,6 @@
 		};
 		088864FD288DC8A800EF5B92 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08909128288E06B200F2A2D2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
