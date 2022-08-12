@@ -17,43 +17,48 @@ class CurrentUser: ObservableObject {
     /// `authState: String`
     /// `username: String`
     
-    @Published var isLoggedIn: Bool
     var authCode: String?
     var authState: String?
     var username: String?
     var token: RedditToken?
+    @Published var userAccount: UserAccount?
     private init() {
         // Check Keychain for an oauth token.
         // If it exists, make a call to the Reddit API to confirm the
         // credentials are valid
         
-        self.isLoggedIn = false
+        self.userAccount = nil
         loadTokenFromKeychain()
-        if self.token != nil {
-            self.isLoggedIn = true
-            if token!.expiry < Int(Date.now.timeIntervalSince1970) {
-                Task.detached {
-                    await self.refreshOAuth2Token(self.token!)
-                }
-            }        
-        } else {
+        guard let token = self.token else {
             self.signInPrompt()
+            return
         }
+        
+        if token.expiry < Int(Date.now.timeIntervalSince1970) {
+            Task.detached {
+                await self.refreshOAuth2Token(token)
+            }
+        }
+        
+//        Reddit.getAuthenticatedUser() { result in
+//            switch result {
+//            case .success(let account):
+//                self.userAccount = account
+//            case .failure(let error):
+//                print("Couldn't get authenticated user: \(error.localizedDescription)")
+//            }
+//        }
     }
     
     func loadTokenFromKeychain() {
-        let token = KeychainHelper.shared.read(service: "oauth-token", account: "reddit.com", type: RedditToken.self)
-        if token != nil {
-            self.isLoggedIn = true
-        }
-        self.token = token
+        self.token = KeychainHelper.shared.read(service: "oauth-token", account: "reddit.com", type: RedditToken.self)
     }
     
     func signInPrompt() {
         let clientID = Bundle.main.infoDictionary?["CLIENT_ID"] as! String
         let responseType = "code"
         let state = UUID().uuidString
-        let redirectURI = "infrareddit://token"
+        let redirectURI = "orion://token"
         let duration = "permanent"
         let scope = ["identity", "edit", "flair", "history", "modconfig", "modflair", "modlog", "modposts", "modwiki", "mysubreddits", "privatemessages", "read", "report", "save", "submit", "subscribe", "vote", "wikiedit"]
         var url = URL(string: "https://www.reddit.com/api/v1/authorize.compact")!
@@ -106,7 +111,7 @@ class CurrentUser: ObservableObject {
         let queryItems = [
             URLQueryItem(name: "grant_type", value: "authorization_code"),
             URLQueryItem(name: "code", value: authCode),
-            URLQueryItem(name: "redirect_uri", value: "infrareddit://token"),
+            URLQueryItem(name: "redirect_uri", value: "orion://token"),
         ]
         
         oAuth2Request(queryItems) { result in
@@ -148,16 +153,23 @@ class CurrentUser: ObservableObject {
     func signOut() {
         self.token = nil
         DispatchQueue.main.async {
-            self.isLoggedIn = false
+            self.userAccount = nil
         }
         KeychainHelper.shared.delete(service: "oauth-token", account: "reddit.com")
     }
+    
     func signIn(with token: RedditToken) {
         self.token = token
         self.token?.expiry = Int(Date.now.timeIntervalSince1970) + token.expiry
-        DispatchQueue.main.async {
-            self.isLoggedIn = true
-        }
         KeychainHelper.shared.save(self.token, service: "oauth-token", account: "reddit.com")
+        Reddit.getAuthenticatedUser() { result in
+            switch result {
+            case .success(let account):
+                self.userAccount = account
+            case .failure(let error):
+                print("Couldn't get authenticated user: \(error.localizedDescription)")
+                self.userAccount = nil
+            }
+        }
     }
 }
