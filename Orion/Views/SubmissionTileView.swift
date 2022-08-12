@@ -20,6 +20,32 @@ struct SubmissionTileView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                                 .bold()
                         }
+                    if let preview = submission.preview {
+                            AsyncImage(url: URL(string: preview.images.first!.source.url)) { phase in
+                                if let image = phase.image {
+                                    HStack(alignment: .top) {
+                                        Button {
+                                            
+                                        } label: {
+                                            withAnimation {
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .cornerRadius(9)
+                                                    
+                                            }
+                                        }
+                                    }
+                                    .frame(maxHeight: 650, alignment: .top)
+                                } else if let error = phase.error {
+                                    Color.red
+                                        .overlay(Text(error.localizedDescription))
+                                } else {
+                                    ProgressView()
+                                        .padding()
+                                }
+                            }
+                    }
                     HStack {
                         HStack {
                             Button(action: {}, label: {Image(systemName: "chevron.up.circle")})

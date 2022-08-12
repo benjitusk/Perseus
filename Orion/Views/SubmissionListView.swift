@@ -12,11 +12,7 @@ struct SubmissionListView: View {
     init(subreddit: Subreddit) {
         self.model = SubmissionListModel(subreddit: subreddit)
     }
-    var body: some View {
-        ZStack {
-            Color.black.opacity(0.05).ignoresSafeArea()
-            ScrollView {
-                LazyVStack {
+         var body: some View {
                     if let listing = model.listing {
                         ForEach(listing.children) { submission in
                             NavigationLink(destination: SubmissionView(submission)) {
@@ -34,9 +30,6 @@ struct SubmissionListView: View {
                             
                         }
                     }
-                }
-            }
-        }
     }
 }
 
