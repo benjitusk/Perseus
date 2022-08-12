@@ -69,3 +69,15 @@ struct NestedPreview: View {
         }
     }
 }
+
+struct BackgroundColor: ViewModifier {
+    let color: Color
+    func body(content: Content) -> some View {
+        content.background(color)
+    }
+}
+extension View {
+    func backgroundColor(_ color: Color) -> some View {
+        modifier(BackgroundColor(color: color))
+    }
+}
