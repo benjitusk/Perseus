@@ -13,100 +13,54 @@ struct SubmissionTileView: View {
     var body: some View {
         VStack {
             SingleAxisGeometryReader(axis: .horizontal) { width in
-                VStack {
-                    HStack {
+                VStack(alignment: .center) {
                         VStack(alignment: .leading, spacing: 8) {
-                                Text("r/**\(submission.subredditName)** • \(submission.author.username) • \(submission.createdAt.timeAgoDisplay())")
-                                            .font(.caption)
-                                        .foregroundColor(.gray)
+                            PostRowHeader(submission: submission)
                             Text(submission.title)
                                 .fixedSize(horizontal: false, vertical: true)
-                            .bold()
+                                .bold()
                         }
+                    HStack {
+                        HStack {
+                            Button(action: {}, label: {Image(systemName: "chevron.up.circle")})
+                                .foregroundColor(.primary)
+                            Text("\(submission.upVotes)")
+                                .fontWeight(.semibold)
+                            Button(action: {}, label: {Image(systemName: "chevron.down.circle")})
+                                .foregroundColor(.primary)
+                        }.font(.title2)
                         Spacer()
+                        HStack(spacing: 15) {
+                            Button {} label: {
+                                HStack(spacing: 3) {
+                                    Text("\(submission.commentCount)")
+                                    Image(systemName: "bubble.left.and.bubble.right")
+                                }
+                            }
+                            Button(action: {}, label: {Image(systemName: "bookmark")})
+                            Button(action: {}, label: {Image(systemName: "square.and.arrow.up")})
+                        }
+                            .foregroundColor(.gray)
+                    }
+                .padding(.top, 5)
+                .padding(.bottom)
                     }
                     .padding(.horizontal)
                     .padding(.top)
                     .padding(.bottom, 5)
-                    if let preview = submission.preview {
-                            AsyncImage(url: URL(string: preview.images.first!.source.url)) { phase in
-                                if let image = phase.image {
-                                    HStack(alignment: .top) {
-                                        Button {
-                                            
-                                        } label: {
-                                            withAnimation {
-                                                image
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                    .cornerRadius(9)
-                                                    .padding(5)
-                                            }
-                                        }
-                                    }
-                                    .frame(maxHeight: 650, alignment: .top)
-                                } else if let error = phase.error {
-                                    Color.red
-                                        .overlay(Text(error.localizedDescription))
-                                } else {
-                                    ProgressView()
-                                        .padding()
-                                }
-                            }
-                    } else {
-                        if !submission.selfText.isEmpty {
-                            VStack {
-                                Text(submission.selfText)
-                                    .padding(.horizontal)
-                                    .padding(.bottom)
-                                .lineLimit(3)
-                            }
-                        }
-                    }
-                }
             }
-
-            
-            Divider()
-            VStack(spacing: 10) {
-                HStack {
-                    Button {
-                    } label: {
-                        Label("\(submission.upVotes)", systemImage: "arrow.up")
-                    }
-                    
-                    Button {
-                    } label: {
-                        Image(systemName: "arrow.down")
-                    }
-                    Spacer()
-                    Label("\(submission.commentCount)", systemImage: "text.bubble")
-                       
-                    Spacer()
-                    Label("Share", systemImage: "square.and.arrow.up")
-                        
-                }
-            }
-            .foregroundColor(.gray)
-            .padding(.top, 5)
-            .padding(.bottom)
-            .padding(.horizontal)
-            
         }
         .background(Color("bk"))
         .cornerRadius(10)
         .padding(9)
-        
-        
-        
     }
 }
 
 struct SubmissionTileView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            HomeFeedView().preferredColorScheme(.dark)
             HomeFeedView().preferredColorScheme(.light)
+            HomeFeedView().preferredColorScheme(.dark)
         }
 //        .padding()
     }
