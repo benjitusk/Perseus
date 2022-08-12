@@ -74,6 +74,22 @@ struct Reddit {
         }
     }
     
+    static func getAuthenticatedUser(completion: @escaping (_: RedditResult<UserAccount>) -> Void) {
+        makeRedditAPIRequest(urlPath: "/api/v1/me", overrideAuth: true) { result in
+            switch result {
+            case .success(let data):
+                if let userAccount = try? JSONDecoder().decode(UserAccount.self, from: data) {
+                    completion(.success(userAccount))
+                    return
+                } else {
+                    completion(.failure(.decodingError))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     static func getSubredditListing(subreddit: Subreddit, before: String?, after: String?, completion: @escaping (_: Result<Listing<Submission>, RedditError>) -> Void) {
         var queryParameters: [URLQueryItem] = []
         if after != nil {
@@ -117,7 +133,7 @@ struct Reddit {
                 redditDomain = "api" + redditDomain
             }
         } else {
-            if CurrentUser.shared.isLoggedIn {
+            if CurrentUser.shared.userAccount != nil {
                 redditDomain = "oauth" + redditDomain
             } else {
                 redditDomain = "api" + redditDomain
@@ -134,11 +150,6 @@ struct Reddit {
         url.append(queryItems: [URLQueryItem(name: "raw_json", value: "1")])
         var request = URLRequest(url: url)
         
-        if debugMode {
-            // If the user is logged in, include the OAuth2 Token with the request
-            print("User token: \(CurrentUser.shared.token?.accessToken ?? "nil")")
-        }
-        
         // If overrideAuth is nil, default to adding token if logged in
         // otherwise, if specified to be true,
         
@@ -148,25 +159,24 @@ struct Reddit {
                     // If the user is registered as logged in, but
                     // the token is nil, something weird happened.
                     // Cancel the action and return the relevent error
-                    CurrentUser.shared.isLoggedIn = false
+                    CurrentUser.shared.signOut()
                     completion(.failure(.userNotLoggedIn))
                     return
                 }
                 request.allHTTPHeaderFields = ["Authorization": "bearer \(token.accessToken)"]
             }
         } else {
-            if CurrentUser.shared.isLoggedIn {
-                guard let token = CurrentUser.shared.token else {
-                    CurrentUser.shared.isLoggedIn = false
-                    completion(.failure(.userNotLoggedIn))
-                    return
-                }
-                request.allHTTPHeaderFields = ["Authorization": "bearer \(token.accessToken)"]
+            guard let token = CurrentUser.shared.token else {
+                CurrentUser.shared.signOut()
+                completion(.failure(.userNotLoggedIn))
+                return
             }
+            request.allHTTPHeaderFields = ["Authorization": "bearer \(token.accessToken)"]
         }
         
         if debugMode {
-            print(url.debugDescription)
+            print("User token: " + (CurrentUser.shared.token?.accessToken ?? "nil"))
+            print("API URL: " + url.debugDescription)
         }
 
         URLSession.shared.dataTask(with: request) { data, HTTPURLResponse, error in
