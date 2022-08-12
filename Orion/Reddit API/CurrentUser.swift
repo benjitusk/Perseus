@@ -75,6 +75,7 @@ class CurrentUser: ObservableObject {
     }
     
     private func oAuth2Request(_ queryItems: [URLQueryItem], completion: @escaping (Result<RedditToken, Error>) -> Void) {
+        // This value should be set in <projectroot>/Orion/Config.xcconfig
         let clientID = Bundle.main.infoDictionary?["CLIENT_ID"] as! String
         let clientPassword = "" // Intentionally blank, only for easier readability
         let loginEncodedData = "\(clientID):\(clientPassword)".data(using: .utf8)!.base64EncodedString()
