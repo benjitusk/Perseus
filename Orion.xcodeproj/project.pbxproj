@@ -274,7 +274,6 @@
 				088864F7288DC8A800EF5B92 /* Persistence.swift in Sources */,
 				087AF84128A03F8300D568CC /* Author.swift in Sources */,
 				08886504288DDE3700EF5B92 /* Class Extensions.swift in Sources */,
-				089091412897474100F2A2D2 /* SubmissionListView.swift in Sources */,
 				08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */,
 				088864F0288DC8A500EF5B92 /* RootView.swift in Sources */,
 				08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */,
@@ -412,7 +411,7 @@
 				CODE_SIGN_ENTITLEMENTS = orion/orion.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"orion/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "Orion/Preview\\ Content/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = 5LUU6WJ66B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -445,7 +444,7 @@
 				CODE_SIGN_ENTITLEMENTS = orion/orion.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"orion/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "Orion/Preview\\ Content/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = 5LUU6WJ66B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
