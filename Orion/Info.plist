@@ -9,7 +9,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>infrareddit</string>
+				<string>orion</string>
 			</array>
 		</dict>
 	</array>

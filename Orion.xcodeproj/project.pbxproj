@@ -32,6 +32,8 @@
 		0890914528974B9600F2A2D2 /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890914428974B9600F2A2D2 /* HomeFeedView.swift */; };
 		089091472897847700F2A2D2 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091462897847700F2A2D2 /* AccountView.swift */; };
 		08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A528A20F6900D7FC51 /* VoteButtonView.swift */; };
+		08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A728A3181C00D7FC51 /* SignInPromptView.swift */; };
+		08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A928A3259600D7FC51 /* UserAccount.swift */; };
 		08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		0890914428974B9600F2A2D2 /* HomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
 		089091462897847700F2A2D2 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		08B975A528A20F6900D7FC51 /* VoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtonView.swift; sourceTree = "<group>"; };
+		08B975A728A3181C00D7FC51 /* SignInPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPromptView.swift; sourceTree = "<group>"; };
+		08B975A928A3259600D7FC51 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +137,7 @@
 				08909135288F9A9B00F2A2D2 /* RedditErrors.swift */,
 				089091392892236E00F2A2D2 /* Listing.swift */,
 				087AF84028A03F8300D568CC /* Author.swift */,
+				08B975A928A3259600D7FC51 /* UserAccount.swift */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				089091462897847700F2A2D2 /* AccountView.swift */,
 				087AF84228A0500400D568CC /* SubmissionView.swift */,
 				08B975A528A20F6900D7FC51 /* VoteButtonView.swift */,
+				08B975A728A3181C00D7FC51 /* SignInPromptView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -269,7 +275,9 @@
 				087AF84128A03F8300D568CC /* Author.swift in Sources */,
 				08886504288DDE3700EF5B92 /* Class Extensions.swift in Sources */,
 				089091412897474100F2A2D2 /* SubmissionListView.swift in Sources */,
+				08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */,
 				088864F0288DC8A500EF5B92 /* RootView.swift in Sources */,
+				08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */,
 				0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */,
 				08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */,
 				088864EE288DC8A500EF5B92 /* orionApp.swift in Sources */,
