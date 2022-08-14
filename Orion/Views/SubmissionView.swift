@@ -7,7 +7,6 @@
 
 import SwiftUI
 import MarkdownUI
-
 struct SubmissionView: View {
     @State var model: SubmissionModel
     init(_ submission: Submission) {
@@ -16,24 +15,15 @@ struct SubmissionView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
-                    HStack(spacing: 0) {
-                        Text("r/\(model.submission.subredditName)")
-                        Text(" • ")
-                        Text(model.submission.createdAt.timeAgoDisplay())
-//                        Text(" • ")
-//                        Text("u/\(model.submission.author.username)")
-                        Spacer()
-                    }
-                    .foregroundColor(.gray)
                     Text(model.submission.title)
                         .multilineTextAlignment(.leading)
                         .font(.title)
                         .bold()
                 }
                 .padding()
-                VStack {
+                VStack(alignment: .leading) {
                     SingleAxisGeometryReader(axis: .horizontal) { width in
                         VStack {
                             if let preview = model.submission.preview {
@@ -55,7 +45,7 @@ struct SubmissionView: View {
                                 }
                                 .frame(maxHeight: 500, alignment: .center)
                                 .clipped()
-                            }else if let text =  model.submission.selfText{
+                            } else if let text =  model.submission.selfText{
                                 Markdown(Document(text))
                                     .font(.body)
                                     .fixedSize(horizontal: false, vertical: true)
@@ -63,32 +53,35 @@ struct SubmissionView: View {
                             }
                         }
                     }
-                    
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Posted by **\(model.submission.author.username)** in **\(model.submission.subredditName)**")
+                        HStack {
+                            Image(systemName: "arrow.up")
+                            Text("\(model.submission.upVotes)")
+                            Image(systemName: "clock")
+                            Text(model.submission.createdAt.timeAgoDisplay())
+                        }
+                    }.padding(.horizontal)
+                        .padding(.top)
+                        .foregroundColor(.gray)
                     HStack {
                         VoteButtonView(submission: $model.submission, isUp: true)
                         VoteButtonView(submission: $model.submission, isUp: false)
                         Spacer()
                     }
                     .padding()
+                    .foregroundColor(.gray)
                 }
-                .background(
-                    Color.white
-                        .shadow(radius: 10)
-                )
             }
-            .background(
-                Color.white
-                    .cornerRadius(7)
-                    .shadow(radius: 10)
-            )
-            
-        }
+        }.navigationTitle("r/\(model.submission.subredditName)")
     }
 }
 
 struct SubmissionView_Previews: PreviewProvider {
     static var previews: some View {
-        NestedPreview()
+        NavigationStack {
+            NestedPreview()
+        }
     }
     
 }
