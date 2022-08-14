@@ -1,2 +1,5 @@
 *.xcconfig
 xcuserdata/
+*.xcconfig
+Orion.xcconfig
+*.xcconfig
