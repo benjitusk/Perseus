@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MarkdownUI
 
 struct SubmissionTileView: View {
     let submission: Submission
@@ -16,6 +17,7 @@ struct SubmissionTileView: View {
                 VStack(alignment: .center) {
                         VStack(alignment: .leading, spacing: 8) {
                             PostRowHeader(submission: submission)
+                                .lineLimit(1)
                             Text(submission.title)
                                 .fixedSize(horizontal: false, vertical: true)
                                 .bold()
@@ -45,6 +47,11 @@ struct SubmissionTileView: View {
                                         .padding()
                                 }
                             }
+                    }else if let text =  submission.selfText{
+                        Markdown(Document(text))
+                            .font(.body)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(3)
                     }
                     HStack {
                         HStack {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MarkdownUI
 
 struct SubmissionView: View {
     @State var model: SubmissionModel
@@ -49,11 +50,16 @@ struct SubmissionView: View {
                                         Color.red
                                             .overlay(Text(error.localizedDescription))
                                     } else {
-                                        Color.blue
+                                        ProgressView()
                                     }
                                 }
                                 .frame(maxHeight: 500, alignment: .center)
                                 .clipped()
+                            }else if let text =  model.submission.selfText{
+                                Markdown(Document(text))
+                                    .font(.body)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.horizontal)
                             }
                         }
                     }
