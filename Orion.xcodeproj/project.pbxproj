@@ -32,9 +32,13 @@
 		08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A728A3181C00D7FC51 /* SignInPromptView.swift */; };
 		08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A928A3259600D7FC51 /* UserAccount.swift */; };
 		08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */; };
+		8317D51128A80F8F008BF482 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8317D51028A80F8F008BF482 /* MarkdownUI */; };
+		8317D51328A811CC008BF482 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317D51228A811CC008BF482 /* SearchView.swift */; };
+		836DE85F28A69BA80010B60A /* CommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836DE85E28A69BA80010B60A /* CommentListView.swift */; };
 		83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */; };
 		83B2FB5728A4DFC9002553B5 /* SubmissionTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */; };
 		83B2FB5828A4DFC9002553B5 /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */; };
+		83E584AC28A64C1700EF8F19 /* PostRowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E584AB28A64C1700EF8F19 /* PostRowHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,9 +70,13 @@
 		08B975A728A3181C00D7FC51 /* SignInPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPromptView.swift; sourceTree = "<group>"; };
 		08B975A928A3259600D7FC51 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListModel.swift; sourceTree = "<group>"; };
+		8317D51228A811CC008BF482 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		836DE85E28A69BA80010B60A /* CommentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListView.swift; sourceTree = "<group>"; };
 		83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListView.swift; sourceTree = "<group>"; };
 		83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionTileView.swift; sourceTree = "<group>"; };
 		83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
+		83E584AB28A64C1700EF8F19 /* PostRowHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowHeader.swift; sourceTree = "<group>"; };
+		83E584AD28A64F7400EF8F19 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8317D51128A80F8F008BF482 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +94,7 @@
 		088864E1288DC8A500EF5B92 = {
 			isa = PBXGroup;
 			children = (
+				83E584AD28A64F7400EF8F19 /* Config.xcconfig */,
 				088864EC288DC8A500EF5B92 /* Orion */,
 				088864EB288DC8A500EF5B92 /* Products */,
 			);
@@ -143,9 +153,12 @@
 		08886506288DE7CA00EF5B92 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				836DE85D28A69B790010B60A /* Comments */,
+				83E584AA28A64BFD00EF8F19 /* Submission */,
 				83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */,
 				83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */,
 				83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */,
+				8317D51228A811CC008BF482 /* SearchView.swift */,
 				089091462897847700F2A2D2 /* AccountView.swift */,
 				087AF84228A0500400D568CC /* SubmissionView.swift */,
 				08B975A528A20F6900D7FC51 /* VoteButtonView.swift */,
@@ -183,6 +196,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		836DE85D28A69B790010B60A /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				836DE85E28A69BA80010B60A /* CommentListView.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		83E584AA28A64BFD00EF8F19 /* Submission */ = {
+			isa = PBXGroup;
+			children = (
+				83E584AB28A64C1700EF8F19 /* PostRowHeader.swift */,
+			);
+			path = Submission;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -200,6 +229,7 @@
 			);
 			name = orion;
 			packageProductDependencies = (
+				8317D51028A80F8F008BF482 /* MarkdownUI */,
 			);
 			productName = infrareddit;
 			productReference = 088864EA288DC8A500EF5B92 /* orion.app */;
@@ -230,6 +260,7 @@
 			);
 			mainGroup = 088864E1288DC8A500EF5B92;
 			packageReferences = (
+				8317D50F28A80F8F008BF482 /* XCRemoteSwiftPackageReference "MarkdownUI" */,
 			);
 			productRefGroup = 088864EB288DC8A500EF5B92 /* Products */;
 			projectDirPath = "";
@@ -259,6 +290,8 @@
 			files = (
 				088864FA288DC8A800EF5B92 /* infrareddit.xcdatamodeld in Sources */,
 				08909127288E04CD00F2A2D2 /* UI.swift in Sources */,
+				83E584AC28A64C1700EF8F19 /* PostRowHeader.swift in Sources */,
+				8317D51328A811CC008BF482 /* SearchView.swift in Sources */,
 				0888650A288DE7F700EF5B92 /* Reddit.swift in Sources */,
 				08909134288F80CD00F2A2D2 /* Comment.swift in Sources */,
 				089091472897847700F2A2D2 /* AccountView.swift in Sources */,
@@ -282,6 +315,7 @@
 				088864EE288DC8A500EF5B92 /* orionApp.swift in Sources */,
 				08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */,
 				087AF84328A0500400D568CC /* SubmissionView.swift in Sources */,
+				836DE85F28A69BA80010B60A /* CommentListView.swift in Sources */,
 				0890912A288E29B900F2A2D2 /* RedditToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +325,7 @@
 /* Begin XCBuildConfiguration section */
 		088864FC288DC8A800EF5B92 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83E584AD28A64F7400EF8F19 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -351,6 +386,7 @@
 		};
 		088864FD288DC8A800EF5B92 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83E584AD28A64F7400EF8F19 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -411,8 +447,8 @@
 				CODE_SIGN_ENTITLEMENTS = orion/orion.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "Orion/Preview\\ Content/Preview\\ Assets.xcassets";
-				DEVELOPMENT_TEAM = 5LUU6WJ66B;
+				DEVELOPMENT_ASSET_PATHS = "Orion/Preview\\ Content/Preview\\ Assets.xcassets \"orion/Preview Content\"";
+				DEVELOPMENT_TEAM = 7PYHH8YK2K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = orion/Info.plist;
@@ -428,7 +464,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.benjitusk.orion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alberto.orion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -444,8 +480,8 @@
 				CODE_SIGN_ENTITLEMENTS = orion/orion.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "Orion/Preview\\ Content/Preview\\ Assets.xcassets";
-				DEVELOPMENT_TEAM = 5LUU6WJ66B;
+				DEVELOPMENT_ASSET_PATHS = "Orion/Preview\\ Content/Preview\\ Assets.xcassets \"orion/Preview Content\"";
+				DEVELOPMENT_TEAM = 7PYHH8YK2K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = orion/Info.plist;
@@ -461,7 +497,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.benjitusk.orion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alberto.orion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -491,6 +527,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8317D50F28A80F8F008BF482 /* XCRemoteSwiftPackageReference "MarkdownUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/MarkdownUI.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8317D51028A80F8F008BF482 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8317D50F28A80F8F008BF482 /* XCRemoteSwiftPackageReference "MarkdownUI" */;
+			productName = MarkdownUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		088864F8288DC8A800EF5B92 /* infrareddit.xcdatamodeld */ = {
