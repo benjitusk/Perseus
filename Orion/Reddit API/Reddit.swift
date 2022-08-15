@@ -166,12 +166,9 @@ struct Reddit {
                 request.allHTTPHeaderFields = ["Authorization": "bearer \(token.accessToken)"]
             }
         } else {
-            guard let token = CurrentUser.shared.token else {
-                CurrentUser.shared.signOut()
-                completion(.failure(.userNotLoggedIn))
-                return
+            if let token = CurrentUser.shared.token {
+                request.allHTTPHeaderFields = ["Authorization": "bearer \(token.accessToken)"]
             }
-            request.allHTTPHeaderFields = ["Authorization": "bearer \(token.accessToken)"]
         }
         
         if debugMode {
