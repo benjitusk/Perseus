@@ -24,9 +24,6 @@ struct SubmissionListView: View {
                                 model.renderedSubmissions.insert(submission.id)
                                 model.loadMoreIfNeeded()
                             }
-                            .onDisappear {
-                                print("unrendered submission on r/\(submission.subredditName)")
-                            }
                             
                         }
                     }
