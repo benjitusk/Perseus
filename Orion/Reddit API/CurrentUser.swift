@@ -30,7 +30,8 @@ class CurrentUser: ObservableObject {
         self.userAccount = nil
         loadTokenFromKeychain()
         guard let token = self.token else {
-            self.signInPrompt()
+            // Don't show signInPrompt on init, it's not nice
+            // self.signInPrompt()
             return
         }
         
@@ -166,10 +167,14 @@ class CurrentUser: ObservableObject {
         Reddit.getAuthenticatedUser() { result in
             switch result {
             case .success(let account):
-                self.userAccount = account
+                DispatchQueue.main.async {
+                    self.userAccount = account
+                }
             case .failure(let error):
                 print("Couldn't get authenticated user: \(error.localizedDescription)")
-                self.userAccount = nil
+                DispatchQueue.main.async {
+                    self.userAccount = nil
+                }
             }
         }
     }
