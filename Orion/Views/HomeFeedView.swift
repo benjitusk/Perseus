@@ -9,27 +9,34 @@ import SwiftUI
 
 struct HomeFeedView: View {
     @State var searchText : String = "awesome"
-    @State private var SortingMethod = 1
-    var sections = ["Popular", "Home", "All"]
+    @State private var selectedSection: Sections = .home
+    enum Sections: String {
+        case popular, home, all
+    }
     var body: some View {
         NavigationView {
             ZStack {
                 Color.black.opacity(0.05).ignoresSafeArea()
                 ScrollView {
                     LazyVStack {
-                        Picker(selection: $SortingMethod,label: Text("Sections")) {
-                            ForEach(0 ..< sections.count) {
-                                Text(self.sections[$0])
-                            }
-                        }.pickerStyle(SegmentedPickerStyle())
-                            .padding(.horizontal)
-                            .padding(.top, 4)
+                        Picker(selection: $selectedSection, label: Text("Sections")) {
+                            Text("Popular")
+                                .tag(Sections.popular)
+                            Text("Home")
+                                .tag(Sections.home)
+                            Text("All")
+                                .tag(Sections.all)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal)
+                        .padding(.top, 4)
                         Group {
-                            if SortingMethod == 0 {
+                            switch selectedSection {
+                            case .popular:
                                 SubmissionListView(subreddit: SpecialSubreddit(displayName: "Hot", apiURL: "r/Popular"))
-                            } else if SortingMethod == 1 {
+                            case .home:
                                 SubmissionListView(subreddit: SpecialSubreddit(displayName: "Hot", apiURL: "r/awesome"))
-                            } else if SortingMethod == 2 {
+                            case .all:
                                 SubmissionListView(subreddit: SpecialSubreddit(displayName: "Hot", apiURL: "r/All"))
                             }
                         }
