@@ -33,11 +33,13 @@
 		08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A928A3259600D7FC51 /* UserAccount.swift */; };
 		08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */; };
 		8317D51128A80F8F008BF482 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8317D51028A80F8F008BF482 /* MarkdownUI */; };
-		8317D51328A811CC008BF482 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317D51228A811CC008BF482 /* SearchView.swift */; };
+		834F7FAD28AA12E90038B7BE /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */; };
+		834F7FAF28AA13E10038B7BE /* DiscoveryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */; };
 		836DE85F28A69BA80010B60A /* CommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836DE85E28A69BA80010B60A /* CommentListView.swift */; };
 		83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */; };
 		83B2FB5728A4DFC9002553B5 /* SubmissionTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */; };
 		83B2FB5828A4DFC9002553B5 /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */; };
+		83D4FF9928AA33B500AD2D30 /* DiscoverySidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D4FF9828AA33B500AD2D30 /* DiscoverySidebar.swift */; };
 		83E584AC28A64C1700EF8F19 /* PostRowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E584AB28A64C1700EF8F19 /* PostRowHeader.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,11 +72,13 @@
 		08B975A728A3181C00D7FC51 /* SignInPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPromptView.swift; sourceTree = "<group>"; };
 		08B975A928A3259600D7FC51 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListModel.swift; sourceTree = "<group>"; };
-		8317D51228A811CC008BF482 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
+		834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryGrid.swift; sourceTree = "<group>"; };
 		836DE85E28A69BA80010B60A /* CommentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListView.swift; sourceTree = "<group>"; };
 		83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListView.swift; sourceTree = "<group>"; };
 		83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionTileView.swift; sourceTree = "<group>"; };
 		83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
+		83D4FF9828AA33B500AD2D30 /* DiscoverySidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverySidebar.swift; sourceTree = "<group>"; };
 		83E584AB28A64C1700EF8F19 /* PostRowHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowHeader.swift; sourceTree = "<group>"; };
 		83E584AD28A64F7400EF8F19 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,12 +157,12 @@
 		08886506288DE7CA00EF5B92 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				834F7FAB28AA12D10038B7BE /* Discovery */,
 				836DE85D28A69B790010B60A /* Comments */,
 				83E584AA28A64BFD00EF8F19 /* Submission */,
 				83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */,
 				83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */,
 				83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */,
-				8317D51228A811CC008BF482 /* SearchView.swift */,
 				089091462897847700F2A2D2 /* AccountView.swift */,
 				087AF84228A0500400D568CC /* SubmissionView.swift */,
 				08B975A528A20F6900D7FC51 /* VoteButtonView.swift */,
@@ -194,6 +198,16 @@
 				089091372890976600F2A2D2 /* Keychain.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		834F7FAB28AA12D10038B7BE /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */,
+				834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */,
+				83D4FF9828AA33B500AD2D30 /* DiscoverySidebar.swift */,
+			);
+			path = Discovery;
 			sourceTree = "<group>";
 		};
 		836DE85D28A69B790010B60A /* Comments */ = {
@@ -291,13 +305,14 @@
 				088864FA288DC8A800EF5B92 /* infrareddit.xcdatamodeld in Sources */,
 				08909127288E04CD00F2A2D2 /* UI.swift in Sources */,
 				83E584AC28A64C1700EF8F19 /* PostRowHeader.swift in Sources */,
-				8317D51328A811CC008BF482 /* SearchView.swift in Sources */,
 				0888650A288DE7F700EF5B92 /* Reddit.swift in Sources */,
 				08909134288F80CD00F2A2D2 /* Comment.swift in Sources */,
 				089091472897847700F2A2D2 /* AccountView.swift in Sources */,
+				83D4FF9928AA33B500AD2D30 /* DiscoverySidebar.swift in Sources */,
 				83B2FB5828A4DFC9002553B5 /* HomeFeedView.swift in Sources */,
 				08909130288F669000F2A2D2 /* Submission.swift in Sources */,
 				089091382890976600F2A2D2 /* Keychain.swift in Sources */,
+				834F7FAD28AA12E90038B7BE /* DiscoveryView.swift in Sources */,
 				0890913A2892236E00F2A2D2 /* Listing.swift in Sources */,
 				83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */,
 				087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */,
@@ -310,6 +325,7 @@
 				08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */,
 				088864F0288DC8A500EF5B92 /* RootView.swift in Sources */,
 				08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */,
+				834F7FAF28AA13E10038B7BE /* DiscoveryGrid.swift in Sources */,
 				0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */,
 				08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */,
 				088864EE288DC8A500EF5B92 /* orionApp.swift in Sources */,
