@@ -1,5 +1,3 @@
 *.xcconfig
 xcuserdata/
-*.xcconfig
-Orion.xcconfig
-*.xcconfig
+*.xcworkspacedata
