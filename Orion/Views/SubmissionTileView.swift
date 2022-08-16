@@ -55,23 +55,30 @@ struct SubmissionTileView: View {
                     }
                     HStack {
                         HStack {
-                            Button(action: {}, label: {Image(systemName: "chevron.up.circle")})
-                                .foregroundColor(.primary)
-                            Text("\(submission.upVotes)")
-                                .fontWeight(.semibold)
-                            Button(action: {}, label: {Image(systemName: "chevron.down.circle")})
-                                .foregroundColor(.primary)
-                        }.font(.title2)
+                            Button(action: {submission.vote(.up)}) {
+                                Image(systemName: "chevron.up.circle")
+                            }
+                            Text("\(submission.upVotes)").fontWeight(.semibold)
+                            Button(action: {submission.vote(.down)}) {
+                                Image(systemName: "chevron.down.circle")
+                            }
+                        }
+                        .foregroundColor(.primary)
+                        .font(.title2)
                         Spacer()
                         HStack(spacing: 15) {
-                            Button {} label: {
+                            Button(action: {}) {
                                 HStack(spacing: 3) {
                                     Text("\(submission.commentCount)")
                                     Image(systemName: "bubble.left.and.bubble.right")
                                 }
                             }
-                            Button(action: {}, label: {Image(systemName: "bookmark")})
-                            Button(action: {}, label: {Image(systemName: "square.and.arrow.up")})
+                            Button(action: {}) {
+                                Image(systemName: "bookmark")
+                            }
+                            Button(action: {}) {
+                                Image(systemName: "square.and.arrow.up")
+                            }
                         }
                             .foregroundColor(.gray)
                     }
