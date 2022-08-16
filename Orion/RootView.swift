@@ -16,10 +16,15 @@ struct RootView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
+            DiscoveryView()
+                .tabItem {
+                    Label("Discovery", systemImage: "rectangle.3.group")
+                }
             AccountView()
                 .tabItem {
                     Label("Account", systemImage: "person.crop.circle.fill")
                 }
+            
         }
 
         .environmentObject(currentUser)
