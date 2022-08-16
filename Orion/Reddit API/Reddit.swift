@@ -9,7 +9,70 @@ import Foundation
 
 typealias RedditResult<T> = Result<T, RedditError>
 
-struct Reddit {
+// MARK: Code Guidelines:
+/// These guidelines will help keep the code in the same pattern and
+/// ease the process of debugging. Please adhere to these guidelines
+/// for the sake of your fellow developers. Thanks!
+
+// Method Failure:
+/// If a method fails for whatever reason and it returns an error, you
+/// should print a specific error message *before* returning or calling
+/// the completion function. This will help with tracking down where the
+/// error messages in the console are coming from.
+/// This print statement should look like the following:
+/// `print("getSubredditByName failed: \(error.localizedDescription)")`
+/// Add additional print messages as needed.
+
+// Static methods
+/// All methods in the Reddit struct *must* be static
+
+// Public methods
+/// All public methods should be wrappers for the Reddit API.
+/// If a method requires user authentication, ensure the user
+/// is logged in *before* calling the Reddit API. This check
+/// should use the following format:
+/// `guard CurrentUser.shared.userAccount != nil else {`
+/// and should pass `RedditError.userNotLoggedIn` in the completion.
+
+// Private methods
+/// Any method that directly makes a HTTP request to Reddit should be private.
+/// When possible, modify the `Reddit.makeRedditAPIRequest` method
+/// to accomodate your needs. The goal of this is to reduce repetative code, and
+/// of course, to ease debugging. It also ensures that all API requests are following
+/// the same predictable pattern.
+
+// (This comment is just to make sure the above comments are not included in the documentation for the Reddit struct)
+
+/// This enum is a namespace for interacting with the Reddit API
+enum Reddit {
+    /// Cast a vote on a Reddit object, specified by ID
+    /// - Parameters:
+    ///   - vote: A direction to cast your vote
+    ///   - id: The ID of what you're voting on
+    ///   - completion: Callback, contains `RedditError?`
+    /// - Note: *Authentication required*
+    static func castVote(_ vote: VoteDirection, on id: String, completion: @escaping (_: RedditError?) -> Void) {
+        guard CurrentUser.shared.userAccount != nil else {
+            return completion(.userNotLoggedIn)
+        }
+        var queryParameters: [URLQueryItem] = []
+        queryParameters.append(URLQueryItem(name: "id", value: id))
+        queryParameters.append(URLQueryItem(name: "dir", value: String(vote.rawValue)))
+        makeRedditAPIRequest(urlPath: "/api/vote", parameters: queryParameters, requestType: .POST) { result in
+            switch result {
+            case .success(_):
+                completion(nil)
+            case .failure(let error):
+                print("voteCast(on: \(id)) failed: \(error.localizedDescription)")
+                completion(error)
+            }
+        }
+    }
+    
+    /// Get a `StandardSubreddit` using the name of any subreddit
+    /// - Parameters:
+    ///   - name: The name of the subreddit to get
+    ///   - completion: Callback, contains `RedditResult<StandardSubreddit>`
     static func getSubredditByName(_ name: String, completion: @escaping (_: RedditResult<StandardSubreddit>) -> Void) {
         makeRedditAPIRequest(urlPath: "/r/\(name)/about") { result in
             switch result {
