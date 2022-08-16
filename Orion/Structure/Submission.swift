@@ -52,7 +52,7 @@ final class Submission: RedditThing {
         case modReports = "mod_reports"
         
         // Author Data
-        case authorName = "author"
+        case authorUsername = "author"
         case authorIsBlocked = "author_is_blocked"
         case authorID = "author_fullname"
         
@@ -75,7 +75,7 @@ final class Submission: RedditThing {
         case authorFlairText = "author_flair_text"
         case authorFlairTextColor = "author_flair_text_color"
         case authorFlairType = "author_flair_type"
-        case authorPatreonFlair = "author_patreon_flair"
+        case authorHasPatreonFlair = "author_patreon_flair"
         
         // Link flairs
         case linkFlairBackgroundColor = "link_flair_background_color"
@@ -168,42 +168,15 @@ final class Submission: RedditThing {
         /// A post containing media or a link
         case link
     }
-    
-//    init(title: String, selfText: String, author: Author, upVotes: Int, downVotes: Int, totalAwardCount: Int, isOriginalContent: Bool, thumbnailURL: URL?, createdAt: Date, isArchived: Bool, isNSFW: Bool, isPinned: Bool, isMediaOnly: Bool, isLocked: Bool, id: String, subredditID: String, commentCount: Int, permalink: String, isStickied: Bool, voteRatio: Double, subredditName: String, submissionType: SubmissionType) {
-//        self.title = title
-//        self.selfText = selfText
-//        self.author = author
-//        self.upVotes = upVotes
-//        self.downVotes = downVotes
-//        self.totalAwardCount = totalAwardCount
-//        self.isOriginalContent = isOriginalContent
-//        self.thumbnailURL = thumbnailURL
-//        self.createdAt = createdAt
-//        self.isArchived = isArchived
-//        self.isNSFW = isNSFW
-//        self.isPinned = isPinned
-//        self.isMediaOnly = isMediaOnly
-//        self.isLocked = isLocked
-//        self.id = id
-//        self.subredditID = subredditID
-//        self.commentCount = commentCount
-//        self.permalink = permalink
-//        self.isStickied = isStickied
-//        self.voteRatio = voteRatio
-//        self.subredditName = subredditName
-//        self.preview = nil
-//        self.submissionType = submissionType
-//
-//    }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RootKeys.self).nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
         
         // Author data
         if let authorID = try container.decodeIfPresent(String.self, forKey: .authorID) {
-            let authorUsername = try container.decode(String.self, forKey: .authorName)
+            let authorUsername = try container.decode(String.self, forKey: .authorUsername)
             let authorIsBlocked = try container.decode(Bool.self, forKey: .authorIsBlocked)
-            let authorHasPatreonFlair = try container.decode(Bool.self, forKey: .authorPatreonFlair)
+            let authorHasPatreonFlair = try container.decode(Bool.self, forKey: .authorHasPatreonFlair)
             let authorHasPremium = try container.decode(Bool.self, forKey: .authorHasPremium)
             author = Author(username: authorUsername,
                             id: authorID,
