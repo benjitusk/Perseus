@@ -94,6 +94,12 @@ enum Reddit {
         }
     }
     
+    /// Get  a `Listing<Submission>` from a custom API path
+    /// - Parameters:
+    ///   - apiPath: The path to request the listing from, using Reddit's API
+    ///   - before: Used for pagination, get items before the one with this ID
+    ///   - after: Used for pagination, get items after the one with this ID
+    ///   - completion: Callback, contains `RedditResult<Listing<Submission>>`
     static func getCustomSubmissionsListing(for apiPath: String, before: String?, after: String?, completion: @escaping (_: RedditResult<Listing<Submission>>) -> Void) {
         var queryParameters: [URLQueryItem] = []
         if after != nil {
@@ -118,6 +124,11 @@ enum Reddit {
         }
     }
     
+    /// Get a `RedditThing` by it's ID
+    /// - Parameters:
+    ///   - type: The type of `RedditThing` you are trying to get
+    ///   - id: The ID of the `RedditThing` you want
+    ///   - completion: Callback, contains `RedditResult<type>`
     static func getRedditThingByID<RedditData: RedditThing>(get type: RedditData.Type, for id: String, completion: @escaping (_: RedditResult<RedditData>) -> Void) {
         makeRedditAPIRequest(urlPath: "/api/info", parameters: [URLQueryItem(name: "id", value: id)]) { result in
             switch result {
@@ -137,6 +148,9 @@ enum Reddit {
         }
     }
     
+    /// Get relevant data for the authenticated user
+    /// - Parameter completion: Callback, contains `RedditResult<UserAccount>`
+    /// - Note: *Requires Authentication*
     static func getAuthenticatedUser(completion: @escaping (_: RedditResult<UserAccount>) -> Void) {
         makeRedditAPIRequest(urlPath: "/api/v1/me", overrideAuth: true) { result in
             switch result {
@@ -153,7 +167,13 @@ enum Reddit {
         }
     }
     
-    static func getSubredditListing(subreddit: Subreddit, before: String?, after: String?, completion: @escaping (_: Result<Listing<Submission>, RedditError>) -> Void) {
+    /// Get a Submission Listing for the requested Subreddit
+    /// - Parameters:
+    ///   - subreddit: The subreddit to get submisisons for
+    ///   - before: Used for pagination, get items before the one with this ID
+    ///   - after: Used for pagination, get items after the one with this ID
+    ///   - completion: Callback, contains `RedditResult<Listing<Submission>>`
+    static func getSubredditListing(subreddit: Subreddit, before: String?, after: String?, completion: @escaping (_: RedditResult<Listing<Submission>>) -> Void) {
         var queryParameters: [URLQueryItem] = []
         if after != nil {
             queryParameters.append(URLQueryItem(name: "after", value: after))
@@ -185,7 +205,16 @@ enum Reddit {
         }
     }
     
-    private static func makeRedditAPIRequest(urlPath: String, parameters: [URLQueryItem] = [], debugMode: Bool = false, overrideAuth: Bool? = nil, completion: @escaping (_: RedditResult<Data>) -> Void) {
+    /// Directly interact with the Reddit API.
+    /// All API requests must internally use this method.
+    /// - Parameters:
+    ///   - urlPath: The API endpoint to hit
+    ///   - parameters: Data passed with the request, in the URL if the method is GET or DELETE, and in the body if it's PATCH, PUT, or POST
+    ///   - requestType: The HTTP request type to use
+    ///   - debugMode: Prints out debug data about the API call when enabled
+    ///   - overrideAuth: If true, force using the authentication, if false, ignore the token, if nil, include the token if the user is logged in
+    ///   - completion: Callback, contains `RedditResult<Data>`
+    private static func makeRedditAPIRequest(urlPath: String, parameters: [URLQueryItem] = [], requestType: RequestType = .GET, debugMode: Bool = false, overrideAuth: Bool? = nil, completion: @escaping (_: RedditResult<Data>) -> Void) {
         var apiPath = urlPath
         var redditDomain = ".reddit.com"
 
@@ -213,16 +242,16 @@ enum Reddit {
         url.append(queryItems: [URLQueryItem(name: "raw_json", value: "1")])
         var request = URLRequest(url: url)
         
-        // If overrideAuth is nil, default to adding token if logged in
-        // otherwise, if specified to be true,
+        // If overrideAuth is nil, default to adding token if logged in,
+        // and not adding it if the user is not logged in.
+        // If specified to be true, force using the token,
+        // and fail if the user is not logged in.
+        // If specified to be false, do not include the token,
+        // even if the user is logged in
         
         if let overrideAuth = overrideAuth {
             if overrideAuth {
                 guard let token = CurrentUser.shared.token else {
-                    // If the user is registered as logged in, but
-                    // the token is nil, something weird happened.
-                    // Cancel the action and return the relevent error
-                    CurrentUser.shared.signOut()
                     completion(.failure(.userNotLoggedIn))
                     return
                 }
