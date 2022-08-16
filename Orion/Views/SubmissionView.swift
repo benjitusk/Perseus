@@ -46,7 +46,7 @@ struct SubmissionView: View {
                                 .frame(maxHeight: 500, alignment: .center)
                                 .clipped()
                             } else if let text =  model.submission.selfText{
-                                Markdown(Document(text))
+                                Markdown(text)
                                     .font(.body)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .padding(.horizontal)

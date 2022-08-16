@@ -47,8 +47,8 @@ struct SubmissionTileView: View {
                                         .padding()
                                 }
                             }
-                    }else if let text =  submission.selfText{
-                        Markdown(Document(text))
+                    } else if let text = submission.selfText {
+                        Markdown(text)
                             .font(.body)
                             .fixedSize(horizontal: false, vertical: true)
                             .lineLimit(3)
