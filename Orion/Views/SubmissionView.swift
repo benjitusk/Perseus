@@ -73,7 +73,13 @@ struct SubmissionView: View {
                     .foregroundColor(.gray)
                 }
             }
-        }.navigationTitle("r/\(model.submission.subredditName)")
+            Divider()
+            
+            // MARK: Comment Tree (This should be moved to a separate view soon)
+            
+        }
+        .navigationTitle("r/\(model.submission.subredditName)")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
