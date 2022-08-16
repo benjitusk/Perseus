@@ -33,11 +33,11 @@ struct HomeFeedView: View {
                         Group {
                             switch selectedSection {
                             case .popular:
-                                SubmissionListView(subreddit: SpecialSubreddit(displayName: "Hot", apiURL: "r/Popular"))
+                                SubmissionListView(subreddit: SpecialSubreddit(displayName: "Popular", apiURL: "r/Popular"))
                             case .home:
-                                SubmissionListView(subreddit: SpecialSubreddit(displayName: "Hot", apiURL: "r/awesome"))
+                                SubmissionListView(subreddit: SpecialSubreddit(displayName: "Home", apiURL: "r/awesome"))
                             case .all:
-                                SubmissionListView(subreddit: SpecialSubreddit(displayName: "Hot", apiURL: "r/All"))
+                                SubmissionListView(subreddit: SpecialSubreddit(displayName: "All", apiURL: "r/All"))
                             }
                         }
                     }
