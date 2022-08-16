@@ -81,7 +81,7 @@ enum Reddit {
                     completion(.success(subreddit))
                     return
                 } else {
-                    print("Could not decode the data properly :)")
+                    print("getSubredditByName(\(name)) failed: Decoding error")
                     completion(.failure(.decodingError))
                     return
                 }
@@ -115,10 +115,11 @@ enum Reddit {
                     completion(.success(listing))
                     return
                 } else {
+                    print("getCustomSubmissionListing(for: \(apiPath)) failed: Decoding error")
                     completion(.failure(.decodingError))
                 }
             case .failure(let error):
-                print("An error occured while performing your custom API call: \(error.localizedDescription)")
+                print("getCustomSubmissionListing(for: \(apiPath)) failed: \(error.localizedDescription)")
                 completion(.failure(error))
             }
         }
@@ -137,12 +138,15 @@ enum Reddit {
                     if let firstElement = listing.children.first {
                         completion(.success(firstElement))
                     } else {
+                        print("getRedditThingByID(type: \(type), id: \(id)) failed: No results found")
                         completion(.failure(.noResponse))
                     }
                 } else {
+                    print("getRedditThingByID(type: \(type), id: \(id)) failed: Decoding error")
                     completion(.failure(.decodingError))
                 }
             case .failure(let error):
+                print("getRedditThingByID(type: \(type), id: \(id)) failed: \(error.localizedDescription)")
                 completion(.failure(error))
             }
         }
@@ -159,9 +163,11 @@ enum Reddit {
                     completion(.success(userAccount))
                     return
                 } else {
+                    print("getAuthenticatedUser failed: Decoding error")
                     completion(.failure(.decodingError))
                 }
             case .failure(let error):
+                print("getAuthenticatedUser failed: \(error.localizedDescription)")
                 completion(.failure(error))
             }
         }
@@ -194,12 +200,12 @@ enum Reddit {
                     completion(.success(listing))
                     return
                 } else {
-                    print("Error decoding listing for subreddit \(subreddit.displayName)")
+                    print("getSubredditListing(subreddit: \(subreddit.displayName)) failed: Decoding error")
                     completion(.failure(.decodingError))
                     return
                 }
             case .failure(let error):
-                print("getSubredditListing(subreddit: \(subreddit.displayName), before: \(before ?? "nil"), after: \(after ?? "nil") failed:\n\(error.localizedDescription)")
+                print("getSubredditListing(subreddit: \(subreddit.displayName) failed: \(error.localizedDescription)")
                 completion(.failure(error))
             }
         }
@@ -241,6 +247,7 @@ enum Reddit {
         url.append(queryItems: parameters)
         url.append(queryItems: [URLQueryItem(name: "raw_json", value: "1")])
         var request = URLRequest(url: url)
+        request.httpMethod = requestType.rawValue
         
         // If overrideAuth is nil, default to adding token if logged in,
         // and not adding it if the user is not logged in.
@@ -264,10 +271,16 @@ enum Reddit {
         }
         
         if debugMode {
-            print("User token: " + (CurrentUser.shared.token?.accessToken ?? "nil"))
-            print("API URL: " + url.debugDescription)
+            print("***** API REQUEST *****")
+            print("* User is authenticated: \((CurrentUser.shared.userAccount != nil).description)")
+            print("* User token: " + (CurrentUser.shared.token?.accessToken ?? "nil"))
+            print("* Authentication Override: \(overrideAuth?.description ?? "not set.")")
+            print("* HTTP Method: \(request.httpMethod ?? "WARNING: HTTP METHOD IS nil, DEFAULTING TO 'GET'")")
+            print("* Request body: \(String(data: (request.httpBody ?? "Empty".data(using: .utf8))!, encoding: .utf8)!)")
+            print("* URL: \(request.url!.description)")
+            print("***********************")
         }
-
+        
         URLSession.shared.dataTask(with: request) { data, HTTPURLResponse, error in
             if let error = error {
                 // Check for why the request failed, and return the appropriate error.
@@ -279,14 +292,29 @@ enum Reddit {
             if let data = data, data.count > 0 {
                 completion(.success(data))
             } else {
+                print("API request to Reddit failed: No data was returned.")
                 completion(.failure(.noResponse))
             }
         }.resume()
-
-        
         
     }
+    
+    enum VoteDirection: Int {
+        case up = 1
+        case unset = 0
+        case down = -1
+    }
+    
+    private enum RequestType: String {
+        case GET
+        case POST
+        case PUT
+        case PATCH
+        case DELETE
+    }
 }
+
+
 
 protocol RedditThing: Decodable, Identifiable {
 //    var id: String { get }
