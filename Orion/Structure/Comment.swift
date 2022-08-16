@@ -126,4 +126,7 @@ final class Comment: RedditThing {
         id = try container.decode(String.self, forKey: .name)
     }
     
+    func vote(_ vote: Reddit.VoteDirection) {
+        Reddit.castVote(vote, on: self.id, completion: {_ in})
+    }
 }

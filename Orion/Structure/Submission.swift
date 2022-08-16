@@ -223,30 +223,10 @@ final class Submission: RedditThing {
         voteStatus = try container.decode(Bool?.self, forKey: .voted)
     }
     
-//    static var sample = Submission(title: "Test submission!",
-//                                   selfText: "This is a test submission used for aiding in the development of InfraReddit, a Reddit client for iOS. I really hope development goes smoothly! I'll keep you updated as I go. Wish me luck!!",
-//                                   author: .sample,
-//                                   upVotes: 84_928,
-//                                   downVotes: 290,
-//                                   totalAwardCount: 19,
-//                                   isOriginalContent: true,
-//                                   thumbnailURL: nil,
-//                                   createdAt: Date.now,
-//                                   isArchived: false,
-//                                   isNSFW: false,
-//                                   isPinned: false,
-//                                   isMediaOnly: false,
-//                                   isLocked: false,
-//                                   id: "INVALID_ID",
-//                                   subredditID: "INVALID_ID",
-//                                   commentCount: 7_389,
-//                                   permalink: "link to nowhere",
-//                                   isStickied: false,
-//                                   voteRatio: 0.98,
-//                                   subredditName: "AppDev",
-//                                   submissionType: .text
-//    )
-    
+    func vote(_ vote: Reddit.VoteDirection) {
+        Reddit.castVote(vote, on: self.id, completion: {_ in})
+    }
+
 }
 
 struct RedditImageContainer: Decodable {
