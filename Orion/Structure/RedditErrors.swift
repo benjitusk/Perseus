@@ -13,6 +13,7 @@ enum RedditError: Error {
     case userNotLoggedIn
     case unknownError
     case decodingError
+    case forbidden
 }
 
 extension RedditError: LocalizedError {
@@ -30,6 +31,8 @@ extension RedditError: LocalizedError {
             return "The server did not return a response."
         case .decodingError:
             return "There was an error decoding the data."
+        case .forbidden:
+            return "Reddit did not allow the request (HTTP 403)"
         }
         
     }

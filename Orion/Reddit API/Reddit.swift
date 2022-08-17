@@ -281,13 +281,22 @@ enum Reddit {
             print("***********************\n")
         }
         
-        URLSession.shared.dataTask(with: request) { data, HTTPURLResponse, error in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 // Check for why the request failed, and return the appropriate error.
                 // Until I get to that point, we're just going to log the error to the console
                 // and fail the request with RedditError.unknownError
                 print("API request to Reddit failed: \(error.localizedDescription). Failing the request as unknownError.")
                 completion(.failure(.unknownError))
+            }
+            guard let response = response as? HTTPURLResponse else {
+                print("Could not get status of response.")
+                completion(.failure(.invalidResponse))
+                return
+            }
+            if response.statusCode == 403 {
+                completion(.failure(.forbidden))
+                return
             }
             if let data = data, data.count > 0 {
                 completion(.success(data))
