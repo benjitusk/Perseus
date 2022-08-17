@@ -10,17 +10,6 @@ import Foundation
 class SpecialSubreddit: Subreddit {
     var displayName: String
     var apiURL: String
-    func getPosts(by sortingMethod: StandardSubreddit.SortingMethod, before: String? = nil, after: String? = nil, completion: @escaping (RedditResult<Listing<Submission>>) -> Void) {
-        Reddit.getCustomSubmissionsListing(for: apiURL, before: before, after: after) { result in
-            switch result {
-            case .success(let submissions):
-                completion(.success(submissions))
-            case .failure(let error):
-                print("There was an error fetching your data: \(error.localizedDescription)")
-                completion(.failure(error))
-            }
-        }
-    }
     
     init(displayName: String, apiURL: String) {
         self.displayName = displayName
@@ -51,36 +40,6 @@ final class StandardSubreddit: Subreddit, RedditThing {
     let userIsContributor: Bool
     let userIsModerator: Bool
     let userIsSubscriber: Bool
-    
-    func getPosts(by sortingMethod: StandardSubreddit.SortingMethod, before: String? = nil, after: String? = nil, completion: @escaping (_: RedditResult<Listing<Submission>>) -> Void) {
-        Reddit.getSubredditListing(subreddit: self, before: before, after: after) { result in
-            switch result {
-            case .success(let submissions):
-                completion(.success(submissions))
-            case .failure(let error):
-                print("There was an error fetching your data: \(error.localizedDescription)")
-                completion(.failure(error))
-            }
-        }
-    }
-
-    
-    init(activeAccounts: Int, description: String, displayName: String, headerImg: URL, isNSFW: Bool, subscribers: Int, allowedSubmissionType: Submission.SubmissionType, subredditType: SubredditType, title: String, relativeURL: String, userIsBanned: Bool, userIsContributor: Bool, userIsModerator: Bool, userIsSubscriber: Bool) {
-        self.activeAccounts = activeAccounts
-        self.allowedSubmissionType = allowedSubmissionType
-        self.description = description
-        self.headerImg = headerImg
-        self.isNSFW = isNSFW
-        self.relativeURL = relativeURL
-        self.subscribers = subscribers
-        self.subredditType = subredditType
-        self.title = title
-        self.userIsBanned = userIsBanned
-        self.userIsContributor = userIsContributor
-        self.userIsModerator = userIsModerator
-        self.userIsSubscriber = userIsSubscriber
-        self.displayName = displayName
-    }
     
     enum SubredditType: String, Decodable {
         case archived
@@ -269,19 +228,4 @@ final class StandardSubreddit: Subreddit, RedditThing {
         displayName             = try container.decode(String.self, forKey: .displayName)
         id                      = try container.decode(String.self, forKey: .name)
     }
-    
-    static let sample = StandardSubreddit(activeAccounts: 36_420,
-                                  description: "[Rules](https://www.reddit.com/r/pics/wiki/index)\n\n1. No screenshots or pics where the only focus is a screen. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_1_-_no_screenshots)\n\n2. No pictures with added or superimposed digital text. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_2_-_no_digital_elements)\n\n3. No porn or gore. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_3_-_no_porn.2Fgore)\n\n4. No personal information, direct links to any social media, subreddit-related meta-drama, witch-hunts or missing/found posts. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_4_-_no_doxing.2Fwitch_hunts)\n\n5. All titles must follow title rules. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/titles)\n\n6. Submissions are only allowed from one of the approved image hosts. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_6_-_only_allowed_image_hosts) \n\n7. No gifs or videos. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_7_-_no_gifs)\n\n8. Comments must be civil. Any racism, bigotry, or any other kind of hate speech is strictly prohibited and will result in a ban. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_8_-_civility)\n\n9.  No submissions featuring before-and-after depictions of personal health progress or achievement. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_9_-_no_progress_pics)\n\n10. No false claims of ownership (FCoO) or flooding. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_10_-_no_fcoo.2Fflooding)\n\n11. Reposts of images on the front page, or within the set limit of /r/pics/top, will be removed. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_11_-_repost_limitations)\n\n12. Normal users are allowed only one self-promotional link per post. [more&gt;&gt;](https://www.reddit.com/r/pics/wiki/index#wiki_rule_12_-_limited_self-promotion)\n\n---\n\n[Additional/Temporary Rules](https://www.reddit.com/r/pics/wiki/index#wiki_additional.2Ftemporary_rules)\n\n* Serial reposters may be filtered or banned. \n\n* We prefer that new users post original content and not common pictures from the internet.\n\n* All posts by new users require mod approval in order to weed out spammers. \n\n* Please mark spoilers for current movies/games/books with spoiler tags. \n\n---\n\nIf you want a picture that belongs to you to be removed from /r/pics then please file a copyright notice [here](https://reddit.zendesk.com/hc/en-us/requests/new?ticket_form_id=73465).\n\n---\n\nClick [here](https://www.reddit.com/r/pics/wiki/links) to find more specialized picture subreddits",
-                                  displayName: "pics",
-                                  headerImg: URL(string: "https://b.thumbs.redditmedia.com/1zT3FeN8pCAFIooNVuyuZ0ObU0x1ro4wPfArGHl3KjM.png")!,
-                                  isNSFW: false,
-                                  subscribers: 29_213_242,
-                                  allowedSubmissionType: .link,
-                                  subredditType: .public,
-                                  title: "Reddit Pics",
-                                  relativeURL: "/r/pics",
-                                  userIsBanned: false,
-                                  userIsContributor: false,
-                                  userIsModerator: false,
-                                  userIsSubscriber: false)
 }

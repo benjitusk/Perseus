@@ -33,7 +33,7 @@
 		08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A928A3259600D7FC51 /* UserAccount.swift */; };
 		08BE3E7128A98C1100282D4C /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 08BE3E7028A98C1100282D4C /* MarkdownUI */; };
 		08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */; };
-		8317D51128A80F8F008BF482 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8317D51028A80F8F008BF482 /* MarkdownUI */; };
+		08F7CE9D28AC546700420A58 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F7CE9C28AC546700420A58 /* ListingModel.swift */; };
 		834F7FAD28AA12E90038B7BE /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */; };
 		834F7FAF28AA13E10038B7BE /* DiscoveryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */; };
 		836DE85F28A69BA80010B60A /* CommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836DE85E28A69BA80010B60A /* CommentListView.swift */; };
@@ -73,6 +73,7 @@
 		08B975A728A3181C00D7FC51 /* SignInPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPromptView.swift; sourceTree = "<group>"; };
 		08B975A928A3259600D7FC51 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListModel.swift; sourceTree = "<group>"; };
+		08F7CE9C28AC546700420A58 /* ListingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModel.swift; sourceTree = "<group>"; };
 		834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
 		834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryGrid.swift; sourceTree = "<group>"; };
 		836DE85E28A69BA80010B60A /* CommentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListView.swift; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 				089091392892236E00F2A2D2 /* Listing.swift */,
 				087AF84028A03F8300D568CC /* Author.swift */,
 				08B975A928A3259600D7FC51 /* UserAccount.swift */,
+				08F7CE9C28AC546700420A58 /* ListingModel.swift */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -327,6 +329,7 @@
 				088864F0288DC8A500EF5B92 /* RootView.swift in Sources */,
 				08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */,
 				834F7FAF28AA13E10038B7BE /* DiscoveryGrid.swift in Sources */,
+				08F7CE9D28AC546700420A58 /* ListingModel.swift in Sources */,
 				0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */,
 				08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */,
 				088864EE288DC8A500EF5B92 /* orionApp.swift in Sources */,

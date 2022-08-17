@@ -8,51 +8,30 @@
 import SwiftUI
 class SubmissionListModel: ObservableObject {
     var subreddit: Subreddit
-    var lastRenderedSubmissionID = ""
-    var renderedSubmissions: Set<String> = []
-    @Published var listing: Listing<Submission>? = nil
-    
-    
-    func initialLoad() {
-        self.subreddit.getPosts(by: .hot, before: nil, after: nil) { result in
-            switch result {
-            case .success(let listing):
-                DispatchQueue.main.async {
-                    self.listing = listing
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        
-    }
-    
-    func loadMoreIfNeeded() {
-        if renderedSubmissions.count % 20 == 0 {
-            self.subreddit.getPosts(by: .hot, before: nil, after: lastRenderedSubmissionID) { result in
-                switch result {
-                case .success(let newListing):
-                    DispatchQueue.main.async {
-                        withAnimation {
-                            self.listing?.children.append(contentsOf: newListing.children)
-                        }
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
-    
-    
-    
-    init(subreddit: Subreddit) {
+    var listingModel: ListingModel<Submission>
+
+    init(subreddit: Subreddit, listingModel: ListingModel<Submission>) {
         self.subreddit = subreddit
-        initialLoad()
+        self.listingModel = listingModel
+        load()
+        
     }
     
     init(displayName: String, customAPIPath: String) {
         self.subreddit = SpecialSubreddit(displayName: displayName, apiURL: customAPIPath)
-        initialLoad()
+        listingModel = ListingModel(apiEndpoint: customAPIPath)
+        load()
+    }
+    
+    func loadMoreIfNeeded() {
+        load()
+    }
+    
+    private func load() {
+        listingModel.load(the: .next, 15) { error in
+            if error != nil {
+                print("SubmissionListModal.load failed: \(error!.localizedDescription)")
+            }
+        }
     }
 }

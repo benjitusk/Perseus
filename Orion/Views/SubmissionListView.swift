@@ -8,25 +8,32 @@
 import SwiftUI
 
 struct SubmissionListView: View {
-    @ObservedObject var model: SubmissionListModel
+    @State var model: SubmissionListModel
+    @State var listingModel: ListingModel<Submission>
     init(subreddit: Subreddit) {
-        self.model = SubmissionListModel(subreddit: subreddit)
+        let listingModel = ListingModel<Submission>(apiEndpoint: "r/" + subreddit.displayName)
+        self.model = SubmissionListModel(subreddit: subreddit, listingModel: listingModel)
+        self.listingModel = listingModel
     }
-         var body: some View {
-                    if let listing = model.listing {
-                        ForEach(listing.children) { submission in
-                            NavigationLink(destination: SubmissionView(submission)) {
-                                SubmissionTileView(submission: submission)
-                            }
-                            .buttonStyle(EmptyButtonStyle())
-                            .onAppear {
-                                model.lastRenderedSubmissionID = submission.id
-                                model.renderedSubmissions.insert(submission.id)
-                                model.loadMoreIfNeeded()
-                            }
-                            
-                        }
-                    }
+    var body: some View {
+        if let submissions = listingModel.children {
+            ForEach(submissions) { submission in
+                NavigationLink(destination: SubmissionView(submission)) {
+                    SubmissionTileView(submission: submission)
+                }
+                .buttonStyle(EmptyButtonStyle())
+            }
+        }
+        Button(action: model.loadMoreIfNeeded) {
+            Text("Load More")
+                .foregroundColor(.white)
+                .padding()
+                .backgroundColor(.accentColor)
+                .cornerRadius(8)
+        }
+        .onChange(of: listingModel.children) { _ in
+            print("ListingModel children changed!")
+        }
     }
 }
 
