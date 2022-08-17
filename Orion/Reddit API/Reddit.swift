@@ -94,37 +94,37 @@ enum Reddit {
         }
     }
     
-    /// Get  a `Listing<Submission>` from a custom API path
+    /// Get  a `Listing<RedditThing>` from a custom API path
     /// - Parameters:
     ///   - apiPath: The path to request the listing from, using Reddit's API
     ///   - before: Used for pagination, get items before the one with this ID
     ///   - after: Used for pagination, get items after the one with this ID
-    ///   - completion: Callback, contains `RedditResult<Listing<Submission>>`
-    static func getCustomSubmissionsListing(for apiPath: String, before: String?, after: String?, completion: @escaping (_: RedditResult<Listing<Submission>>) -> Void) {
+    ///   - completion: Callback, contains `RedditResult<Listing<RedditThing>>`
+    static func getCustomListing<RedditData: RedditThing>(type: RedditData.Type, from apiPath: String, before: String?, after: String?, count: Int = 20, completion: @escaping(_: RedditResult<Listing<RedditData>>) -> Void) {
         var queryParameters: [URLQueryItem] = []
-        if after != nil {
+        if let after = after {
             queryParameters.append(URLQueryItem(name: "after", value: after))
-        } else {
+        } else if let before = before {
             queryParameters.append(URLQueryItem(name: "before", value: before))
         }
-        queryParameters.append(URLQueryItem(name: "limit", value: "20"))
+        queryParameters.append(URLQueryItem(name: "limit", value: String(count)))
         makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters, debugMode: true) { result in
             switch result {
             case .success(let data):
-                if let listing = try? JSONDecoder().decode(Listing<Submission>.self, from: data) {
+                if let listing = try? JSONDecoder().decode(Listing<RedditData>.self, from: data) {
                     completion(.success(listing))
                     return
                 } else {
-                    print("getCustomSubmissionListing(for: \(apiPath)) failed: Decoding error")
+                    print("getCustomListing(type: \(type), from: \(apiPath)) failed: Decoding error")
                     completion(.failure(.decodingError))
                 }
             case .failure(let error):
-                print("getCustomSubmissionListing(for: \(apiPath)) failed: \(error.localizedDescription)")
+                print("getCustomListing(type: \(type), from: \(apiPath)) failed: \(error.localizedDescription)")
                 completion(.failure(error))
             }
         }
     }
-    
+
     /// Get a `RedditThing` by it's ID
     /// - Parameters:
     ///   - type: The type of `RedditThing` you are trying to get
@@ -278,7 +278,7 @@ enum Reddit {
             print("* HTTP Method: \(request.httpMethod ?? "WARNING: HTTP METHOD IS nil, DEFAULTING TO 'GET'")")
             print("* Request body: \(String(data: (request.httpBody ?? "Empty".data(using: .utf8))!, encoding: .utf8)!)")
             print("* URL: \(request.url!.description)")
-            print("***********************")
+            print("***********************\n")
         }
         
         URLSession.shared.dataTask(with: request) { data, HTTPURLResponse, error in
