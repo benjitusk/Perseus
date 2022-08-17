@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeFeedView: View {
-    @State var searchText : String = "awesome"
+    @State var searchText : String = ""
     @State private var selectedSection: Sections = .home
     enum Sections: String {
         case popular, home, all

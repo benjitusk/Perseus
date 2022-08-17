@@ -19,8 +19,9 @@ struct DiscoveryView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         Text("Browse").font(.title2).fontWeight(.bold)
-                        DiscoveryGrid()
-                    }.padding(.horizontal, horizontalPadding)
+                        DiscoveryGrid(subreddit: SpecialSubreddit(displayName: "Images", apiURL: "r/Popular"))
+                            .padding(.top, -7)
+                    }.padding(.horizontal)
                 }
                 .navigationTitle("Search")
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
