@@ -9,6 +9,19 @@ import SwiftUI
 
 @main
 struct orionApp: App {
+    init() {
+        Reddit.getAuthenticatedUser() { result in
+            switch result {
+            case .success(let account):
+                print("Logged in!")
+                Task {
+                    CurrentUser.shared.userAccount = account
+                }
+            case .failure(let error):
+                print("Couldn't get authenticated user: \(error.localizedDescription)")
+            }
+        }
+    }
     let persistenceController = PersistenceController.shared
     @ObservedObject var currentUser = CurrentUser.shared
 

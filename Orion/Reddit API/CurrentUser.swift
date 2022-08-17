@@ -41,14 +41,6 @@ class CurrentUser: ObservableObject {
             }
         }
         
-//        Reddit.getAuthenticatedUser() { result in
-//            switch result {
-//            case .success(let account):
-//                self.userAccount = account
-//            case .failure(let error):
-//                print("Couldn't get authenticated user: \(error.localizedDescription)")
-//            }
-//        }
     }
     
     func loadTokenFromKeychain() {
@@ -171,7 +163,8 @@ class CurrentUser: ObservableObject {
                     self.userAccount = account
                 }
             case .failure(let error):
-                print("Couldn't get authenticated user: \(error.localizedDescription)")
+                print("Couldn't get authenticated user: \(error.localizedDescription).")
+                print("This is likely a bug, and should be investigated.")
                 DispatchQueue.main.async {
                     self.userAccount = nil
                 }
