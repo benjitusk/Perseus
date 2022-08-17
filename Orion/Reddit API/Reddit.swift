@@ -316,7 +316,7 @@ enum Reddit {
 
 
 
-protocol RedditThing: Decodable, Identifiable {
+protocol RedditThing: Decodable, Identifiable, Equatable {
 //    var id: String { get }
 //    var name: String { get }
 //    var kind: String { get }
@@ -324,9 +324,6 @@ protocol RedditThing: Decodable, Identifiable {
     associatedtype CodingKeys: RawRepresentable where CodingKeys.RawValue: StringProtocol
 }
 
-protocol Subreddit {
-    
+protocol Subreddit {    
     var displayName: String { get }
-    
-    func getPosts(by sortingMethod: StandardSubreddit.SortingMethod, before: String?, after: String?, completion: @escaping (_: RedditResult<Listing<Submission>>) -> Void)
 }

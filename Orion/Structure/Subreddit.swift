@@ -30,6 +30,10 @@ class SpecialSubreddit: Subreddit {
 }
 
 final class StandardSubreddit: Subreddit, RedditThing {
+    static func == (lhs: StandardSubreddit, rhs: StandardSubreddit) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     let displayName: String
     let activeAccounts: Int
     let description: String
@@ -40,6 +44,7 @@ final class StandardSubreddit: Subreddit, RedditThing {
     let subredditType: SubredditType
     let title: String
     let relativeURL: String
+    let id: String
     
     // The following user properties are `false` if the user is not authenticated
     let userIsBanned: Bool
@@ -261,7 +266,8 @@ final class StandardSubreddit: Subreddit, RedditThing {
         userIsContributor       = try container.decodeIfPresent(Bool.self, forKey: .userIsContributor) ?? false
         userIsModerator         = try container.decodeIfPresent(Bool.self, forKey: .userIsModerator) ?? false
         userIsSubscriber        = try container.decodeIfPresent(Bool.self, forKey: .userIsSubscriber) ?? false
-        self.displayName         = try container.decode(String.self, forKey: .displayName)
+        displayName             = try container.decode(String.self, forKey: .displayName)
+        id                      = try container.decode(String.self, forKey: .name)
     }
     
     static let sample = StandardSubreddit(activeAccounts: 36_420,

@@ -7,6 +7,10 @@
 
 import Foundation
 final class Comment: RedditThing {
+    static func == (lhs: Comment, rhs: Comment) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     let author: Author
     let createdAt: Date
     let score: Int
