@@ -108,7 +108,7 @@ enum Reddit {
             queryParameters.append(URLQueryItem(name: "before", value: before))
         }
         queryParameters.append(URLQueryItem(name: "limit", value: String(count)))
-        makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters, debugMode: true) { result in
+        makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters) { result in
             switch result {
             case .success(let data):
                 if let listing = try? JSONDecoder().decode(Listing<RedditData>.self, from: data) {
