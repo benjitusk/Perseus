@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SubmissionListView: View {
-    @State var model: SubmissionListModel
-    @State var listingModel: ListingModel<Submission>
+    @ObservedObject var model: SubmissionListModel
+    @ObservedObject var listingModel: ListingModel<Submission>
     init(subreddit: Subreddit) {
         let listingModel = ListingModel<Submission>(apiEndpoint: "r/" + subreddit.displayName)
         self.model = SubmissionListModel(subreddit: subreddit, listingModel: listingModel)
@@ -20,19 +20,12 @@ struct SubmissionListView: View {
             ForEach(submissions) { submission in
                 NavigationLink(destination: SubmissionView(submission)) {
                     SubmissionTileView(submission: submission)
+                        .onAppear {
+                            model.loadMoreIfNeeded(check: submission)
+                        }
                 }
                 .buttonStyle(EmptyButtonStyle())
             }
-        }
-        Button(action: model.loadMoreIfNeeded) {
-            Text("Load More")
-                .foregroundColor(.white)
-                .padding()
-                .backgroundColor(.accentColor)
-                .cornerRadius(8)
-        }
-        .onChange(of: listingModel.children) { _ in
-            print("ListingModel children changed!")
         }
     }
 }

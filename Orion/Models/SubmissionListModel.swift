@@ -23,8 +23,10 @@ class SubmissionListModel: ObservableObject {
         load()
     }
     
-    func loadMoreIfNeeded() {
-        load()
+    func loadMoreIfNeeded(check submission: Submission) {
+        if submission.id == listingModel.children?.last?.id {
+            load()
+        }
     }
     
     private func load() {
