@@ -34,7 +34,7 @@ final class StandardSubreddit: Subreddit, RedditThing {
     let title: String
     let relativeURL: String
     let id: String
-    
+    let apiURL: String
     // The following user properties are `false` if the user is not authenticated
     let userIsBanned: Bool
     let userIsContributor: Bool
@@ -227,5 +227,6 @@ final class StandardSubreddit: Subreddit, RedditThing {
         userIsSubscriber        = try container.decodeIfPresent(Bool.self, forKey: .userIsSubscriber) ?? false
         displayName             = try container.decode(String.self, forKey: .displayName)
         id                      = try container.decode(String.self, forKey: .name)
+        apiURL                  = "r/" + displayName
     }
 }
