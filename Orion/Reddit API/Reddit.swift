@@ -335,4 +335,5 @@ protocol RedditThing: Decodable, Identifiable, Equatable {
 
 protocol Subreddit {    
     var displayName: String { get }
+    var apiURL: String { get }
 }

@@ -35,7 +35,7 @@ struct HomeFeedView: View {
                             case .popular:
                                 SubmissionListView(subreddit: SpecialSubreddit(displayName: "Popular", apiURL: "r/Popular"))
                             case .home:
-                                SubmissionListView(subreddit: SpecialSubreddit(displayName: "Home", apiURL: "r/awesome"))
+                                SubmissionListView(subreddit: SpecialSubreddit(displayName: "Home", apiURL: "")) // apiURL purposely left blank
                             case .all:
                                 SubmissionListView(subreddit: SpecialSubreddit(displayName: "All", apiURL: "r/All"))
                             }
