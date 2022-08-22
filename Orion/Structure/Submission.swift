@@ -8,7 +8,7 @@
 import Foundation
 final class Submission: RedditThing {
     static func == (lhs: Submission, rhs: Submission) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.fullID == rhs.fullID
     }
     
     
@@ -17,6 +17,7 @@ final class Submission: RedditThing {
     let createdAt: Date
     let downVotes: Int
     let id: String
+    let fullID: String
     let isArchived: Bool
     let isLocked: Bool
     let isMediaOnly: Bool
@@ -207,7 +208,8 @@ final class Submission: RedditThing {
         commentCount = try container.decode(Int.self, forKey: .commentCount)
         createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp))
         downVotes = try container.decode(Int.self, forKey: .downvoteCount)
-        id = try container.decode(String.self, forKey: .fullName)
+        fullID = try container.decode(String.self, forKey: .fullName)
+        id = try container.decode(String.self, forKey: .id)
         isArchived = try container.decode(Bool.self, forKey: .archived)
         isLocked = try container.decode(Bool.self, forKey: .locked)
         isMediaOnly = try container.decode(Bool.self, forKey: .mediaOnly)
@@ -230,6 +232,12 @@ final class Submission: RedditThing {
     func vote(_ vote: Reddit.VoteDirection) {
         Reddit.castVote(vote, on: self.id, completion: {_ in})
     }
+    
+    static var sample = try! JSONDecoder().decode(
+        Submission.self, from: Data(contentsOf:
+                                        Bundle.main.url(forResource: "Submission", withExtension: "json")!
+                                   )
+    )
 
 }
 

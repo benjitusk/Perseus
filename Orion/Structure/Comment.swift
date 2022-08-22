@@ -133,4 +133,11 @@ final class Comment: RedditThing {
     func vote(_ vote: Reddit.VoteDirection) {
         Reddit.castVote(vote, on: self.id, completion: {_ in})
     }
+    
+    static var sample = try! JSONDecoder().decode(
+        Comment.self, from: Data(contentsOf:
+                                        Bundle.main.url(forResource: "Comment", withExtension: "json")!
+                                   )
+    )
+
 }
