@@ -11,7 +11,7 @@ struct SubmissionListView: View {
     @ObservedObject var model: SubmissionListModel
     @ObservedObject var listingModel: ListingModel<Submission>
     init(subreddit: Subreddit) {
-        let listingModel = ListingModel<Submission>(apiEndpoint: "r/" + subreddit.displayName)
+        let listingModel = ListingModel<Submission>(apiEndpoint: subreddit.apiURL)
         self.model = SubmissionListModel(subreddit: subreddit, listingModel: listingModel)
         self.listingModel = listingModel
     }
