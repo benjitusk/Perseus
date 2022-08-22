@@ -75,7 +75,7 @@ struct SubmissionView: View {
             }
             Divider()
             
-            // MARK: Comment Tree (This should be moved to a separate view soon)
+            CommentTreeView(of: model.submission)
             
         }
         .navigationTitle("r/\(model.submission.subredditName)")
