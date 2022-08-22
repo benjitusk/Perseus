@@ -29,15 +29,13 @@ class ListingModel<RedditData: RedditThing>: ObservableObject {
                     if self.children == nil {
                         self.children = []
                     }
-                    withAnimation {
-                        switch direction {
-                        case .next:
-                            self.after = listing.after
-                            self.children!.append(contentsOf: listing.children as! [RedditData])
-                        case .previous:
-                            self.before = listing.before
-                            self.children!.insert(contentsOf: listing.children as! [RedditData], at: 0)
-                        }
+                    switch direction {
+                    case .next:
+                        self.after = listing.after
+                        self.children!.append(contentsOf: listing.children as! [RedditData])
+                    case .previous:
+                        self.before = listing.before
+                        self.children!.insert(contentsOf: listing.children as! [RedditData], at: 0)
                     }
                 }
                 completion(nil)

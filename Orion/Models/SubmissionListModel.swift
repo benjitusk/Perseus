@@ -25,7 +25,9 @@ class SubmissionListModel: ObservableObject {
     
     func loadMoreIfNeeded(check submission: Submission) {
         if submission.id == listingModel.children?.last?.id {
-            load()
+            withAnimation {
+                load()
+            }
         }
     }
     
