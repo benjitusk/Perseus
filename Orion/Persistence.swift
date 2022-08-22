@@ -12,7 +12,7 @@ struct PersistenceController {
 //        .fetch(<#T##CoreData.NSFetchRequest<T>#>)
 //        .save()
 //        .delete()
-    static let shared = PersistenceController()
+//    static let shared = PersistenceController()
 
 //    static var preview: PersistenceController = {
 //        let result = PersistenceController(inMemory: true)

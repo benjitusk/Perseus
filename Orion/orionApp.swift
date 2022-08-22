@@ -22,13 +22,13 @@ struct orionApp: App {
             }
         }
     }
-    let persistenceController = PersistenceController.shared
+//    let persistenceControl®ler = PersistenceController.shared
     @ObservedObject var currentUser = CurrentUser.shared
 
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(currentUser)
                 .onOpenURL() { url in
                     guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
