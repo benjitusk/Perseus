@@ -6,23 +6,92 @@
 //
 
 import Foundation
+
+class CommentsAndMore: RedditThing {
+    
+    static func == (lhs: CommentsAndMore, rhs: CommentsAndMore) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    let id: String
+    let more: MoreComments?
+    let comment: Comment?
+    
+    required init(from decoder: Decoder) throws {
+        // Try to init a Comment. If that fails,
+        // try to init a MoreComments.
+        // If neither of those work, throw an error
+        let rootContainer = try decoder.container(keyedBy: RootKeys.self)
+        let kind = try rootContainer.decode(Kind.self, forKey: .kind)
+        switch kind {
+        case .comment:
+            more = nil
+            comment = try rootContainer.decode(Comment.self, forKey: .data)
+            id = comment!.id
+        case .more:
+            comment = nil
+            more = try rootContainer.decode(MoreComments.self, forKey: .data)
+            id = more!.id
+        }
+        
+    }
+    
+    enum RootKeys: String, CodingKey {
+        case kind, data
+    }
+
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+    }
+    enum Kind: String, Decodable {
+        case comment = "t1"
+        case more
+    }
+    
+}
+
+final class MoreComments: RedditThing {
+    static func == (lhs: MoreComments, rhs: MoreComments) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        children = try container.decode([String].self, forKey: .children)
+        name = try container.decode(String.self, forKey: .name)
+    }
+
+    let children: [String]
+    let name: String
+    let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case children, name, id
+    }
+}
+
 final class Comment: RedditThing {
     static func == (lhs: Comment, rhs: Comment) -> Bool {
         return lhs.id == rhs.id
     }
-    
+
     let author: Author
+    let authorIsOP: Bool
+    let body: String
     let createdAt: Date
+    let depth: Int
+    let distinguished: Reddit.Distinguish?
+    let editedAt: Date?
+    let id: String
+    let isArchived: Bool
+    let isLocked: Bool
+    let permalink: URL
+    let replies: Listing<CommentsAndMore>?
     let score: Int
     let scoreIsHidden: Bool
-    let isArchived: Bool
-    let isEdited: Bool
-    let authorIsOP: Bool
-    let isLocked: Bool
-    let isDistinguished: Bool
-    let depth: Int
-    let permalink: URL
-    let id: String
     
     enum CodingKeys: String, CodingKey {
         case awards = "all_awardings"
@@ -59,7 +128,7 @@ final class Comment: RedditThing {
         case depth
         case distinguished
         case downs
-        case isEdited = "edited"
+        case editedAt = "edited"
         case gilded
         case gildings
         case id
@@ -96,12 +165,9 @@ final class Comment: RedditThing {
         case reports = "user_reports"
 
     }
-    enum RootKeys: CodingKey {
-        case kind, data
-    }
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: RootKeys.self).nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         if let authorID = try container.decodeIfPresent(String.self, forKey: .authorID) {
             let authorUsername = try container.decode(String.self, forKey: .authorUsername)
             let authorIsBlocked = try container.decode(Bool.self, forKey: .authorIsBlocked)
@@ -116,18 +182,24 @@ final class Comment: RedditThing {
             author = Author.deletedUser
         }
         let createdAtTimestamp = try container.decode(Int.self, forKey: .createdAt)
+        body = try container.decode(String.self, forKey: .body)
         createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp))
         score = try container.decode(Int.self, forKey: .score)
         scoreIsHidden = try container.decode(Bool.self, forKey: .scoreIsHidden)
         isArchived = try container.decode(Bool.self, forKey: .isArchived)
-        isEdited = try container.decode(Bool.self, forKey: .isEdited)
+        editedAt = try? container.decode(Date.self, forKey: .editedAt)
         authorIsOP = try container.decode(Bool.self, forKey: .authorIsOP)
         isLocked = try container.decode(Bool.self, forKey: .isLocked)
-        isDistinguished = try container.decode(Bool.self, forKey: .distinguished)
+        distinguished = try container.decodeIfPresent(Reddit.Distinguish.self, forKey: .distinguished)
         depth = try container.decode(Int.self, forKey: .depth)
         let permalinkSuffix = try container.decode(String.self, forKey: .permalink)
         permalink = URL(string: "https://www.reddit.com" + permalinkSuffix)!
         id = try container.decode(String.self, forKey: .name)
+        if let replies = try? container.decodeIfPresent(Listing<CommentsAndMore>.self, forKey: .replies) {
+            self.replies = replies
+        } else {
+            self.replies = nil
+        }
     }
     
     func vote(_ vote: Reddit.VoteDirection) {

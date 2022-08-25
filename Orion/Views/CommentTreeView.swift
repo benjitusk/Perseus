@@ -8,21 +8,24 @@
 import SwiftUI
 
 struct CommentTreeView: View {
-    @ObservedObject var listingModel: ListingModel<Comment>
+    @ObservedObject var listingModel: ListingModel<CommentsAndMore>
     @ObservedObject var model: CommentTreeModel
     init(of submission: Submission) {
-        let listingModel = ListingModel<Comment>(apiEndpoint: "r/" + submission.subredditName + "/comments/" + submission.fullID)
+        let listingModel = ListingModel<CommentsAndMore>(apiEndpoint: "r/" + submission.subredditName + "/comments/" + submission.id)
         self.model = CommentTreeModel(submission: submission, listingModel: listingModel)
         self.listingModel = listingModel
     }
     var body: some View {
-        if let comments = model.comments {
-            ForEach(comments) { comment in
-                CommentView(comment)
+        VStack(alignment: .leading) {
+            if let commentsAndMore = listingModel.children {
+                ForEach(commentsAndMore) { commentOrMore in
+                    RecursiveCommentView(commentOrMore)
+                }
+            } else {
+                ProgressView()
             }
-        } else {
-            ProgressView()
         }
+        .padding()
     }
 }
 
@@ -30,20 +33,4 @@ struct CommentTree_Previews: PreviewProvider {
     static var previews: some View {
         CommentTreeView(of: .sample)
     }
-}
-
-class CommentTreeModel: ObservableObject {
-    var listingModel: ListingModel<Comment>
-    var submisison: Submission
-    @Published var comments: [Comment]?
-    init(submission: Submission, listingModel: ListingModel<Comment>) {
-        self.submisison = submission
-        self.listingModel = listingModel
-        load()
-    }
-    
-    func load() {
-        
-    }
-    
 }

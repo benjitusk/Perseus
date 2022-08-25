@@ -22,7 +22,7 @@ struct orionApp: App {
             }
         }
     }
-//    let persistenceControl®ler = PersistenceController.shared
+//    let persistenceController = PersistenceController.shared
     @ObservedObject var currentUser = CurrentUser.shared
 
     var body: some Scene {

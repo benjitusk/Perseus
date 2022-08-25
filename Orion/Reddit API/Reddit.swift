@@ -110,7 +110,24 @@ enum Reddit {
         queryParameters.append(URLQueryItem(name: "limit", value: String(count)))
         makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters) { result in
             switch result {
-            case .success(let data):
+            case .success(var data):
+                // If it's a comment, the return data contains 2 listings, one with the submission, and one with the comments.
+                // We need to only look at the 2nd element in the array:
+                if RedditData.self == CommentsAndMore.self {
+                    guard let dict = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]],
+                          dict.count >= 2 else {
+                        print("The response from \(apiPath) did not contain a comment listing.")
+                        completion(.failure(.invalidResponse))
+                        return
+                    }
+                    guard let processedData = try? JSONSerialization.data(withJSONObject: dict[1]) else {
+                        print("Could not reserialize [String: Any] -> JSON")
+                        completion(.failure(.invalidResponse))
+                        return
+                    }
+                    data = processedData
+                }
+                
                 if let listing = try? JSONDecoder().decode(Listing<RedditData>.self, from: data) {
                     completion(.success(listing))
                     return
@@ -312,6 +329,10 @@ enum Reddit {
         case up = 1
         case unset = 0
         case down = -1
+    }
+    
+    enum Distinguish: String, Codable {
+        case moderator, admin, special
     }
     
     private enum RequestType: String {

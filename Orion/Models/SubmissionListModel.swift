@@ -34,7 +34,7 @@ class SubmissionListModel: ObservableObject {
     private func load() {
         listingModel.load(the: .next, 15) { error in
             if error != nil {
-                print("SubmissionListModal.load failed: \(error!.localizedDescription)")
+                print("\(self).load failed: \(error!.localizedDescription)")
             }
         }
     }
