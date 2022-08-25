@@ -36,6 +36,8 @@
 		08E817E428B2E01400BE8B3A /* CommentTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E817E328B2E01400BE8B3A /* CommentTreeView.swift */; };
 		08E817EA28B2E21000BE8B3A /* Submission.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817E928B2E21000BE8B3A /* Submission.json */; };
 		08E817EC28B3DC3C00BE8B3A /* Comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817EB28B3DC3C00BE8B3A /* Comment.json */; };
+		08E817EE28B424B600BE8B3A /* CommentTreeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E817ED28B424B600BE8B3A /* CommentTreeModel.swift */; };
+		08E817F028B44FEE00BE8B3A /* CommentListing.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817EF28B44FEE00BE8B3A /* CommentListing.json */; };
 		08F7CE9D28AC546700420A58 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F7CE9C28AC546700420A58 /* ListingModel.swift */; };
 		834F7FAD28AA12E90038B7BE /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */; };
 		834F7FAF28AA13E10038B7BE /* DiscoveryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */; };
@@ -79,6 +81,8 @@
 		08E817E328B2E01400BE8B3A /* CommentTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTreeView.swift; sourceTree = "<group>"; };
 		08E817E928B2E21000BE8B3A /* Submission.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Submission.json; sourceTree = "<group>"; };
 		08E817EB28B3DC3C00BE8B3A /* Comment.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Comment.json; sourceTree = "<group>"; };
+		08E817ED28B424B600BE8B3A /* CommentTreeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTreeModel.swift; sourceTree = "<group>"; };
+		08E817EF28B44FEE00BE8B3A /* CommentListing.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentListing.json; sourceTree = "<group>"; };
 		08F7CE9C28AC546700420A58 /* ListingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModel.swift; sourceTree = "<group>"; };
 		834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
 		834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryGrid.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */,
 				08909129288E29B900F2A2D2 /* RedditToken.swift */,
 				087AF84428A0504100D568CC /* SubmissionModel.swift */,
+				08E817ED28B424B600BE8B3A /* CommentTreeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 			children = (
 				08E817E928B2E21000BE8B3A /* Submission.json */,
 				08E817EB28B3DC3C00BE8B3A /* Comment.json */,
+				08E817EF28B44FEE00BE8B3A /* CommentListing.json */,
 			);
 			path = "JSON Samples";
 			sourceTree = "<group>";
@@ -310,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08E817F028B44FEE00BE8B3A /* CommentListing.json in Resources */,
 				08E817EA28B2E21000BE8B3A /* Submission.json in Resources */,
 				088864F5288DC8A800EF5B92 /* Preview Assets.xcassets in Resources */,
 				088864F2288DC8A800EF5B92 /* Assets.xcassets in Resources */,
@@ -339,6 +346,7 @@
 				83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */,
 				087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */,
 				08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */,
+				08E817EE28B424B600BE8B3A /* CommentTreeModel.swift in Sources */,
 				08909132288F66A900F2A2D2 /* Subreddit.swift in Sources */,
 				83B2FB5728A4DFC9002553B5 /* SubmissionTileView.swift in Sources */,
 				088864F7288DC8A800EF5B92 /* Persistence.swift in Sources */,
