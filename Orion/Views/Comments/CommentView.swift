@@ -14,10 +14,23 @@ struct CommentView: View {
         self.comment = comment
     }
     var body: some View {
-        HStack {
-            Markdown(comment.body)
-            Spacer()
+        VStack(alignment: .leading) {
+            HStack {
+                Text("u/\(comment.author.username)")
+                Text("•")
+                    .foregroundColor(.gray)
+                Text("\(comment.createdAt.timeAgoDisplay())")
+                    .foregroundColor(.gray)
+            }.fontWeight(.semibold)
+                .lineLimit(1)
+            HStack {
+                Markdown(comment.body)
+                Spacer()
+            }
         }
+        .padding()
+        .backgroundColor(Color(uiColor: UIColor.systemGray5))
+        .clipShape(RoundedRectangle(cornerRadius: 9))
     }
 }
 
@@ -34,9 +47,6 @@ struct RecursiveCommentView: View {
     }
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Rectangle()
-                    .frame(width: 1)
                 if let comment = commentOrMore.comment {
                     VStack {
                         CommentView(comment)
@@ -45,24 +55,26 @@ struct RecursiveCommentView: View {
                                 RecursiveCommentView(reply)
                             }
                         }
-                    }
+                    } .padding(.leading)
                 } else if let more = commentOrMore.more, !more.children.isEmpty {
                     Text("Load \(more.children.count) more comment\(more.children.count != 1 ? "s":"")")
+                        .foregroundColor(.blue)
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .backgroundColor(Color(uiColor: UIColor.systemGray5))
+                        .clipShape(RoundedRectangle(cornerRadius: 9))
                 }
-            }
         }
-        .padding(.leading)
-        .padding(.vertical)
-                .backgroundColor(.white)
-                .cornerRadius(8)
-                .shadow(radius: 2)
-                .border(.red)
+       
+        .padding(.vertical, 5)
+        
+                
     }
 }
 
 struct RecursiveCommentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeFeedView()
+        CommentTreeView(of: .sample)
         //        NavigationView {
         //            ZStack {
         //                Color.black.opacity(0.05).ignoresSafeArea()
