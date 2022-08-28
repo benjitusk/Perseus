@@ -19,6 +19,11 @@ struct MoreCommentsView: View {
     }
     var body: some View {
         Text("Load \(more.children.count) more comment\(more.children.count != 1 ? "s":"")")
+            .foregroundColor(.blue)
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            .backgroundColor(Color(uiColor: UIColor.systemGray5))
+            .clipShape(RoundedRectangle(cornerRadius: 9))
     }
 }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		084F50B328B85EFF00DC82E4 /* MoreCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */; };
 		0876F09328BBF2DB00C18581 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 0876F09228BBF2DB00C18581 /* Down */; };
+		0876F09528BC056200C18581 /* RecursiveCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0876F09428BC056200C18581 /* RecursiveCommentView.swift */; };
 		087AF84128A03F8300D568CC /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84028A03F8300D568CC /* Author.swift */; };
 		087AF84328A0500400D568CC /* SubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84228A0500400D568CC /* SubmissionView.swift */; };
 		087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84428A0504100D568CC /* SubmissionModel.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsView.swift; sourceTree = "<group>"; };
+		0876F09428BC056200C18581 /* RecursiveCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveCommentView.swift; sourceTree = "<group>"; };
 		087AF84028A03F8300D568CC /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		087AF84228A0500400D568CC /* SubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionView.swift; sourceTree = "<group>"; };
 		087AF84428A0504100D568CC /* SubmissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionModel.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			children = (
 				836DE85E28A69BA80010B60A /* CommentView.swift */,
 				084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */,
+				0876F09428BC056200C18581 /* RecursiveCommentView.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				836DE85F28A69BA80010B60A /* CommentView.swift in Sources */,
 				08E817E428B2E01400BE8B3A /* CommentTreeView.swift in Sources */,
 				0890912A288E29B900F2A2D2 /* RedditToken.swift in Sources */,
+				0876F09528BC056200C18581 /* RecursiveCommentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
