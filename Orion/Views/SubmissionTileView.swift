@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MarkdownUI
 
 struct SubmissionTileView: View {
     let submission: Submission
@@ -48,7 +47,7 @@ struct SubmissionTileView: View {
                                 }
                             }
                     } else if let text = submission.selfText {
-                        Markdown(text)
+                        Text(text)
                             .font(.body)
                             .fixedSize(horizontal: false, vertical: true)
                             .lineLimit(3)

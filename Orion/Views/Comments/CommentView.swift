@@ -13,9 +13,16 @@ struct CommentView: View {
         self.comment = comment
     }
     var body: some View {
-        HStack {
-            Markdown(comment.body)
-            Spacer()
+        VStack {
+            HStack {
+                Text(comment.body.toAttributedMarkdownString)
+                Spacer()
+            }
+            if let replies = comment.replies {
+                ForEach(replies.children) {
+                    RecursiveCommentView($0)
+                }
+            }
         }
     }
 }
@@ -30,45 +37,23 @@ struct RecursiveCommentView: View {
     let commentOrMore: CommentsAndMore
     init(_ commentOrMore: CommentsAndMore) {
         self.commentOrMore = commentOrMore
+        
     }
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Rectangle()
-                    .frame(width: 1)
+        HStack(alignment: .top) {
+            VStack(alignment: .leading) {
                 if let comment = commentOrMore.comment {
-                    VStack {
-                        CommentView(comment)
-                        if let replies = comment.replies?.children {
-                            ForEach(replies) { reply in
-                                RecursiveCommentView(reply)
-                            }
-                        }
-                    }
+                    CommentView(comment)
                 } else if let more = commentOrMore.more, !more.children.isEmpty {
-                    Text("Load \(more.children.count) more comment\(more.children.count != 1 ? "s":"")")
+                    MoreCommentsView(more)
                 }
             }
+            Spacer()
         }
         .padding(.leading)
         .padding(.vertical)
-                .backgroundColor(.white)
-                .cornerRadius(8)
-                .shadow(radius: 2)
-                .border(.red)
-    }
-}
-
-struct RecursiveCommentView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeFeedView()
-        //        NavigationView {
-        //            ZStack {
-        //                Color.black.opacity(0.05).ignoresSafeArea()
-        //                ScrollView {
-        //                    CommentTreeView(of: .sample)
-        //                }
-        //            }
-        //        }
+        .backgroundColor(.white)
+        .cornerRadius(8)
+        .shadow(radius: 2)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Down
 extension URL {
     subscript(queryParam: String) -> String? {
         guard let url = URLComponents(string: self.absoluteString) else { return nil }
@@ -34,5 +35,31 @@ extension Date {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full
         return formatter.localizedString(for: self, relativeTo: Date())
+    }
+}
+
+extension Comment {
+    var orMoreWrapper: CommentsAndMore {
+        return CommentsAndMore(id: self.id, comment: self)
+    }
+}
+
+extension String {
+    var toAttributedMarkdownString: AttributedString {
+        let down = Down(markdownString: self)
+        let nsAttributedString = try? down.toAttributedString(
+            .default, styler: DownStyler(
+                configuration: DownStylerConfiguration(
+                    colors: StaticColorCollection(
+                        link: .systemBlue,
+                        codeBlockBackground: .black
+                    )
+                )
+            )
+        )
+        if let attrStr = nsAttributedString {
+            return AttributedString(attrStr)
+        }
+        return AttributedString()
     }
 }

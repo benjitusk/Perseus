@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MarkdownUI
 struct SubmissionView: View {
     @State var model: SubmissionModel
     init(_ submission: Submission) {
@@ -46,7 +45,7 @@ struct SubmissionView: View {
                                 .frame(maxHeight: 500, alignment: .center)
                                 .clipped()
                             } else if let text =  model.submission.selfText{
-                                Markdown(text)
+                                Text(text)
                                     .font(.body)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .padding(.horizontal)
