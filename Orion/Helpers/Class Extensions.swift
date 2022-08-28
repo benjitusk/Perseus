@@ -52,7 +52,7 @@ extension String {
                 configuration: DownStylerConfiguration(
                     colors: StaticColorCollection(
                         link: .systemBlue,
-                        codeBlockBackground: .black
+                        codeBlockBackground: .darkGray
                     )
                 )
             )
