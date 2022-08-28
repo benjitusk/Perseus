@@ -17,6 +17,12 @@ class CommentsAndMore: RedditThing {
     let more: MoreComments?
     let comment: Comment?
     
+    init(id: String, more: MoreComments? = nil, comment: Comment? = nil) {
+        self.id = id
+        self.more = more
+        self.comment = comment
+    }
+    
     required init(from decoder: Decoder) throws {
         // Try to init a Comment. If that fails,
         // try to init a MoreComments.
@@ -56,8 +62,7 @@ final class MoreComments: RedditThing {
         return lhs.id == rhs.id
     }
     
-    
-    required init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder, parentID: String) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         children = try container.decode([String].self, forKey: .children)
@@ -92,6 +97,8 @@ final class Comment: RedditThing {
     let replies: Listing<CommentsAndMore>?
     let score: Int
     let scoreIsHidden: Bool
+    let prefixedSubredditName: String
+    let subredditName: String
     
     enum CodingKeys: String, CodingKey {
         case awards = "all_awardings"
@@ -156,7 +163,7 @@ final class Comment: RedditThing {
         case subredditID = "subreddit_id"
         case prefixedSubredditName = "subreddit_name_prefixed"
         case subredditType = "subreddit_type"
-        case subreddit
+        case subredditName = "subreddit"
         case topAwardedType = "top_awarded_type"
         case totalAwards = "total_awards_received"
         case treatmentTags = "treatment_tags"
@@ -195,9 +202,15 @@ final class Comment: RedditThing {
         let permalinkSuffix = try container.decode(String.self, forKey: .permalink)
         permalink = URL(string: "https://www.reddit.com" + permalinkSuffix)!
         id = try container.decode(String.self, forKey: .name)
-        if let replies = try? container.decodeIfPresent(Listing<CommentsAndMore>.self, forKey: .replies) {
+        prefixedSubredditName = try container.decode(String.self, forKey: .prefixedSubredditName)
+        subredditName = try container.decode(String.self, forKey: .subredditName)
+        // This will be true if there are no replies (denoted by an empty string in the JSON smh)
+        if ((try? container.decodeIfPresent(String.self, forKey: .replies) != nil) != nil) {
+            self.replies = nil
+        } else if let replies = try? container.decodeIfPresent(Listing<CommentsAndMore>.self, forKey: .replies) {
             self.replies = replies
         } else {
+            // catchall
             self.replies = nil
         }
     }

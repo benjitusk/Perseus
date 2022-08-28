@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		084F50B328B85EFF00DC82E4 /* MoreCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */; };
+		0876F09328BBF2DB00C18581 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 0876F09228BBF2DB00C18581 /* Down */; };
 		087AF84128A03F8300D568CC /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84028A03F8300D568CC /* Author.swift */; };
 		087AF84328A0500400D568CC /* SubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84228A0500400D568CC /* SubmissionView.swift */; };
 		087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84428A0504100D568CC /* SubmissionModel.swift */; };
@@ -31,12 +33,11 @@
 		08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A528A20F6900D7FC51 /* VoteButtonView.swift */; };
 		08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A728A3181C00D7FC51 /* SignInPromptView.swift */; };
 		08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A928A3259600D7FC51 /* UserAccount.swift */; };
-		08BE3E7128A98C1100282D4C /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 08BE3E7028A98C1100282D4C /* MarkdownUI */; };
 		08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */; };
 		08E817E428B2E01400BE8B3A /* CommentTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E817E328B2E01400BE8B3A /* CommentTreeView.swift */; };
 		08E817EA28B2E21000BE8B3A /* Submission.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817E928B2E21000BE8B3A /* Submission.json */; };
 		08E817EC28B3DC3C00BE8B3A /* Comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817EB28B3DC3C00BE8B3A /* Comment.json */; };
-		08E817EE28B424B600BE8B3A /* CommentTreeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E817ED28B424B600BE8B3A /* CommentTreeModel.swift */; };
+		08E817EE28B424B600BE8B3A /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E817ED28B424B600BE8B3A /* CommentModel.swift */; };
 		08E817F028B44FEE00BE8B3A /* CommentListing.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817EF28B44FEE00BE8B3A /* CommentListing.json */; };
 		08F7CE9D28AC546700420A58 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F7CE9C28AC546700420A58 /* ListingModel.swift */; };
 		834F7FAD28AA12E90038B7BE /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsView.swift; sourceTree = "<group>"; };
 		087AF84028A03F8300D568CC /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		087AF84228A0500400D568CC /* SubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionView.swift; sourceTree = "<group>"; };
 		087AF84428A0504100D568CC /* SubmissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionModel.swift; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 		08E817E328B2E01400BE8B3A /* CommentTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTreeView.swift; sourceTree = "<group>"; };
 		08E817E928B2E21000BE8B3A /* Submission.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Submission.json; sourceTree = "<group>"; };
 		08E817EB28B3DC3C00BE8B3A /* Comment.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Comment.json; sourceTree = "<group>"; };
-		08E817ED28B424B600BE8B3A /* CommentTreeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTreeModel.swift; sourceTree = "<group>"; };
+		08E817ED28B424B600BE8B3A /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		08E817EF28B44FEE00BE8B3A /* CommentListing.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentListing.json; sourceTree = "<group>"; };
 		08F7CE9C28AC546700420A58 /* ListingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModel.swift; sourceTree = "<group>"; };
 		834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08BE3E7128A98C1100282D4C /* MarkdownUI in Frameworks */,
+				0876F09328BBF2DB00C18581 /* Down in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,7 +194,7 @@
 				08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */,
 				08909129288E29B900F2A2D2 /* RedditToken.swift */,
 				087AF84428A0504100D568CC /* SubmissionModel.swift */,
-				08E817ED28B424B600BE8B3A /* CommentTreeModel.swift */,
+				08E817ED28B424B600BE8B3A /* CommentModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				836DE85E28A69BA80010B60A /* CommentView.swift */,
+				084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -269,7 +272,7 @@
 			);
 			name = orion;
 			packageProductDependencies = (
-				08BE3E7028A98C1100282D4C /* MarkdownUI */,
+				0876F09228BBF2DB00C18581 /* Down */,
 			);
 			productName = infrareddit;
 			productReference = 088864EA288DC8A500EF5B92 /* orion.app */;
@@ -300,7 +303,7 @@
 			);
 			mainGroup = 088864E1288DC8A500EF5B92;
 			packageReferences = (
-				08BE3E6F28A98C1100282D4C /* XCRemoteSwiftPackageReference "MarkdownUI" */,
+				0876F09128BBF2DB00C18581 /* XCRemoteSwiftPackageReference "Down" */,
 			);
 			productRefGroup = 088864EB288DC8A500EF5B92 /* Products */;
 			projectDirPath = "";
@@ -338,6 +341,7 @@
 				08909134288F80CD00F2A2D2 /* Comment.swift in Sources */,
 				089091472897847700F2A2D2 /* AccountView.swift in Sources */,
 				83D4FF9928AA33B500AD2D30 /* DiscoverySidebar.swift in Sources */,
+				084F50B328B85EFF00DC82E4 /* MoreCommentsView.swift in Sources */,
 				83B2FB5828A4DFC9002553B5 /* HomeFeedView.swift in Sources */,
 				08909130288F669000F2A2D2 /* Submission.swift in Sources */,
 				089091382890976600F2A2D2 /* Keychain.swift in Sources */,
@@ -346,7 +350,7 @@
 				83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */,
 				087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */,
 				08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */,
-				08E817EE28B424B600BE8B3A /* CommentTreeModel.swift in Sources */,
+				08E817EE28B424B600BE8B3A /* CommentModel.swift in Sources */,
 				08909132288F66A900F2A2D2 /* Subreddit.swift in Sources */,
 				83B2FB5728A4DFC9002553B5 /* SubmissionTileView.swift in Sources */,
 				088864F7288DC8A800EF5B92 /* Persistence.swift in Sources */,
@@ -493,14 +497,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = orion/orion.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Orion/Preview\\ Content/Preview\\ Assets.xcassets \"orion/Preview Content\"";
-				DEVELOPMENT_TEAM = 7PYHH8YK2K;
+				DEVELOPMENT_TEAM = 5LUU6WJ66B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = orion/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Orion;
+				INFOPLIST_KEY_CFBundleDisplayName = Perseus;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -512,8 +517,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alberto.orion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benjitusk.perseus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -526,14 +532,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = orion/orion.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Orion/Preview\\ Content/Preview\\ Assets.xcassets \"orion/Preview Content\"";
-				DEVELOPMENT_TEAM = 7PYHH8YK2K;
+				DEVELOPMENT_TEAM = 5LUU6WJ66B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = orion/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Orion;
+				INFOPLIST_KEY_CFBundleDisplayName = Perseus;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -545,8 +552,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alberto.orion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benjitusk.perseus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -577,21 +585,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		08BE3E6F28A98C1100282D4C /* XCRemoteSwiftPackageReference "MarkdownUI" */ = {
+		0876F09128BBF2DB00C18581 /* XCRemoteSwiftPackageReference "Down" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/MarkdownUI.git";
+			repositoryURL = "https://github.com/johnxnguyen/Down";
 			requirement = {
-				branch = main;
+				branch = master;
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		08BE3E7028A98C1100282D4C /* MarkdownUI */ = {
+		0876F09228BBF2DB00C18581 /* Down */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 08BE3E6F28A98C1100282D4C /* XCRemoteSwiftPackageReference "MarkdownUI" */;
-			productName = MarkdownUI;
+			package = 0876F09128BBF2DB00C18581 /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
 		};
 /* End XCSwiftPackageProductDependency section */
 

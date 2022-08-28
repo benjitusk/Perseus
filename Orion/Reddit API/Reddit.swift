@@ -99,13 +99,19 @@ enum Reddit {
     ///   - apiPath: The path to request the listing from, using Reddit's API
     ///   - before: Used for pagination, get items before the one with this ID
     ///   - after: Used for pagination, get items after the one with this ID
+    ///   - depth: The maximum depth of nested comments, used for comments ONLY
     ///   - completion: Callback, contains `RedditResult<Listing<RedditThing>>`
-    static func getCustomListing<RedditData: RedditThing>(type: RedditData.Type, from apiPath: String, before: String?, after: String?, count: Int = 20, completion: @escaping(_: RedditResult<Listing<RedditData>>) -> Void) {
+    static func getCustomListing<RedditData: RedditThing>(type: RedditData.Type, from apiPath: String, before: String?, after: String?, count: Int = 20, depth: Int? = nil, completion: @escaping(_: RedditResult<Listing<RedditData>>) -> Void) {
         var queryParameters: [URLQueryItem] = []
         if let after = after {
             queryParameters.append(URLQueryItem(name: "after", value: after))
         } else if let before = before {
             queryParameters.append(URLQueryItem(name: "before", value: before))
+        }
+        if type.self == Comment.self {
+            if let depth = depth {
+                queryParameters.append(URLQueryItem(name: "depth", value: String(depth)))
+            }
         }
         queryParameters.append(URLQueryItem(name: "limit", value: String(count)))
         makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters) { result in

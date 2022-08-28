@@ -9,10 +9,10 @@ import SwiftUI
 
 struct CommentTreeView: View {
     @ObservedObject var listingModel: ListingModel<CommentsAndMore>
-    @ObservedObject var model: CommentTreeModel
+    @ObservedObject var model: CommentModel
     init(of submission: Submission) {
         let listingModel = ListingModel<CommentsAndMore>(apiEndpoint: "r/" + submission.subredditName + "/comments/" + submission.id)
-        self.model = CommentTreeModel(submission: submission, listingModel: listingModel)
+        self.model = CommentModel(listingModel: listingModel)
         self.listingModel = listingModel
     }
     var body: some View {
@@ -25,12 +25,15 @@ struct CommentTreeView: View {
                 ProgressView()
             }
         }
-        .padding()
+        .padding(.vertical)
+        .padding(.leading)
     }
 }
 
 struct CommentTree_Previews: PreviewProvider {
     static var previews: some View {
-        CommentTreeView(of: .sample)
+        ScrollView {
+            CommentTreeView(of: .sample)
+        }
     }
 }
