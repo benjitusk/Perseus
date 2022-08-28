@@ -13,7 +13,15 @@ struct CommentView: View {
         self.comment = comment
     }
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("u/\(comment.author.username)")
+                Text("•")
+                    .foregroundColor(.gray)
+                Text("\(comment.createdAt.timeAgoDisplay())")
+                    .foregroundColor(.gray)
+            }.fontWeight(.semibold)
+                .lineLimit(1)
             HStack {
                 Text(comment.body.toAttributedMarkdownString)
                 Spacer()
@@ -24,6 +32,9 @@ struct CommentView: View {
                 }
             }
         }
+        .padding()
+        .backgroundColor(Color(uiColor: UIColor.systemGray5))
+        .clipShape(RoundedRectangle(cornerRadius: 9))
     }
 }
 
@@ -40,20 +51,43 @@ struct RecursiveCommentView: View {
         
     }
     var body: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading) {
+        VStack(alignment: .leading) {
                 if let comment = commentOrMore.comment {
-                    CommentView(comment)
+                    VStack {
+                        CommentView(comment)
+                        if let replies = comment.replies?.children {
+                            ForEach(replies) { reply in
+                                RecursiveCommentView(reply)
+                            }
+                        }
+                    }
+                    .padding(.leading)
                 } else if let more = commentOrMore.more, !more.children.isEmpty {
-                    MoreCommentsView(more)
+                    Text("Load \(more.children.count) more comment\(more.children.count != 1 ? "s":"")")
+                        .foregroundColor(.blue)
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .backgroundColor(Color(uiColor: UIColor.systemGray5))
+                        .clipShape(RoundedRectangle(cornerRadius: 9))
                 }
-            }
-            Spacer()
-        }
-        .padding(.leading)
-        .padding(.vertical)
-        .backgroundColor(.white)
-        .cornerRadius(8)
+       
+        .padding(.vertical, 5)
+        
+                
+    }
+}
+
+struct RecursiveCommentView_Previews: PreviewProvider {
+    static var previews: some View {
+        CommentTreeView(of: .sample)
+        //        NavigationView {
+        //            ZStack {
+        //                Color.black.opacity(0.05).ignoresSafeArea()
+        //                ScrollView {
+        //                    CommentTreeView(of: .sample)
+        //                }
+        //            }
+        //        }
         .shadow(radius: 2)
     }
 }
