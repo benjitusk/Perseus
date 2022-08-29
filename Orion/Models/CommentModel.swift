@@ -11,11 +11,10 @@ class CommentModel: ObservableObject {
     var listingModel: ListingModel<CommentsAndMore>
     init(listingModel: ListingModel<CommentsAndMore>) {
         self.listingModel = listingModel
-        load()
     }
     
-    private func load() {
-        listingModel.load(the: .next, 70) { error in
+    func load() {
+        listingModel.load(the: .next, 75) { error in
             if error != nil {
                 print("\(self).load failed: \(error!.localizedDescription)")
             }

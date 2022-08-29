@@ -9,8 +9,10 @@ import SwiftUI
 
 struct RecursiveCommentView: View {
     let commentOrMore: CommentsAndMore
-    init(_ commentOrMore: CommentsAndMore) {
+    let parentSubmissionID: String
+    init(_ commentOrMore: CommentsAndMore, parentSubmissionID: String) {
         self.commentOrMore = commentOrMore
+        self.parentSubmissionID = parentSubmissionID
         
     }
     var body: some View {
@@ -18,18 +20,20 @@ struct RecursiveCommentView: View {
             if let comment = commentOrMore.comment {
                 CommentView(comment, parentSubmissionID: parentSubmissionID)
             } else if let more = commentOrMore.more, !more.children.isEmpty {
-                MoreCommentsView(more)
+                MoreCommentsView(more, parentSubmissionID: parentSubmissionID)
             }
         }
+        .shadow(radius: 2)
         .padding(.vertical, 5)
-        
         
     }
 }
 
 struct RecursiveCommentView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentTreeView(of: .sample)
-        .shadow(radius: 2)
+        ScrollView {
+            CommentTreeView(of: .sample)
+                .shadow(radius: 2)
+        }
     }
 }

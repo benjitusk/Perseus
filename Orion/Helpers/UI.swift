@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+struct UI {
+    static let kCornerRadius: CGFloat = 5
+}
+
 /// https://www.wooji-juice.com/blog/stupid-swiftui-tricks-single-axis-geometry-reader.html
 struct SingleAxisGeometryReader<Content: View>: View {
     private struct SizeKey: PreferenceKey {

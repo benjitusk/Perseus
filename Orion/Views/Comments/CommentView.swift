@@ -9,8 +9,10 @@ import SwiftUI
 
 struct CommentView: View {
     let comment: Comment
-    init(_ comment: Comment) {
+    let parentSubmissionID: String
+    init(_ comment: Comment, parentSubmissionID: String) {
         self.comment = comment
+        self.parentSubmissionID = parentSubmissionID
     }
     var body: some View {
         VStack(alignment: .leading) {
@@ -28,18 +30,20 @@ struct CommentView: View {
             }
             if let replies = comment.replies {
                 ForEach(replies.children) {
-                    RecursiveCommentView($0)
+                    RecursiveCommentView($0, parentSubmissionID: parentSubmissionID)
                 }
             }
         }
-        .padding()
+        .padding(.vertical)
+        .padding(.leading)
         .backgroundColor(Color(uiColor: UIColor.systemGray5))
-        .clipShape(RoundedRectangle(cornerRadius: 9))
+        .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
+        .padding(.trailing, 2.7)
     }
 }
 
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentView(.sample)
+        CommentTree_Previews.previews
     }
 }

@@ -101,8 +101,8 @@ enum Reddit {
     ///   - after: Used for pagination, get items after the one with this ID
     ///   - depth: The maximum depth of nested comments, used for comments ONLY
     ///   - completion: Callback, contains `RedditResult<Listing<RedditThing>>`
-    static func getCustomListing<RedditData: RedditThing>(type: RedditData.Type, from apiPath: String, before: String?, after: String?, count: Int = 20, depth: Int? = nil, completion: @escaping(_: RedditResult<Listing<RedditData>>) -> Void) {
-        var queryParameters: [URLQueryItem] = []
+    static func getCustomListing<RedditData: RedditThing>(type: RedditData.Type, from apiPath: String, with options: [URLQueryItem]? = nil, before: String?, after: String?, count: Int = 20, depth: Int? = nil, completion: @escaping(_: RedditResult<Listing<RedditData>>) -> Void) {
+        var queryParameters = options ?? []
         if let after = after {
             queryParameters.append(URLQueryItem(name: "after", value: after))
         } else if let before = before {
@@ -114,7 +114,7 @@ enum Reddit {
             }
         }
         queryParameters.append(URLQueryItem(name: "limit", value: String(count)))
-        makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters) { result in
+        makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters, debugMode: true) { result in
             switch result {
             case .success(var data):
                 // If it's a comment, the return data contains 2 listings, one with the submission, and one with the comments.
