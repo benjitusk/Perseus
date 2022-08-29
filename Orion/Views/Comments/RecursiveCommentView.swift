@@ -16,15 +16,7 @@ struct RecursiveCommentView: View {
     var body: some View {
         VStack(alignment: .leading) {
             if let comment = commentOrMore.comment {
-                VStack {
-                    CommentView(comment)
-                    if let replies = comment.replies?.children {
-                        ForEach(replies) { reply in
-                            RecursiveCommentView(reply)
-                        }
-                    }
-                }
-                .padding(.leading)
+                CommentView(comment, parentSubmissionID: parentSubmissionID)
             } else if let more = commentOrMore.more, !more.children.isEmpty {
                 MoreCommentsView(more)
             }
