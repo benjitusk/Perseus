@@ -321,6 +321,10 @@ enum Reddit {
                 completion(.failure(.forbidden))
                 return
             }
+            if response.statusCode == 404 {
+                completion(.failure(.notFound))
+                return
+            }
             if let data = data, data.count > 0 {
                 completion(.success(data))
             } else {
