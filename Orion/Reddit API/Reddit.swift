@@ -255,44 +255,6 @@ enum Reddit {
         }
     }
     
-    /// Get a Submission Listing for the requested Subreddit
-    /// - Parameters:
-    ///   - subreddit: The subreddit to get submisisons for
-    ///   - before: Used for pagination, get items before the one with this ID
-    ///   - after: Used for pagination, get items after the one with this ID
-    ///   - completion: Callback, contains `RedditResult<Listing<Submission>>`
-    static func getSubredditListing(subreddit: Subreddit, before: String?, after: String?, completion: @escaping (_: RedditResult<Listing<Submission>>) -> Void) {
-        var queryParameters: [URLQueryItem] = []
-        if after != nil {
-            queryParameters.append(URLQueryItem(name: "after", value: after))
-        } else {
-            queryParameters.append(URLQueryItem(name: "before", value: before))
-        }
-        queryParameters.append(URLQueryItem(name: "limit", value: "1"))
-        var urlPath = ""
-        if let subreddit = subreddit as? StandardSubreddit {
-            urlPath = "r/\(subreddit.displayName)"
-        } else if let subreddit = subreddit as? SpecialSubreddit {
-            urlPath = subreddit.apiURL
-        }
-        makeRedditAPIRequest(urlPath: urlPath, parameters: queryParameters, debugMode: true, overrideAuth: false) { result in
-            switch result {
-            case .success(let submissionsData):
-                if let listing = try? JSONDecoder().decode(Listing<Submission>.self, from: submissionsData) {
-                    completion(.success(listing))
-                    return
-                } else {
-                    print("getSubredditListing(subreddit: \(subreddit.displayName)) failed: Decoding error")
-                    completion(.failure(.decodingError))
-                    return
-                }
-            case .failure(let error):
-                print("getSubredditListing(subreddit: \(subreddit.displayName) failed: \(error.localizedDescription)")
-                completion(.failure(error))
-            }
-        }
-    }
-    
     /// Directly interact with the Reddit API.
     /// All API requests must internally use this method.
     /// - Parameters:
