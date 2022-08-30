@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct RecursiveCommentView: View {
-    let commentOrMore: CommentsAndMore
+    let commentTreeThing: CommentTreeable
     let parentSubmissionID: String
-    init(_ commentOrMore: CommentsAndMore, parentSubmissionID: String) {
-        self.commentOrMore = commentOrMore
+    init(_ cTT: CommentTreeable, parentSubmissionID: String) {
+        self.commentTreeThing = cTT
         self.parentSubmissionID = parentSubmissionID
         
     }
     var body: some View {
         VStack(alignment: .leading) {
-            if let comment = commentOrMore.comment {
+            if let comment = commentTreeThing as? Comment {
                 CommentView(comment, parentSubmissionID: parentSubmissionID)
-            } else if let more = commentOrMore.more, !more.children.isEmpty {
+            } else if let more = commentTreeThing as? MoreComments, !more.children.isEmpty {
                 MoreCommentsView(more, parentSubmissionID: parentSubmissionID)
             }
         }

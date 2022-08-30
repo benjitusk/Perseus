@@ -22,7 +22,7 @@ struct CommentTreeView: View {
         VStack(alignment: .leading) {
             if let commentsAndMore = listingModel.children {
                 ForEach(commentsAndMore) { commentOrMore in
-                    RecursiveCommentView(commentOrMore, parentSubmissionID: parentSubmissionID)
+                    RecursiveCommentView(commentOrMore.commentOrMore, parentSubmissionID: parentSubmissionID)
                 }
             } else {
                 ProgressView()

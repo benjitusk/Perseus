@@ -28,9 +28,9 @@ struct CommentView: View {
                 Text(comment.body.toAttributedMarkdownString)
                 Spacer()
             }
-            if let replies = comment.replies {
-                ForEach(replies.children) {
-                    RecursiveCommentView($0, parentSubmissionID: parentSubmissionID)
+            if let replies = comment.replyListing {
+                ForEach(replies.children) { reply in
+                    RecursiveCommentView(reply.commentOrMore, parentSubmissionID: parentSubmissionID)
                 }
             }
         }

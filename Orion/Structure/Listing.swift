@@ -25,6 +25,14 @@ final class Listing<RedditData: RedditThing>: Decodable {
         case dist
     }
     
+    init() {
+        after = ""
+        dist = nil
+        children = []
+        before = ""
+        totalLoaded = 0
+    }
+    
     init(from decoder: Decoder) throws {
         do {
             let rootContainer = try decoder.container(keyedBy: RootKeys.self)

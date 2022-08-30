@@ -7,6 +7,12 @@
 
 import Foundation
 
+protocol CommentTreeable {
+    var id: String { get }
+    var depth: Int { get }
+    var parentID: String { get }
+}
+
 class CommentsAndMore: RedditThing {
     
     static func == (lhs: CommentsAndMore, rhs: CommentsAndMore) -> Bool {
@@ -14,13 +20,13 @@ class CommentsAndMore: RedditThing {
     }
 
     let id: String
-    let more: MoreComments?
-    let comment: Comment?
+//    let more: MoreComments?
+//    let comment: Comment?
+    let commentOrMore: CommentTreeable
     
-    init(id: String, more: MoreComments? = nil, comment: Comment? = nil) {
-        self.id = id
-        self.more = more
-        self.comment = comment
+    init(commentOrMore: any CommentTreeable) {
+        self.id = commentOrMore.id
+        self.commentOrMore = commentOrMore
     }
     
     required init(from decoder: Decoder) throws {
@@ -31,13 +37,13 @@ class CommentsAndMore: RedditThing {
         let kind = try rootContainer.decode(Kind.self, forKey: .kind)
         switch kind {
         case .comment:
-            more = nil
-            comment = try rootContainer.decode(Comment.self, forKey: .data)
-            id = comment!.id
+            let commentOrMore = try rootContainer.decode(Comment.self, forKey: .data)
+            id = commentOrMore.id
+            self.commentOrMore = commentOrMore
         case .more:
-            comment = nil
-            more = try rootContainer.decode(MoreComments.self, forKey: .data)
-            id = more!.id
+            let commentOrMore = try rootContainer.decode(MoreComments.self, forKey: .data)
+            id = commentOrMore.id
+            self.commentOrMore = commentOrMore
         }
         
     }
@@ -57,28 +63,43 @@ class CommentsAndMore: RedditThing {
     
 }
 
-final class MoreComments: RedditThing {
+final class MoreComments: RedditThing, CommentTreeable {
     static func == (lhs: MoreComments, rhs: MoreComments) -> Bool {
         return lhs.id == rhs.id
     }
     
-    required init(from decoder: Decoder, parentID: String) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         children = try container.decode([String].self, forKey: .children)
-        name = try container.decode(String.self, forKey: .name)
+        fullID = try container.decode(String.self, forKey: .name)
+        depth = try container.decode(Int.self, forKey: .depth)
+        parentID = try container.decode(String.self, forKey: .parentID)
     }
 
     let children: [String]
-    let name: String
+    let fullID: String
     let id: String
+    let depth: Int
+    let parentID: String
+    init(children: [String], fullID: String, id: String, depth: Int, parentID: String) {
+        self.children = children
+        self.fullID = fullID
+        self.id = id
+        self.depth = depth
+        self.parentID = parentID
+    }
     
     enum CodingKeys: String, CodingKey {
-        case children, name, id
+        case children
+        case name
+        case id
+        case depth
+        case parentID = "parent_id"
     }
 }
 
-final class Comment: RedditThing {
+final class Comment: RedditThing, CommentTreeable {
     static func == (lhs: Comment, rhs: Comment) -> Bool {
         return lhs.id == rhs.id
     }
@@ -93,8 +114,9 @@ final class Comment: RedditThing {
     let id: String
     let isArchived: Bool
     let isLocked: Bool
+    let parentID: String
     let permalink: URL
-    let replies: Listing<CommentsAndMore>?
+    var replyListing: Listing<CommentsAndMore>?
     let score: Int
     let scoreIsHidden: Bool
     let prefixedSubredditName: String
@@ -202,17 +224,20 @@ final class Comment: RedditThing {
         let permalinkSuffix = try container.decode(String.self, forKey: .permalink)
         permalink = URL(string: "https://www.reddit.com" + permalinkSuffix)!
         id = try container.decode(String.self, forKey: .name)
+        parentID = try container.decode(String.self, forKey: .parentID)
         prefixedSubredditName = try container.decode(String.self, forKey: .prefixedSubredditName)
         subredditName = try container.decode(String.self, forKey: .subredditName)
         // This will be true if there are no replies (denoted by an empty string in the JSON smh)
         if ((try? container.decodeIfPresent(String.self, forKey: .replies) != nil) != nil) {
-            self.replies = nil
+            self.replyListing = nil
         } else if let replies = try? container.decodeIfPresent(Listing<CommentsAndMore>.self, forKey: .replies) {
-            self.replies = replies
+            self.replyListing = replies
         } else {
             // catchall
-            self.replies = nil
+            self.replyListing = nil
         }
+        
+        
     }
     
     func vote(_ vote: Reddit.VoteDirection) {

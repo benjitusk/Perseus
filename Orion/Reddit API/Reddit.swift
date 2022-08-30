@@ -114,7 +114,7 @@ enum Reddit {
             }
         }
         queryParameters.append(URLQueryItem(name: "limit", value: String(count)))
-        makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters, debugMode: true) { result in
+        makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters) { result in
             switch result {
             case .success(var data):
                 // If it's a comment, the return data contains 2 listings, one with the submission, and one with the comments.
@@ -148,6 +148,65 @@ enum Reddit {
         }
     }
 
+    static func getMoreComments(from submissionID: String, using moreComments: MoreComments, completion: @escaping(_: RedditResult<[any CommentTreeable]>) ->  Void) {
+        var loadMore: MoreComments? = nil
+        var queryParameters: [URLQueryItem] = []
+        queryParameters.append(URLQueryItem(name: "link_id", value: submissionID))
+        queryParameters.append(URLQueryItem(name: "id", value: moreComments.id))
+        queryParameters.append(URLQueryItem(name: "children", value: {
+            var children = ""
+            for (index, child) in moreComments.children.enumerated() {
+                children += child
+                if index > 50 {
+                    loadMore = MoreComments(children: Array(moreComments.children.dropFirst(50)),
+                                                fullID: moreComments.fullID,
+                                                id: moreComments.id,
+                                                depth: moreComments.depth,
+                                                parentID: moreComments.parentID)
+                    return children
+                }
+                if child != moreComments.children.last! {
+                    children += ","
+                }
+            }
+            return children
+        }()))
+
+        makeRedditAPIRequest(urlPath: "/api/morechildren", parameters: queryParameters, debugMode: true) { result in
+            switch result {
+            case .success(let data):
+                guard let dict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                    return completion(.failure(.invalidResponse))
+                }
+                guard let json = dict["json"] as? [String: Any],
+                      let nestedData = json["data"] as? [String: Any],
+                      let commentsJSON = nestedData["things"] as? [Any] else {
+                    return completion(.failure(.invalidResponse))
+                }
+                guard let commentData = try? JSONSerialization.data(withJSONObject: commentsJSON) else {
+                    print("Could not re-serialize JSON comment structure to Foundation.Data")
+                    return completion(.failure(.unknownError))
+                }
+                guard let comments = try? JSONDecoder().decode([CommentsAndMore].self, from: commentData) else {
+                    print("getMoreComments(from: \(submissionID), using \(moreComments)) failed: Decoding error")
+                    return completion(.failure(.decodingError))
+                }
+                var treeableData: [CommentTreeable] = []
+                for comment in comments {
+                    treeableData.append(comment.commentOrMore)
+                }
+                if let loadMore = loadMore {
+                    treeableData.append(loadMore)
+                }
+                return completion(.success(treeableData))
+                
+            case .failure(let error):
+                print("getMoreComments(from: \(submissionID), using\(moreComments))")
+                return completion(.failure(error))
+            }
+        }
+        
+    }
     /// Get a `RedditThing` by it's ID
     /// - Parameters:
     ///   - type: The type of `RedditThing` you are trying to get
@@ -268,7 +327,10 @@ enum Reddit {
         }
         url.append(path: apiPath)
         url.append(queryItems: parameters)
-        url.append(queryItems: [URLQueryItem(name: "raw_json", value: "1")])
+        url.append(queryItems: [
+            URLQueryItem(name: "api_type", value: "json"),
+            URLQueryItem(name: "raw_json", value: "1"),
+        ])
         var request = URLRequest(url: url)
         request.httpMethod = requestType.rawValue
         
@@ -294,14 +356,7 @@ enum Reddit {
         }
         
         if debugMode {
-            print("***** API REQUEST *****")
-            print("* User is authenticated: \((CurrentUser.shared.userAccount != nil).description)")
-            print("* User token: " + (CurrentUser.shared.token?.accessToken ?? "nil"))
-            print("* Authentication Override: \(overrideAuth?.description ?? "not set.")")
-            print("* HTTP Method: \(request.httpMethod ?? "WARNING: HTTP METHOD IS nil, DEFAULTING TO 'GET'")")
-            print("* Request body: \(String(data: (request.httpBody ?? "Empty".data(using: .utf8))!, encoding: .utf8)!)")
-            print("* URL: \(request.url!.description)")
-            print("***********************\n")
+            printDebugInformation()
         }
         
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -332,6 +387,18 @@ enum Reddit {
                 completion(.failure(.noResponse))
             }
         }.resume()
+        
+        func printDebugInformation() {
+            print("***** API REQUEST *****")
+            print("* User is authenticated: \((CurrentUser.shared.userAccount != nil).description)")
+            print("* User token: " + (CurrentUser.shared.token?.accessToken ?? "nil"))
+            print("* Authentication Override: \(overrideAuth?.description ?? "not set.")")
+            print("* HTTP Method: \(request.httpMethod ?? "WARNING: HTTP METHOD IS nil, DEFAULTING TO 'GET'")")
+            print("* Request body: \(String(data: (request.httpBody ?? "Empty".data(using: .utf8))!, encoding: .utf8)!)")
+            print("* URL: \(request.url!.description)")
+            print("***********************\n")
+
+        }
         
     }
     

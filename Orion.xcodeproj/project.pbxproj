@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		083FAF9F28BD122400DD5358 /* MoreCommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */; };
 		084F50B328B85EFF00DC82E4 /* MoreCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */; };
 		0876F09328BBF2DB00C18581 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 0876F09228BBF2DB00C18581 /* Down */; };
 		0876F09528BC056200C18581 /* RecursiveCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0876F09428BC056200C18581 /* RecursiveCommentView.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsModel.swift; sourceTree = "<group>"; };
 		084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsView.swift; sourceTree = "<group>"; };
 		0876F09428BC056200C18581 /* RecursiveCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveCommentView.swift; sourceTree = "<group>"; };
 		087AF84028A03F8300D568CC /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				08909129288E29B900F2A2D2 /* RedditToken.swift */,
 				087AF84428A0504100D568CC /* SubmissionModel.swift */,
 				08E817ED28B424B600BE8B3A /* CommentModel.swift */,
+				083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				083FAF9F28BD122400DD5358 /* MoreCommentsModel.swift in Sources */,
 				088864FA288DC8A800EF5B92 /* infrareddit.xcdatamodeld in Sources */,
 				08909127288E04CD00F2A2D2 /* UI.swift in Sources */,
 				83E584AC28A64C1700EF8F19 /* PostRowHeader.swift in Sources */,

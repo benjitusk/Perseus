@@ -38,12 +38,6 @@ extension Date {
     }
 }
 
-extension Comment {
-    var orMoreWrapper: CommentsAndMore {
-        return CommentsAndMore(id: self.id, comment: self)
-    }
-}
-
 extension String {
     var toAttributedMarkdownString: AttributedString {
         let down = Down(markdownString: self)
