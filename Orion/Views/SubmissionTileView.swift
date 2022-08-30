@@ -89,7 +89,7 @@ struct SubmissionTileView: View {
                     .padding(.bottom, 5)
             }
         }
-        .background(Color("bk"))
+        .background(Color("AdaptiveBackground"))
         .cornerRadius(10)
         .padding(9)
     }

@@ -5,7 +5,7 @@
 //  Created by Benji Tusk on 7/24/22.
 //
 
-import Foundation
+import SwiftUI
 import Down
 extension URL {
     subscript(queryParam: String) -> String? {
@@ -39,12 +39,14 @@ extension Date {
 }
 
 extension String {
+    /// - Note: To modify any styling aspect of the string (i.e. forground color) you must do it from this computed property, and not on the TextView
     var toAttributedMarkdownString: AttributedString {
         let down = Down(markdownString: self)
         let nsAttributedString = try? down.toAttributedString(
             .default, styler: DownStyler(
                 configuration: DownStylerConfiguration(
                     colors: StaticColorCollection(
+                        body: .init(Color("AdaptiveTextForeground")),
                         link: .systemBlue,
                         codeBlockBackground: .darkGray
                     )
