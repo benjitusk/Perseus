@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		083FAF9F28BD122400DD5358 /* MoreCommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */; };
+		084F50B328B85EFF00DC82E4 /* MoreCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */; };
+		0876F09328BBF2DB00C18581 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 0876F09228BBF2DB00C18581 /* Down */; };
+		0876F09528BC056200C18581 /* RecursiveCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0876F09428BC056200C18581 /* RecursiveCommentView.swift */; };
+		087AF84128A03F8300D568CC /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84028A03F8300D568CC /* Author.swift */; };
+		087AF84328A0500400D568CC /* SubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84228A0500400D568CC /* SubmissionView.swift */; };
+		087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087AF84428A0504100D568CC /* SubmissionModel.swift */; };
+		088864EE288DC8A500EF5B92 /* perseusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864ED288DC8A500EF5B92 /* perseusApp.swift */; };
+		088864F0288DC8A500EF5B92 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864EF288DC8A500EF5B92 /* RootView.swift */; };
+		088864F2288DC8A800EF5B92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088864F1288DC8A800EF5B92 /* Assets.xcassets */; };
+		088864F5288DC8A800EF5B92 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088864F4288DC8A800EF5B92 /* Preview Assets.xcassets */; };
+		088864F7288DC8A800EF5B92 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088864F6288DC8A800EF5B92 /* Persistence.swift */; };
+		088864FA288DC8A800EF5B92 /* infrareddit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 088864F8288DC8A800EF5B92 /* infrareddit.xcdatamodeld */; };
+		08886504288DDE3700EF5B92 /* Class Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886503288DDE3700EF5B92 /* Class Extensions.swift */; };
+		0888650A288DE7F700EF5B92 /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886509288DE7F700EF5B92 /* Reddit.swift */; };
+		0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0888650B288DE83A00EF5B92 /* CurrentUser.swift */; };
+		08909127288E04CD00F2A2D2 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08909126288E04CD00F2A2D2 /* UI.swift */; };
+		0890912A288E29B900F2A2D2 /* RedditToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08909129288E29B900F2A2D2 /* RedditToken.swift */; };
+		08909130288F669000F2A2D2 /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890912F288F669000F2A2D2 /* Submission.swift */; };
+		08909132288F66A900F2A2D2 /* Subreddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08909131288F66A900F2A2D2 /* Subreddit.swift */; };
+		08909134288F80CD00F2A2D2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08909133288F80CD00F2A2D2 /* Comment.swift */; };
+		08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08909135288F9A9B00F2A2D2 /* RedditErrors.swift */; };
+		089091382890976600F2A2D2 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091372890976600F2A2D2 /* Keychain.swift */; };
+		0890913A2892236E00F2A2D2 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091392892236E00F2A2D2 /* Listing.swift */; };
+		089091472897847700F2A2D2 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091462897847700F2A2D2 /* AccountView.swift */; };
+		08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A528A20F6900D7FC51 /* VoteButtonView.swift */; };
+		08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A728A3181C00D7FC51 /* SignInPromptView.swift */; };
+		08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A928A3259600D7FC51 /* UserAccount.swift */; };
+		08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */; };
+		08E817E428B2E01400BE8B3A /* CommentTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E817E328B2E01400BE8B3A /* CommentTreeView.swift */; };
+		08E817EA28B2E21000BE8B3A /* Submission.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817E928B2E21000BE8B3A /* Submission.json */; };
+		08E817EC28B3DC3C00BE8B3A /* Comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817EB28B3DC3C00BE8B3A /* Comment.json */; };
+		08E817EE28B424B600BE8B3A /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E817ED28B424B600BE8B3A /* CommentModel.swift */; };
+		08E817F028B44FEE00BE8B3A /* CommentListing.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817EF28B44FEE00BE8B3A /* CommentListing.json */; };
+		08F7CE9D28AC546700420A58 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F7CE9C28AC546700420A58 /* ListingModel.swift */; };
+		834F7FAD28AA12E90038B7BE /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */; };
+		834F7FAF28AA13E10038B7BE /* DiscoveryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */; };
+		836DE85F28A69BA80010B60A /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836DE85E28A69BA80010B60A /* CommentView.swift */; };
+		83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */; };
+		83B2FB5728A4DFC9002553B5 /* SubmissionTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */; };
+		83B2FB5828A4DFC9002553B5 /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */; };
+		83D4FF9928AA33B500AD2D30 /* DiscoverySidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D4FF9828AA33B500AD2D30 /* DiscoverySidebar.swift */; };
+		83E584AC28A64C1700EF8F19 /* PostRowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E584AB28A64C1700EF8F19 /* PostRowHeader.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsModel.swift; sourceTree = "<group>"; };
+		084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsView.swift; sourceTree = "<group>"; };
+		0876F09428BC056200C18581 /* RecursiveCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveCommentView.swift; sourceTree = "<group>"; };
+		087AF84028A03F8300D568CC /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		087AF84228A0500400D568CC /* SubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionView.swift; sourceTree = "<group>"; };
+		087AF84428A0504100D568CC /* SubmissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionModel.swift; sourceTree = "<group>"; };
+		088864EA288DC8A500EF5B92 /* perseus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = perseus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		088864ED288DC8A500EF5B92 /* perseusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = perseusApp.swift; sourceTree = "<group>"; };
+		088864EF288DC8A500EF5B92 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		088864F1288DC8A800EF5B92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		088864F4288DC8A800EF5B92 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		088864F6288DC8A800EF5B92 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		088864F9288DC8A800EF5B92 /* infrareddit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = infrareddit.xcdatamodel; sourceTree = "<group>"; };
+		088864FB288DC8A800EF5B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08886501288DDABD00EF5B92 /* perseus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = perseus.entitlements; sourceTree = "<group>"; };
+		08886503288DDE3700EF5B92 /* Class Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Class Extensions.swift"; sourceTree = "<group>"; };
+		08886509288DE7F700EF5B92 /* Reddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
+		0888650B288DE83A00EF5B92 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		08909126288E04CD00F2A2D2 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		08909129288E29B900F2A2D2 /* RedditToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditToken.swift; sourceTree = "<group>"; };
+		0890912F288F669000F2A2D2 /* Submission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
+		08909131288F66A900F2A2D2 /* Subreddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subreddit.swift; sourceTree = "<group>"; };
+		08909133288F80CD00F2A2D2 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		08909135288F9A9B00F2A2D2 /* RedditErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditErrors.swift; sourceTree = "<group>"; };
+		089091372890976600F2A2D2 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		089091392892236E00F2A2D2 /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
+		089091462897847700F2A2D2 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		08B975A528A20F6900D7FC51 /* VoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtonView.swift; sourceTree = "<group>"; };
+		08B975A728A3181C00D7FC51 /* SignInPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPromptView.swift; sourceTree = "<group>"; };
+		08B975A928A3259600D7FC51 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListModel.swift; sourceTree = "<group>"; };
+		08E817E328B2E01400BE8B3A /* CommentTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTreeView.swift; sourceTree = "<group>"; };
+		08E817E928B2E21000BE8B3A /* Submission.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Submission.json; sourceTree = "<group>"; };
+		08E817EB28B3DC3C00BE8B3A /* Comment.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Comment.json; sourceTree = "<group>"; };
+		08E817ED28B424B600BE8B3A /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		08E817EF28B44FEE00BE8B3A /* CommentListing.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentListing.json; sourceTree = "<group>"; };
+		08F7CE9C28AC546700420A58 /* ListingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModel.swift; sourceTree = "<group>"; };
+		834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
+		834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryGrid.swift; sourceTree = "<group>"; };
+		836DE85E28A69BA80010B60A /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListView.swift; sourceTree = "<group>"; };
+		83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionTileView.swift; sourceTree = "<group>"; };
+		83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
+		83D4FF9828AA33B500AD2D30 /* DiscoverySidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverySidebar.swift; sourceTree = "<group>"; };
+		83E584AB28A64C1700EF8F19 /* PostRowHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowHeader.swift; sourceTree = "<group>"; };
+		83E584AD28A64F7400EF8F19 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		088864E7288DC8A500EF5B92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0876F09328BBF2DB00C18581 /* Down in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		088864E1288DC8A500EF5B92 = {
+			isa = PBXGroup;
+			children = (
+				83E584AD28A64F7400EF8F19 /* Config.xcconfig */,
+				088864EC288DC8A500EF5B92 /* Perseus */,
+				088864EB288DC8A500EF5B92 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		088864EB288DC8A500EF5B92 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				088864EA288DC8A500EF5B92 /* perseus.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		088864EC288DC8A500EF5B92 /* Perseus */ = {
+			isa = PBXGroup;
+			children = (
+				08E817E828B2E1F900BE8B3A /* JSON Samples */,
+				08909125288E04B700F2A2D2 /* Helpers */,
+				08886508288DE7D800EF5B92 /* Reddit API */,
+				08886507288DE7D300EF5B92 /* Models */,
+				08886506288DE7CA00EF5B92 /* Views */,
+				08886505288DE7C200EF5B92 /* Structure */,
+				08886501288DDABD00EF5B92 /* perseus.entitlements */,
+				088864ED288DC8A500EF5B92 /* perseusApp.swift */,
+				088864EF288DC8A500EF5B92 /* RootView.swift */,
+				088864F1288DC8A800EF5B92 /* Assets.xcassets */,
+				088864F6288DC8A800EF5B92 /* Persistence.swift */,
+				088864FB288DC8A800EF5B92 /* Info.plist */,
+				088864F8288DC8A800EF5B92 /* infrareddit.xcdatamodeld */,
+				088864F3288DC8A800EF5B92 /* Preview Content */,
+			);
+			path = Perseus;
+			sourceTree = "<group>";
+		};
+		088864F3288DC8A800EF5B92 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				088864F4288DC8A800EF5B92 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		08886505288DE7C200EF5B92 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				0890912F288F669000F2A2D2 /* Submission.swift */,
+				08909131288F66A900F2A2D2 /* Subreddit.swift */,
+				08909133288F80CD00F2A2D2 /* Comment.swift */,
+				08909135288F9A9B00F2A2D2 /* RedditErrors.swift */,
+				089091392892236E00F2A2D2 /* Listing.swift */,
+				087AF84028A03F8300D568CC /* Author.swift */,
+				08B975A928A3259600D7FC51 /* UserAccount.swift */,
+				08F7CE9C28AC546700420A58 /* ListingModel.swift */,
+			);
+			path = Structure;
+			sourceTree = "<group>";
+		};
+		08886506288DE7CA00EF5B92 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				834F7FAB28AA12D10038B7BE /* Discovery */,
+				836DE85D28A69B790010B60A /* Comments */,
+				83E584AA28A64BFD00EF8F19 /* Submission */,
+				83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */,
+				83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */,
+				83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */,
+				089091462897847700F2A2D2 /* AccountView.swift */,
+				087AF84228A0500400D568CC /* SubmissionView.swift */,
+				08B975A528A20F6900D7FC51 /* VoteButtonView.swift */,
+				08B975A728A3181C00D7FC51 /* SignInPromptView.swift */,
+				08E817E328B2E01400BE8B3A /* CommentTreeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		08886507288DE7D300EF5B92 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */,
+				08909129288E29B900F2A2D2 /* RedditToken.swift */,
+				087AF84428A0504100D568CC /* SubmissionModel.swift */,
+				08E817ED28B424B600BE8B3A /* CommentModel.swift */,
+				083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		08886508288DE7D800EF5B92 /* Reddit API */ = {
+			isa = PBXGroup;
+			children = (
+				08886509288DE7F700EF5B92 /* Reddit.swift */,
+				0888650B288DE83A00EF5B92 /* CurrentUser.swift */,
+			);
+			path = "Reddit API";
+			sourceTree = "<group>";
+		};
+		08909125288E04B700F2A2D2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				08886503288DDE3700EF5B92 /* Class Extensions.swift */,
+				08909126288E04CD00F2A2D2 /* UI.swift */,
+				089091372890976600F2A2D2 /* Keychain.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		08E817E828B2E1F900BE8B3A /* JSON Samples */ = {
+			isa = PBXGroup;
+			children = (
+				08E817E928B2E21000BE8B3A /* Submission.json */,
+				08E817EB28B3DC3C00BE8B3A /* Comment.json */,
+				08E817EF28B44FEE00BE8B3A /* CommentListing.json */,
+			);
+			path = "JSON Samples";
+			sourceTree = "<group>";
+		};
+		834F7FAB28AA12D10038B7BE /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				834F7FAC28AA12E90038B7BE /* DiscoveryView.swift */,
+				834F7FAE28AA13E10038B7BE /* DiscoveryGrid.swift */,
+				83D4FF9828AA33B500AD2D30 /* DiscoverySidebar.swift */,
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		836DE85D28A69B790010B60A /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				836DE85E28A69BA80010B60A /* CommentView.swift */,
+				084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */,
+				0876F09428BC056200C18581 /* RecursiveCommentView.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		83E584AA28A64BFD00EF8F19 /* Submission */ = {
+			isa = PBXGroup;
+			children = (
+				83E584AB28A64C1700EF8F19 /* PostRowHeader.swift */,
+			);
+			path = Submission;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		088864E9288DC8A500EF5B92 /* perseus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 088864FE288DC8A800EF5B92 /* Build configuration list for PBXNativeTarget "perseus" */;
+			buildPhases = (
+				088864E6288DC8A500EF5B92 /* Sources */,
+				088864E7288DC8A500EF5B92 /* Frameworks */,
+				088864E8288DC8A500EF5B92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = perseus;
+			packageProductDependencies = (
+				0876F09228BBF2DB00C18581 /* Down */,
+			);
+			productName = infrareddit;
+			productReference = 088864EA288DC8A500EF5B92 /* perseus.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		088864E2288DC8A500EF5B92 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					088864E9288DC8A500EF5B92 = {
+						CreatedOnToolsVersion = 14.0;
+					};
+				};
+			};
+			buildConfigurationList = 088864E5288DC8A500EF5B92 /* Build configuration list for PBXProject "Perseus" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 088864E1288DC8A500EF5B92;
+			packageReferences = (
+				0876F09128BBF2DB00C18581 /* XCRemoteSwiftPackageReference "Down" */,
+			);
+			productRefGroup = 088864EB288DC8A500EF5B92 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				088864E9288DC8A500EF5B92 /* perseus */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		088864E8288DC8A500EF5B92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08E817F028B44FEE00BE8B3A /* CommentListing.json in Resources */,
+				08E817EA28B2E21000BE8B3A /* Submission.json in Resources */,
+				088864F5288DC8A800EF5B92 /* Preview Assets.xcassets in Resources */,
+				088864F2288DC8A800EF5B92 /* Assets.xcassets in Resources */,
+				08E817EC28B3DC3C00BE8B3A /* Comment.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		088864E6288DC8A500EF5B92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				083FAF9F28BD122400DD5358 /* MoreCommentsModel.swift in Sources */,
+				088864FA288DC8A800EF5B92 /* infrareddit.xcdatamodeld in Sources */,
+				08909127288E04CD00F2A2D2 /* UI.swift in Sources */,
+				83E584AC28A64C1700EF8F19 /* PostRowHeader.swift in Sources */,
+				0888650A288DE7F700EF5B92 /* Reddit.swift in Sources */,
+				08909134288F80CD00F2A2D2 /* Comment.swift in Sources */,
+				089091472897847700F2A2D2 /* AccountView.swift in Sources */,
+				83D4FF9928AA33B500AD2D30 /* DiscoverySidebar.swift in Sources */,
+				084F50B328B85EFF00DC82E4 /* MoreCommentsView.swift in Sources */,
+				83B2FB5828A4DFC9002553B5 /* HomeFeedView.swift in Sources */,
+				08909130288F669000F2A2D2 /* Submission.swift in Sources */,
+				089091382890976600F2A2D2 /* Keychain.swift in Sources */,
+				834F7FAD28AA12E90038B7BE /* DiscoveryView.swift in Sources */,
+				0890913A2892236E00F2A2D2 /* Listing.swift in Sources */,
+				83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */,
+				087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */,
+				08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */,
+				08E817EE28B424B600BE8B3A /* CommentModel.swift in Sources */,
+				08909132288F66A900F2A2D2 /* Subreddit.swift in Sources */,
+				83B2FB5728A4DFC9002553B5 /* SubmissionTileView.swift in Sources */,
+				088864F7288DC8A800EF5B92 /* Persistence.swift in Sources */,
+				087AF84128A03F8300D568CC /* Author.swift in Sources */,
+				08886504288DDE3700EF5B92 /* Class Extensions.swift in Sources */,
+				08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */,
+				088864F0288DC8A500EF5B92 /* RootView.swift in Sources */,
+				08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */,
+				834F7FAF28AA13E10038B7BE /* DiscoveryGrid.swift in Sources */,
+				08F7CE9D28AC546700420A58 /* ListingModel.swift in Sources */,
+				0888650C288DE83A00EF5B92 /* CurrentUser.swift in Sources */,
+				08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */,
+				088864EE288DC8A500EF5B92 /* perseusApp.swift in Sources */,
+				08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */,
+				087AF84328A0500400D568CC /* SubmissionView.swift in Sources */,
+				836DE85F28A69BA80010B60A /* CommentView.swift in Sources */,
+				08E817E428B2E01400BE8B3A /* CommentTreeView.swift in Sources */,
+				0890912A288E29B900F2A2D2 /* RedditToken.swift in Sources */,
+				0876F09528BC056200C18581 /* RecursiveCommentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		088864FC288DC8A800EF5B92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83E584AD28A64F7400EF8F19 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		088864FD288DC8A800EF5B92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83E584AD28A64F7400EF8F19 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		088864FF288DC8A800EF5B92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = perseus/perseus.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "Perseus/Preview\\ Content/Preview\\ Assets.xcassets \"perseus/Preview Content\"";
+				DEVELOPMENT_TEAM = 5LUU6WJ66B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = perseus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Perseus;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benjitusk.perseus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		08886500288DC8A800EF5B92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = perseus/perseus.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "Perseus/Preview\\ Content/Preview\\ Assets.xcassets \"perseus/Preview Content\"";
+				DEVELOPMENT_TEAM = 5LUU6WJ66B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = perseus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Perseus;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benjitusk.perseus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		088864E5288DC8A500EF5B92 /* Build configuration list for PBXProject "Perseus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				088864FC288DC8A800EF5B92 /* Debug */,
+				088864FD288DC8A800EF5B92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		088864FE288DC8A800EF5B92 /* Build configuration list for PBXNativeTarget "perseus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				088864FF288DC8A800EF5B92 /* Debug */,
+				08886500288DC8A800EF5B92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0876F09128BBF2DB00C18581 /* XCRemoteSwiftPackageReference "Down" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnxnguyen/Down";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0876F09228BBF2DB00C18581 /* Down */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0876F09128BBF2DB00C18581 /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		088864F8288DC8A800EF5B92 /* infrareddit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				088864F9288DC8A800EF5B92 /* infrareddit.xcdatamodel */,
+			);
+			currentVersion = 088864F9288DC8A800EF5B92 /* infrareddit.xcdatamodel */;
+			path = infrareddit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 088864E2288DC8A500EF5B92 /* Project object */;
+}
