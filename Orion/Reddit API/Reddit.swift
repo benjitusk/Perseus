@@ -221,7 +221,7 @@ enum Reddit {
                         completion(.success(firstElement))
                     } else {
                         print("getRedditThingByID(type: \(type), id: \(id)) failed: No results found")
-                        completion(.failure(.noResponse))
+                        completion(.failure(.notFound))
                     }
                 } else {
                     print("getRedditThingByID(type: \(type), id: \(id)) failed: Decoding error")
@@ -372,14 +372,23 @@ enum Reddit {
                 completion(.failure(.invalidResponse))
                 return
             }
-            if response.statusCode == 403 {
+            switch response.statusCode {
+            case 200...299:
+                break
+            case 400:
+                completion(.failure(.badRequest))
+                return
+            case 403:
                 completion(.failure(.forbidden))
                 return
-            }
-            if response.statusCode == 404 {
+            case 404:
                 completion(.failure(.notFound))
                 return
+            default:
+                print("Received a HTTP response code \(response.statusCode) from the following request:")
+                printDebugInformation()
             }
+            
             if let data = data, data.count > 0 {
                 completion(.success(data))
             } else {

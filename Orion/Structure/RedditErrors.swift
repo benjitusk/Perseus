@@ -15,6 +15,7 @@ enum RedditError: Error {
     case decodingError
     case forbidden
     case notFound
+    case badRequest
 }
 
 extension RedditError: LocalizedError {
@@ -36,7 +37,8 @@ extension RedditError: LocalizedError {
             return "Reddit did not allow the request (HTTP 403)"
         case .notFound:
             return "The requested data couldn't be found (HTTP 404)"
+        case .badRequest:
+            return "The request was invalid and was not understood (HTTP 400)"
         }
-        
     }
 }
