@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CommentView: View {
+    static let colors: [Color] = [.red, .orange, .yellow, .green, .teal, .blue, .indigo, .purple]
     let comment: Comment
     let parentSubmissionID: String
     init(_ comment: Comment, parentSubmissionID: String) {
@@ -39,6 +40,8 @@ struct CommentView: View {
         .backgroundColor(Color(uiColor: UIColor.systemGray5))
         .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
         .padding(.trailing, 2.7)
+        .shadow(color:CommentView.colors[comment.depth % CommentView.colors.count], radius: 2)
+        .padding(.vertical, 5)
     }
 }
 

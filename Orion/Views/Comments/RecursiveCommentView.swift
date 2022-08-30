@@ -23,8 +23,6 @@ struct RecursiveCommentView: View {
                 MoreCommentsView(more, parentSubmissionID: parentSubmissionID)
             }
         }
-        .shadow(radius: 2)
-        .padding(.vertical, 5)
         
     }
 }
