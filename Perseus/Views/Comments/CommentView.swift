@@ -15,21 +15,30 @@ struct CommentView: View {
     let shouldShowChildren: Bool
     init(_ comment: Comment, parentSubmission: Submission, renderChildren: Bool = true) {
         self.comment = comment
-        self.parentSubmissionID = parentSubmissionID
+        self.parentSubmission = parentSubmission
+        self.isCollapsed = comment.isCollapsed
+        self.shouldShowChildren = renderChildren
     }
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text("u/\(comment.author.username)")
+                    .foregroundColor(.primary)
                 Text("•")
-                    .foregroundColor(.gray)
                 Text("\(comment.createdAt.timeAgoDisplay())")
-                    .foregroundColor(.gray)
-            }.fontWeight(.semibold)
-                .lineLimit(1)
-            HStack {
-                Text(comment.body.toAttributedMarkdownString)
                 Spacer()
+                Menu {
+                    Button(action: {
+                        withAnimation {
+                            isCollapsed.toggle()
+                        }
+                    }, label: {
+                        Text("Collapse")
+                    })
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .padding()
+                }
             }
             .foregroundColor(.gray)
             .fontWeight(.semibold)
@@ -51,16 +60,28 @@ struct CommentView: View {
         }
         .padding(.vertical)
         .padding(.leading)
-        .backgroundColor(Color(uiColor: UIColor.systemGray5))
-        .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
         .padding(.trailing, 2.7)
-        .shadow(color:CommentView.colors[comment.depth % CommentView.colors.count], radius: 2)
         .padding(.vertical, 5)
+        .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
+        .background {
+            Color(uiColor: UIColor.systemGray5)
+                .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
+                .shadow(color:CommentView.colors[comment.depth % CommentView.colors.count], radius: 2)
+        }
+        .contextMenu {
+            Text("Cool")
+//            CommentView(self.comment, parentSubmission: self.parentSubmission)
+        } preview: {
+            Text(comment.body.toAttributedMarkdownString)
+                .fixedSize(horizontal: true, vertical: false)
+
+                .padding()
+        }
     }
 }
 
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentTree_Previews.previews
+        RecursiveCommentView_Previews.previews
     }
 }
