@@ -261,5 +261,11 @@ final class Comment: RedditThing, CommentTreeable {
                                         Bundle.main.url(forResource: "Comment", withExtension: "json")!
                                    )
     )
-
+    
+    static var sampleTree = try! JSONDecoder().decode(
+        Listing<CommentsAndMore>.self, from: Data(contentsOf:
+                                            Bundle.main.url(forResource: "CommentListing", withExtension: "json")!
+                                         )
+    ).children
+    
 }

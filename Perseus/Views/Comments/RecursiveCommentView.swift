@@ -30,8 +30,13 @@ struct RecursiveCommentView: View {
 struct RecursiveCommentView_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            CommentTreeView(of: .sample)
-                .shadow(radius: 2)
+            VStack {
+                ForEach(Comment.sampleTree) { comment in
+                    RecursiveCommentView(comment.commentOrMore, parentSubmission: .sample)
+                }
+            }
+            .padding(.vertical)
+            .padding(.leading)
         }
     }
 }
