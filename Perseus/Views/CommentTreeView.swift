@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct CommentTreeView: View {
-    @ObservedObject var listingModel: ListingModel<CommentsAndMore>
-    @ObservedObject var model: CommentModel
-    let parentSubmissionID: String
+    @StateObject var listingModel: ListingModel<CommentsAndMore>
+    @StateObject var model: CommentModel
+    let parentSubmission: Submission
     init(of submission: Submission) {
-        self.parentSubmissionID = submission.fullID
+        self.parentSubmission = submission
         let listingModel = ListingModel<CommentsAndMore>(apiEndpoint: "r/" + submission.subredditName + "/comments/" + submission.id)
-        self.model = CommentModel(listingModel: listingModel)
-        self.listingModel = listingModel
-        model.load()
+        self._model = StateObject(wrappedValue: CommentModel(listingModel: listingModel))
+        self._listingModel = StateObject(wrappedValue: listingModel)
     }
     var body: some View {
         VStack(alignment: .leading) {
             if let commentsAndMore = listingModel.children {
                 ForEach(commentsAndMore) { commentOrMore in
-                    RecursiveCommentView(commentOrMore.commentOrMore, parentSubmissionID: parentSubmissionID)
+                    RecursiveCommentView(commentOrMore.commentOrMore, parentSubmission: parentSubmission)
                 }
             } else {
                 ProgressView()
@@ -30,7 +29,9 @@ struct CommentTreeView: View {
         }
         .padding(.vertical)
         .padding(.leading)
-
+        .onAppear {
+            self.model.initialLoad()
+        }
     }
 }
 

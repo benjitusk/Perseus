@@ -10,8 +10,10 @@ import SwiftUI
 struct CommentView: View {
     static let colors: [Color] = [.red, .orange, .yellow, .green, .teal, .blue, .indigo, .purple]
     let comment: Comment
-    let parentSubmissionID: String
-    init(_ comment: Comment, parentSubmissionID: String) {
+    let parentSubmission: Submission
+    @State var isCollapsed = false
+    let shouldShowChildren: Bool
+    init(_ comment: Comment, parentSubmission: Submission, renderChildren: Bool = true) {
         self.comment = comment
         self.parentSubmissionID = parentSubmissionID
     }

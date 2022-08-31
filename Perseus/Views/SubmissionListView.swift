@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct SubmissionListView: View {
-    @ObservedObject var model: SubmissionListModel
-    @ObservedObject var listingModel: ListingModel<Submission>
+    @StateObject var model: SubmissionListModel
+    @StateObject var listingModel: ListingModel<Submission>
     init(subreddit: Subreddit) {
         let listingModel = ListingModel<Submission>(apiEndpoint: subreddit.apiURL)
-        self.model = SubmissionListModel(subreddit: subreddit, listingModel: listingModel)
-        self.listingModel = listingModel
+        self._model = StateObject(wrappedValue: SubmissionListModel(subreddit: subreddit, listingModel: listingModel))
+        self._listingModel = StateObject(wrappedValue: listingModel)
     }
     var body: some View {
         if let submissions = listingModel.children {
