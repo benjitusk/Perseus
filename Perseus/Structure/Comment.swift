@@ -202,47 +202,53 @@ final class Comment: RedditThing, CommentTreeable {
     }
     
     required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let authorID = try container.decodeIfPresent(String.self, forKey: .authorID) {
-            let authorUsername = try container.decode(String.self, forKey: .authorUsername)
-            let authorIsBlocked = try container.decode(Bool.self, forKey: .authorIsBlocked)
-            let authorHasPatreonFlair = try container.decode(Bool.self, forKey: .authorHasPatreonFlair)
-            let authorHasPremium = try container.decode(Bool.self, forKey: .authorHasPremium)
-            author = Author(username: authorUsername,
-                            id: authorID,
-                            isBlocked: authorIsBlocked,
-                            patreonFlair: authorHasPatreonFlair,
-                            hasPremium: authorHasPremium)
-        } else {
-            author = Author.deletedUser
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let authorID = try container.decodeIfPresent(String.self, forKey: .authorID) {
+                let authorUsername = try container.decode(String.self, forKey: .authorUsername)
+                let authorIsBlocked = try container.decode(Bool.self, forKey: .authorIsBlocked)
+                let authorHasPatreonFlair = try container.decode(Bool.self, forKey: .authorHasPatreonFlair)
+                let authorHasPremium = try container.decode(Bool.self, forKey: .authorHasPremium)
+                author = Author(username: authorUsername,
+                                id: authorID,
+                                isBlocked: authorIsBlocked,
+                                patreonFlair: authorHasPatreonFlair,
+                                hasPremium: authorHasPremium)
+            } else {
+                author = Author.deletedUser
+            }
+            let createdAtTimestamp = try container.decode(Int.self, forKey: .createdAt)
+            body = try container.decode(String.self, forKey: .body)
+            createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp))
+            score = try container.decode(Int.self, forKey: .score)
+            scoreIsHidden = try container.decode(Bool.self, forKey: .scoreIsHidden)
+            isArchived = try container.decode(Bool.self, forKey: .isArchived)
+            editedAt = try? container.decode(Date.self, forKey: .editedAt)
+            authorIsOP = try container.decode(Bool.self, forKey: .authorIsOP)
+            isLocked = try container.decode(Bool.self, forKey: .isLocked)
+            distinguished = try container.decodeIfPresent(Reddit.Distinguish.self, forKey: .distinguished)
+            depth = try container.decode(Int.self, forKey: .depth)
+            let permalinkSuffix = try container.decode(String.self, forKey: .permalink)
+            permalink = URL(string: "https://www.reddit.com" + permalinkSuffix)!
+            id = try container.decode(String.self, forKey: .name)
+            parentID = try container.decode(String.self, forKey: .parentID)
+            prefixedSubredditName = try container.decode(String.self, forKey: .prefixedSubredditName)
+            isCollapsed = try container.decode(Bool.self, forKey: .isCollapsed)
+            subredditName = try container.decode(String.self, forKey: .subredditName)
+            // This will be true if there are no replies (denoted by an empty string in the JSON smh)
+            if ((try? container.decodeIfPresent(String.self, forKey: .replies) != nil) != nil) {
+                self.replyListing = nil
+            } else if let replies = try? container.decodeIfPresent(Listing<CommentsAndMore>.self, forKey: .replies) {
+                self.replyListing = replies
+            } else {
+                // catchall
+                self.replyListing = nil
+            }
+        } catch {
+            print("An error occurred while decoding a Comment:")
+            print((error as NSError))
+            throw error
         }
-        let createdAtTimestamp = try container.decode(Int.self, forKey: .createdAt)
-        body = try container.decode(String.self, forKey: .body)
-        createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp))
-        score = try container.decode(Int.self, forKey: .score)
-        scoreIsHidden = try container.decode(Bool.self, forKey: .scoreIsHidden)
-        isArchived = try container.decode(Bool.self, forKey: .isArchived)
-        editedAt = try? container.decode(Date.self, forKey: .editedAt)
-        authorIsOP = try container.decode(Bool.self, forKey: .authorIsOP)
-        isLocked = try container.decode(Bool.self, forKey: .isLocked)
-        distinguished = try container.decodeIfPresent(Reddit.Distinguish.self, forKey: .distinguished)
-        depth = try container.decode(Int.self, forKey: .depth)
-        let permalinkSuffix = try container.decode(String.self, forKey: .permalink)
-        permalink = URL(string: "https://www.reddit.com" + permalinkSuffix)!
-        id = try container.decode(String.self, forKey: .name)
-        parentID = try container.decode(String.self, forKey: .parentID)
-        prefixedSubredditName = try container.decode(String.self, forKey: .prefixedSubredditName)
-        subredditName = try container.decode(String.self, forKey: .subredditName)
-        // This will be true if there are no replies (denoted by an empty string in the JSON smh)
-        if ((try? container.decodeIfPresent(String.self, forKey: .replies) != nil) != nil) {
-            self.replyListing = nil
-        } else if let replies = try? container.decodeIfPresent(Listing<CommentsAndMore>.self, forKey: .replies) {
-            self.replyListing = replies
-        } else {
-            // catchall
-            self.replyListing = nil
-        }
-        
         
     }
     
