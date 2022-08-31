@@ -29,9 +29,21 @@ struct CommentView: View {
                 Text(comment.body.toAttributedMarkdownString)
                 Spacer()
             }
-            if let replies = comment.replyListing {
-                ForEach(replies.children) { reply in
-                    RecursiveCommentView(reply.commentOrMore, parentSubmissionID: parentSubmissionID)
+            .foregroundColor(.gray)
+            .fontWeight(.semibold)
+            .lineLimit(1)
+            
+            if !isCollapsed {
+                HStack {
+                    Text(comment.body.toAttributedMarkdownString)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                }
+                .padding(.bottom)
+                if let replies = comment.replyListing, shouldShowChildren {
+                    ForEach(replies.children) { reply in
+                        RecursiveCommentView(reply.commentOrMore, parentSubmission: parentSubmission)
+                    }
                 }
             }
         }

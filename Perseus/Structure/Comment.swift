@@ -11,6 +11,7 @@ protocol CommentTreeable {
     var id: String { get }
     var depth: Int { get }
     var parentID: String { get }
+    var isCollapsed: Bool { get set }
 }
 
 class CommentsAndMore: RedditThing {
@@ -75,19 +76,23 @@ final class MoreComments: RedditThing, CommentTreeable {
         fullID = try container.decode(String.self, forKey: .name)
         depth = try container.decode(Int.self, forKey: .depth)
         parentID = try container.decode(String.self, forKey: .parentID)
+        isCollapsed = false
     }
 
     let children: [String]
+    let depth: Int
     let fullID: String
     let id: String
-    let depth: Int
+    var isCollapsed: Bool
     let parentID: String
+
     init(children: [String], fullID: String, id: String, depth: Int, parentID: String) {
         self.children = children
         self.fullID = fullID
         self.id = id
         self.depth = depth
         self.parentID = parentID
+        self.isCollapsed = false
     }
     
     enum CodingKeys: String, CodingKey {
@@ -113,6 +118,7 @@ final class Comment: RedditThing, CommentTreeable {
     let editedAt: Date?
     let id: String
     let isArchived: Bool
+    var isCollapsed: Bool
     let isLocked: Bool
     let parentID: String
     let permalink: URL
