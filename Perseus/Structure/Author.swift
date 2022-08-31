@@ -21,6 +21,6 @@ class Author {
         self.hasPremium = hasPremium
     }
     
-    static var deletedUser = Author(username: "[Deleted]", id: "", isBlocked: false, patreonFlair: false, hasPremium: false)
+    static var deletedUser = Author(username: "[deleted]", id: "", isBlocked: false, patreonFlair: false, hasPremium: false)
     static var sample = Author(username: "spez", id: "t2_1w72", isBlocked: false, patreonFlair: false, hasPremium: true)
 }
