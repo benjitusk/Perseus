@@ -55,20 +55,23 @@ struct SubmissionView: View {
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Posted by **\(model.submission.author.username)** in **\(model.submission.subredditName)**")
                         HStack {
-                            Image(systemName: "arrow.up")
-                            Text("\(model.submission.upVotes)")
                             Image(systemName: "clock")
                             Text(model.submission.createdAt.timeAgoDisplay())
                         }
                     }.padding(.horizontal)
                         .padding(.top)
                         .foregroundColor(.gray)
+                    Divider()
                     HStack {
                         VoteButtonView(submission: $model.submission, isUp: true)
+                        Text("\(model.submission.upVotes)")
                         VoteButtonView(submission: $model.submission, isUp: false)
                         Spacer()
+                        Image(systemName: "bubble.left.and.bubble.right")
+                            .font(.title2)
+                        Text("\(model.submission.commentCount)")
                     }
-                    .padding()
+                    .padding(.horizontal)
                     .foregroundColor(.gray)
                 }
             }

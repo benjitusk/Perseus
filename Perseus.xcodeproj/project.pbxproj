@@ -509,7 +509,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Perseus/Preview\\ Content/Preview\\ Assets.xcassets \"perseus/Preview Content\"";
-				DEVELOPMENT_TEAM = 5LUU6WJ66B;
+				DEVELOPMENT_TEAM = 7PYHH8YK2K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = perseus/Info.plist;
@@ -525,7 +525,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.benjitusk.perseus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alberto.perseus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -544,7 +544,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "Perseus/Preview\\ Content/Preview\\ Assets.xcassets \"perseus/Preview Content\"";
-				DEVELOPMENT_TEAM = 5LUU6WJ66B;
+				DEVELOPMENT_TEAM = 7PYHH8YK2K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = perseus/Info.plist;
@@ -560,7 +560,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.benjitusk.perseus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alberto.perseus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
