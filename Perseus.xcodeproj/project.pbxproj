@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0810479F28BEC51B0050F63E /* SingleCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0810479E28BEC51B0050F63E /* SingleCommentView.swift */; };
 		083FAF9F28BD122400DD5358 /* MoreCommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */; };
 		084F50B328B85EFF00DC82E4 /* MoreCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */; };
 		0876F09328BBF2DB00C18581 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 0876F09228BBF2DB00C18581 /* Down */; };
@@ -53,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0810479E28BEC51B0050F63E /* SingleCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCommentView.swift; sourceTree = "<group>"; };
 		083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsModel.swift; sourceTree = "<group>"; };
 		084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsView.swift; sourceTree = "<group>"; };
 		0876F09428BC056200C18581 /* RecursiveCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveCommentView.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				836DE85E28A69BA80010B60A /* CommentView.swift */,
 				084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */,
 				0876F09428BC056200C18581 /* RecursiveCommentView.swift */,
+				0810479E28BEC51B0050F63E /* SingleCommentView.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				089091382890976600F2A2D2 /* Keychain.swift in Sources */,
 				834F7FAD28AA12E90038B7BE /* DiscoveryView.swift in Sources */,
 				0890913A2892236E00F2A2D2 /* Listing.swift in Sources */,
+				0810479F28BEC51B0050F63E /* SingleCommentView.swift in Sources */,
 				83B2FB5628A4DFC9002553B5 /* SubmissionListView.swift in Sources */,
 				087AF84528A0504100D568CC /* SubmissionModel.swift in Sources */,
 				08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */,

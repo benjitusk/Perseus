@@ -43,7 +43,7 @@ final class Listing<RedditData: RedditThing>: Decodable {
             self.dist = try container.decodeIfPresent(Int.self, forKey: .dist)
             self.totalLoaded = children.count
         } catch {
-            print("An error occured while decoding a Listing:")
+            print("An error occurred while decoding a Listing:")
             print((error as NSError))
             throw error
         }

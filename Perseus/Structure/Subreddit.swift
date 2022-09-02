@@ -209,24 +209,30 @@ final class StandardSubreddit: Subreddit, RedditThing {
     }
     
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: RootKeys.self).nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
-        /// The `Decoder.container.decode` method uses the `forKey` parameter as a lookup in the `CodingKeys` enum to know what key to decode from the data
-        activeAccounts          = try container.decode(Int.self, forKey: .accountsActive)
-        allowedSubmissionType   = try container.decode(Submission.SubmissionType.self, forKey: .submissionType)
-        description             = try container.decode(String.self, forKey: .welcomeDescription)
-        let rawHeaderImg        = try container.decode(String.self, forKey: .headerImage)
-        headerImg               = URL(string: rawHeaderImg)!
-        isNSFW                  = try container.decode(Bool.self, forKey: .isNSFW)
-        relativeURL             = try container.decode(String.self, forKey: .url)
-        subredditType           = try container.decode(SubredditType.self, forKey: .subredditType)
-        subscribers             = try container.decode(Int.self, forKey: .subscribers)
-        title                   = try container.decode(String.self, forKey: .title)
-        userIsBanned            = try container.decodeIfPresent(Bool.self, forKey: .userIsBanned) ?? false
-        userIsContributor       = try container.decodeIfPresent(Bool.self, forKey: .userIsContributor) ?? false
-        userIsModerator         = try container.decodeIfPresent(Bool.self, forKey: .userIsModerator) ?? false
-        userIsSubscriber        = try container.decodeIfPresent(Bool.self, forKey: .userIsSubscriber) ?? false
-        displayName             = try container.decode(String.self, forKey: .displayName)
-        id                      = try container.decode(String.self, forKey: .name)
-        apiURL                  = "r/" + displayName
+        do {
+            let container = try decoder.container(keyedBy: RootKeys.self).nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+            /// The `Decoder.container.decode` method uses the `forKey` parameter as a lookup in the `CodingKeys` enum to know what key to decode from the data
+            activeAccounts          = try container.decode(Int.self, forKey: .accountsActive)
+            allowedSubmissionType   = try container.decode(Submission.SubmissionType.self, forKey: .submissionType)
+            description             = try container.decode(String.self, forKey: .welcomeDescription)
+            let rawHeaderImg        = try container.decode(String.self, forKey: .headerImage)
+            headerImg               = URL(string: rawHeaderImg)!
+            isNSFW                  = try container.decode(Bool.self, forKey: .isNSFW)
+            relativeURL             = try container.decode(String.self, forKey: .url)
+            subredditType           = try container.decode(SubredditType.self, forKey: .subredditType)
+            subscribers             = try container.decode(Int.self, forKey: .subscribers)
+            title                   = try container.decode(String.self, forKey: .title)
+            userIsBanned            = try container.decodeIfPresent(Bool.self, forKey: .userIsBanned) ?? false
+            userIsContributor       = try container.decodeIfPresent(Bool.self, forKey: .userIsContributor) ?? false
+            userIsModerator         = try container.decodeIfPresent(Bool.self, forKey: .userIsModerator) ?? false
+            userIsSubscriber        = try container.decodeIfPresent(Bool.self, forKey: .userIsSubscriber) ?? false
+            displayName             = try container.decode(String.self, forKey: .displayName)
+            id                      = try container.decode(String.self, forKey: .name)
+            apiURL                  = "r/" + displayName
+        } catch {
+            print("An error occurred while decoding a Comment:")
+            print((error as NSError))
+            throw error
+        }
     }
 }

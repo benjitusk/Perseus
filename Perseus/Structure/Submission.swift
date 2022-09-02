@@ -175,58 +175,64 @@ final class Submission: RedditThing {
     }
 
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: RootKeys.self).nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
-        
-        // Author data
-        if let authorID = try container.decodeIfPresent(String.self, forKey: .authorID) {
-            let authorUsername = try container.decode(String.self, forKey: .authorUsername)
-            let authorIsBlocked = try container.decode(Bool.self, forKey: .authorIsBlocked)
-            let authorHasPatreonFlair = try container.decode(Bool.self, forKey: .authorHasPatreonFlair)
-            let authorHasPremium = try container.decode(Bool.self, forKey: .authorHasPremium)
-            author = Author(username: authorUsername,
-                            id: authorID,
-                            isBlocked: authorIsBlocked,
-                            patreonFlair: authorHasPatreonFlair,
-                            hasPremium: authorHasPremium)
-        } else {
-            author = Author.deletedUser
+        do {
+            let container = try decoder.container(keyedBy: RootKeys.self).nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+            
+            // Author data
+            if let authorID = try container.decodeIfPresent(String.self, forKey: .authorID) {
+                let authorUsername = try container.decode(String.self, forKey: .authorUsername)
+                let authorIsBlocked = try container.decode(Bool.self, forKey: .authorIsBlocked)
+                let authorHasPatreonFlair = try container.decode(Bool.self, forKey: .authorHasPatreonFlair)
+                let authorHasPremium = try container.decode(Bool.self, forKey: .authorHasPremium)
+                author = Author(username: authorUsername,
+                                id: authorID,
+                                isBlocked: authorIsBlocked,
+                                patreonFlair: authorHasPatreonFlair,
+                                hasPremium: authorHasPremium)
+            } else {
+                author = Author.deletedUser
+            }
+            if let thumbnail = try container.decode(String?.self, forKey: .thumbnail),
+               thumbnail.hasPrefix("http") {
+                thumbnailURL = URL(string: thumbnail)!
+            } else {
+                thumbnailURL = nil
+            }
+            let createdAtTimestamp = try container.decode(Int.self, forKey: .createdAtUTC)
+            if try container.decode(Bool.self, forKey: .isSelf) {
+                submissionType = .text
+            } else {
+                submissionType = .link
+            }
+            
+            
+            commentCount = try container.decode(Int.self, forKey: .commentCount)
+            createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp))
+            downVotes = try container.decode(Int.self, forKey: .downvoteCount)
+            fullID = try container.decode(String.self, forKey: .fullName)
+            id = try container.decode(String.self, forKey: .id)
+            isArchived = try container.decode(Bool.self, forKey: .archived)
+            isLocked = try container.decode(Bool.self, forKey: .locked)
+            isMediaOnly = try container.decode(Bool.self, forKey: .mediaOnly)
+            isNSFW = try container.decode(Bool.self, forKey: .isNSFW)
+            isOriginalContent = try container.decode(Bool.self, forKey: .isOriginalContent)
+            isPinned = try container.decode(Bool.self, forKey: .pinned)
+            isStickied = try container.decode(Bool.self, forKey: .stickied)
+            permalink  = try container.decode(String.self, forKey: .permalink)
+            preview = try? container.decode(RedditImageContainer.self, forKey: .preview)
+            selfText = try container.decode(String.self, forKey: .selfText)
+            subredditID = try container.decode(String.self, forKey: .subredditID)
+            subredditName = try container.decode(String.self, forKey: .subredditName)
+            title = try container.decode(String.self, forKey: .title)
+            totalAwardCount = try container.decode(Int.self, forKey: .awardCount)
+            upVotes = try container.decode(Int.self, forKey: .upvoteCount)
+            voteRatio = try container.decode(Double.self, forKey: .voteRatio)
+            voteStatus = try container.decode(Bool?.self, forKey: .voted)
+        } catch {
+            print("An error occurred while decoding a Comment:")
+            print((error as NSError))
+            throw error
         }
-        if let thumbnail = try container.decode(String?.self, forKey: .thumbnail),
-           thumbnail.hasPrefix("http") {
-            thumbnailURL = URL(string: thumbnail)!
-        } else {
-            thumbnailURL = nil
-        }
-        let createdAtTimestamp = try container.decode(Int.self, forKey: .createdAtUTC)
-        if try container.decode(Bool.self, forKey: .isSelf) {
-            submissionType = .text
-        } else {
-            submissionType = .link
-        }
-        
-        
-        commentCount = try container.decode(Int.self, forKey: .commentCount)
-        createdAt = Date(timeIntervalSince1970: TimeInterval(createdAtTimestamp))
-        downVotes = try container.decode(Int.self, forKey: .downvoteCount)
-        fullID = try container.decode(String.self, forKey: .fullName)
-        id = try container.decode(String.self, forKey: .id)
-        isArchived = try container.decode(Bool.self, forKey: .archived)
-        isLocked = try container.decode(Bool.self, forKey: .locked)
-        isMediaOnly = try container.decode(Bool.self, forKey: .mediaOnly)
-        isNSFW = try container.decode(Bool.self, forKey: .isNSFW)
-        isOriginalContent = try container.decode(Bool.self, forKey: .isOriginalContent)
-        isPinned = try container.decode(Bool.self, forKey: .pinned)
-        isStickied = try container.decode(Bool.self, forKey: .stickied)
-        permalink  = try container.decode(String.self, forKey: .permalink)
-        preview = try? container.decode(RedditImageContainer.self, forKey: .preview)
-        selfText = try container.decode(String.self, forKey: .selfText)
-        subredditID = try container.decode(String.self, forKey: .subredditID)
-        subredditName = try container.decode(String.self, forKey: .subredditName)
-        title = try container.decode(String.self, forKey: .title)
-        totalAwardCount = try container.decode(Int.self, forKey: .awardCount)
-        upVotes = try container.decode(Int.self, forKey: .upvoteCount)
-        voteRatio = try container.decode(Double.self, forKey: .voteRatio)
-        voteStatus = try container.decode(Bool?.self, forKey: .voted)
     }
     
     func vote(_ vote: Reddit.VoteDirection) {

@@ -20,5 +20,11 @@ class CommentModel: ObservableObject {
             }
         }
     }
+    
+    func initialLoad() {
+        if listingModel.children == nil {
+            self.load()
+        }
+    }
 
 }

@@ -18,17 +18,13 @@ class MoreCommentsModel: ObservableObject {
     func load() {
         Reddit.getMoreComments(from: submissionID, using: moreComments) { result in
             switch result {
-            case .success(var commentsAndMore):
+            case .success(let commentsAndMore):
                 DispatchQueue.main.async {
                     if self.children == nil {
                         self.children = []
                     }
                     guard !commentsAndMore.isEmpty else { return }
                                         
-                    let maxDepth = commentsAndMore.max(by: {lhs, rhs in
-                        return lhs.depth < rhs.depth
-                    })!.depth
-                    
                     let commentsByParentID = Dictionary(grouping: commentsAndMore, by: {$0.parentID})
                     
                     guard let rootComments = commentsByParentID[self.moreComments.parentID] else {

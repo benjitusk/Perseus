@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct MoreCommentsView: View {
-    @ObservedObject var model: MoreCommentsModel
+    @StateObject var model: MoreCommentsModel
     let more: MoreComments
-    let parentSubmissionID: String
-    init(_ moreComments: MoreComments, parentSubmissionID: String) {
+    let parentSubmission: Submission
+    init(_ moreComments: MoreComments, parentSubmission: Submission) {
         self.more = moreComments
-        self.parentSubmissionID = parentSubmissionID
-        self.model = MoreCommentsModel(moreComments, from: parentSubmissionID)
+        self.parentSubmission = parentSubmission
+        /// Does this line look weird? Check [this out](https://www.swiftui-lab.com/random-lessons#data-10) to see why I did it
+        self._model = StateObject(wrappedValue: MoreCommentsModel(moreComments, from: parentSubmission.fullID))
     }
     var body: some View {
         VStack {
             if let children = model.children {
                 ForEach(children, id: \.id) { child in
-                    RecursiveCommentView(child, parentSubmissionID: parentSubmissionID)
+                    RecursiveCommentView(child, parentSubmission: parentSubmission)
                 }
             } else {
                 Button {
