@@ -30,14 +30,11 @@ struct MoreCommentsView: View {
                     HStack {
                         Text("Load \(more.children.count) more comment\(more.children.count != 1 ? "s":"")")
                         Spacer()
+                        Image(systemName: "chevron.down")
                     }
                     .foregroundColor(.blue)
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
-                    .backgroundColor(Color(uiColor: UIColor.systemGray5))
-                    .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
                 }
-                .shadow(radius: 2)
+                Divider()
             }
         }
         .padding(.vertical, 5)

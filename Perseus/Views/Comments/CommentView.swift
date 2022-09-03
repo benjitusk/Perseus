@@ -22,51 +22,54 @@ struct CommentView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text("u/\(comment.author.username)")
-                    .foregroundColor(.primary)
-                Text("•")
-                Text("\(comment.createdAt.timeAgoDisplay())")
-                Spacer()
-                Menu {
-                    Button(action: {
-                        withAnimation {
-                            isCollapsed.toggle()
+                Rectangle()
+                    .frame(width: 2)
+                    .foregroundColor(CommentView.colors[comment.depth % CommentView.colors.count])
+                VStack(alignment: .trailing, spacing: 7) {
+                    VStack(alignment: .leading) {
+                        HStack(spacing: 3) {
+                            Text(comment.author.username)
+                                .fontWeight(.semibold)
+                            Text("•")
+                                .foregroundColor(.gray)
+                            Text("\(comment.createdAt.timeAgoDisplay())")
+                                .foregroundColor(.gray)
+                            Spacer()
+                            Menu {
+                                Button(action: {
+                                    withAnimation {
+                                        isCollapsed.toggle()
+                                    }
+                                }, label: {
+                                    Text("Collapse")
+                                })
+                            } label: {
+                                Image(systemName: "ellipsis")
+                                    .padding()
+                                    .foregroundColor(.gray)
+                            }
+                        }.lineLimit(1)
+                        if !isCollapsed {
+                            Text(comment.body.toAttributedMarkdownString)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
-                    }, label: {
-                        Text("Collapse")
-                    })
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .padding()
-                }
-            }
-            .foregroundColor(.gray)
-            .fontWeight(.semibold)
-            .lineLimit(1)
-            
-            if !isCollapsed {
-                HStack {
-                    Text(comment.body.toAttributedMarkdownString)
-                        .fixedSize(horizontal: false, vertical: true)
-                    Spacer()
-                }
-                .padding(.bottom)
-                if let replies = comment.replyListing, shouldShowChildren {
-                    ForEach(replies.children) { reply in
-                        RecursiveCommentView(reply.commentOrMore, parentSubmission: parentSubmission)
+                    }
+                    HStack {
+                        Image(systemName: "arrowshape.left")
+                            .rotationEffect(Angle(degrees: 90))
+                        Text("\(comment.score)")
+                        Image(systemName: "arrowshape.left")
+                            .rotationEffect(Angle(degrees: 270))
                     }
                 }
+            }.padding(.trailing)
+            Divider()
+            if let replies = comment.replyListing, shouldShowChildren {
+                ForEach(replies.children) { reply in
+                    RecursiveCommentView(reply.commentOrMore, parentSubmission: parentSubmission)
+                        .padding(.leading)
+                }
             }
-        }
-        .padding(.vertical)
-        .padding(.leading)
-        .padding(.trailing, 2.7)
-        .padding(.vertical, 5)
-        .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
-        .background {
-            Color(uiColor: UIColor.systemGray5)
-                .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
-                .shadow(color:CommentView.colors[comment.depth % CommentView.colors.count], radius: 2)
         }
         .contextMenu {
             Text("Cool")

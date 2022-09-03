@@ -13,35 +13,35 @@ struct SingleCommentView: View {
         self.comment = comment
     }
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("u/\(comment.author.username)")
-                    .foregroundColor(.primary)
-                Text("•")
-                Text("\(comment.createdAt.timeAgoDisplay())")
-                Spacer()
+        HStack {
+            Rectangle()
+                .frame(width: 2)
+                .foregroundColor(CommentView.colors[comment.depth % CommentView.colors.count])
+            VStack(alignment: .trailing, spacing: 7) {
+                VStack(alignment: .leading) {
+                    HStack(spacing: 3) {
+                        Text(comment.author.username)
+                            .fontWeight(.semibold)
+                        Text("•")
+                            .foregroundColor(.gray)
+                        Text("\(comment.createdAt.timeAgoDisplay())")
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                   
+                        Text(comment.body.toAttributedMarkdownString)
+                            .fixedSize(horizontal: false, vertical: true)
+                    
+                }
+                HStack {
+                    Image(systemName: "arrowshape.left")
+                        .rotationEffect(Angle(degrees: 90))
+                    Text("134")
+                    Image(systemName: "arrowshape.left")
+                        .rotationEffect(Angle(degrees: 270))
+                }
             }
-            .foregroundColor(.gray)
-            .fontWeight(.semibold)
-            .lineLimit(1)
-            
-            HStack {
-                Text(comment.body.toAttributedMarkdownString)
-                    .fixedSize(horizontal: false, vertical: true)
-                Spacer()
-            }
-        }
-        .padding(.vertical)
-        .padding(.leading)
-        .padding(.trailing, 2.7)
-        .padding(.vertical, 5)
-        .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
-        .background {
-            Color(uiColor: UIColor.systemGray5)
-                .clipShape(RoundedRectangle(cornerRadius: UI.kCornerRadius))
-                .shadow(color:CommentView.colors[comment.depth % CommentView.colors.count], radius: 2)
-        }
-
+        }.padding(.trailing)
     }
 }
 
