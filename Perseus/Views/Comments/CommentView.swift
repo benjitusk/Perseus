@@ -45,7 +45,7 @@ struct CommentView: View {
                                 })
                             } label: {
                                 Image(systemName: "ellipsis")
-                                    .padding()
+                                    .padding(4)
                                     .foregroundColor(.gray)
                             }
                         }.lineLimit(1)
@@ -64,10 +64,12 @@ struct CommentView: View {
                 }
             }.padding(.trailing)
             Divider()
-            if let replies = comment.replyListing, shouldShowChildren {
-                ForEach(replies.children) { reply in
-                    RecursiveCommentView(reply.commentOrMore, parentSubmission: parentSubmission)
-                        .padding(.leading)
+            if !isCollapsed {
+                if let replies = comment.replyListing, shouldShowChildren {
+                    ForEach(replies.children) { reply in
+                        RecursiveCommentView(reply.commentOrMore, parentSubmission: parentSubmission)
+                            .padding(.leading, 4)
+                    }
                 }
             }
         }

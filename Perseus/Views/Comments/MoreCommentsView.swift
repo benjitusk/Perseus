@@ -33,6 +33,7 @@ struct MoreCommentsView: View {
                         Image(systemName: "chevron.down")
                     }
                     .foregroundColor(.blue)
+                    .padding(.trailing)
                 }
                 Divider()
             }
