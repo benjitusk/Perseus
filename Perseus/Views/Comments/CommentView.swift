@@ -52,7 +52,18 @@ struct CommentView: View {
                         if !isCollapsed {
                             Text(comment.body.toAttributedMarkdownString)
                                 .fixedSize(horizontal: false, vertical: true)
+                        } else {
+                            if let replies = comment.replyListing {
+                                Text("\(replies.children.count + 1) comment\(replies.children.count + 1 != 1 ? "s":"") collapsed.")
+                                    .italic()
+                                    .foregroundColor(.gray)
+                            } else {
+                                Text("1 comment collapsed.")
+                                    .italic()
+                                    .foregroundColor(.gray)
+                            }
                         }
+                        
                     }
                     HStack {
                         Image(systemName: "arrowshape.left")
@@ -64,8 +75,8 @@ struct CommentView: View {
                 }
             }.padding(.trailing)
             Divider()
-            if !isCollapsed {
-                if let replies = comment.replyListing, shouldShowChildren {
+            if let replies = comment.replyListing, shouldShowChildren {
+                if !isCollapsed {
                     ForEach(replies.children) { reply in
                         RecursiveCommentView(reply.commentOrMore, parentSubmission: parentSubmission)
                             .padding(.leading, 4)
@@ -73,14 +84,35 @@ struct CommentView: View {
                 }
             }
         }
+        .backgroundColor(.init(uiColor: .systemBackground))
         .contextMenu {
-            Text("Cool")
-//            CommentView(self.comment, parentSubmission: self.parentSubmission)
-        } preview: {
-            Text(comment.body.toAttributedMarkdownString)
-                .fixedSize(horizontal: true, vertical: false)
+            Button {
+                withAnimation {
+                    isCollapsed.toggle()
+                }
+            } label: {
+                if isCollapsed {
+                    Label("Expand", systemImage: "mount")
+                } else {
+                    Label("Collapse", systemImage: "eject")
+                }
+            }
+            Button {} label: {
+                Label("Upvote", systemImage: "arrow.up")
+            }
+            Button {} label: {
+                Label("Downvote", systemImage: "arrow.down")
+            }
+            Button {} label: {
+                Label("u/\(comment.author.username)", systemImage: "person.crop.circle")
+            }
+            Button {} label: {
+                Label("Block \(comment.author.username)", systemImage: "nosign")
+            }
+            Button {} label: {
+                Label("Report", systemImage: "bell")
+            }
 
-                .padding()
         }
     }
 }
