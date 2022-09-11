@@ -15,8 +15,9 @@ struct SingleCommentView: View {
     var body: some View {
         HStack {
             Rectangle()
-                .frame(width: 2)
-                .foregroundColor(CommentView.colors[comment.depth % CommentView.colors.count])
+                .frame(width: UI.Comments.colorBarWidth)
+                .foregroundColor(UI.Comments.colors[comment.depth % UI.Comments.colors.count])
+                .padding(.vertical)
             VStack(alignment: .trailing, spacing: 7) {
                 VStack(alignment: .leading) {
                     HStack(spacing: 3) {

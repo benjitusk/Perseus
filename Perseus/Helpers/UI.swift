@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct UI {
+    struct Comments {
+        static let colors: [Color] = [.red, .orange, .yellow, .green, .teal, .blue, .indigo, .purple]
+        static let indentationFactor: CGFloat = 6
+        static let colorBarWidth: CGFloat = 3
+    }
     static let kCornerRadius: CGFloat = 5
 }
 

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CommentView: View {
-    static let colors: [Color] = [.red, .orange, .yellow, .green, .teal, .blue, .indigo, .purple]
     let comment: Comment
     let parentSubmission: Submission
     @State var isCollapsed = false
