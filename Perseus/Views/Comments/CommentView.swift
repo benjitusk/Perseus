@@ -21,9 +21,6 @@ struct CommentView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Rectangle()
-                    .frame(width: 2)
-                    .foregroundColor(CommentView.colors[comment.depth % CommentView.colors.count])
                 VStack(alignment: .trailing, spacing: 7) {
                     VStack(alignment: .leading) {
                         HStack(spacing: 3) {
@@ -72,17 +69,9 @@ struct CommentView: View {
                             .rotationEffect(Angle(degrees: 270))
                     }
                 }
-            }.padding(.trailing)
-            Divider()
-            if let replies = comment.replyListing, shouldShowChildren {
-                if !isCollapsed {
-                    ForEach(replies.children) { reply in
-                        RecursiveCommentView(reply.commentOrMore, parentSubmission: parentSubmission)
-                            .padding(.leading, 4)
-                    }
-                }
-            }
+            }.padding(.vertical)
         }
+        .padding(.trailing)
         .backgroundColor(.init(uiColor: .systemBackground))
         .contextMenu {
             Button {
@@ -111,13 +100,12 @@ struct CommentView: View {
             Button {} label: {
                 Label("Report", systemImage: "bell")
             }
-
         }
     }
 }
 
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
-        RecursiveCommentView_Previews.previews
+        CommentTree_Previews.previews
     }
 }

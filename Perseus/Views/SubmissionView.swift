@@ -13,8 +13,8 @@ struct SubmissionView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
+        List {
+            VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading) {
                     Text(model.submission.title)
                         .multilineTextAlignment(.leading)
@@ -73,13 +73,15 @@ struct SubmissionView: View {
                     }
                     .padding(.horizontal)
                     .foregroundColor(.gray)
+                    Divider()
                 }
             }
-            Divider()
+            .listRowInsets(.init())
+            .listRowSeparator(.hidden)
             
             CommentTreeView(of: model.submission)
-            
         }
+        .listStyle(.plain)
         .navigationTitle("r/\(model.submission.subredditName)")
         .navigationBarTitleDisplayMode(.inline)
     }

@@ -18,28 +18,39 @@ struct MoreCommentsView: View {
         self._model = StateObject(wrappedValue: MoreCommentsModel(moreComments, from: parentSubmission.fullID))
     }
     var body: some View {
-        VStack {
-            if let children = model.children {
-                ForEach(children, id: \.id) { child in
-                    RecursiveCommentView(child, parentSubmission: parentSubmission)
+        if let children = model.children {
+            ForEach(children, id: \.id) { child in
+                TreeableView(child, parentSubmission: parentSubmission)
+            }
+        } else {
+            Button {
+                model.load()
+            } label: {
+                HStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .frame(width: UI.Comments.colorBarWidth)
+                        .foregroundColor(more.depth > 0 ?
+                                         UI.Comments.colors[(more.depth - 1) % UI.Comments.colors.count] :
+                                            Color.clear
+                        )
+                        .padding(.vertical, UI.Comments.indentationFactor)
+                    Text("Load \(more.children.count) more comment\(more.children.count != 1 ? "s":"")")
+                    Spacer()
+                    Image(systemName: "chevron.down")
                 }
-            } else {
-                Button {
-                    model.load()
-                } label: {
-                    HStack {
-                        Text("Load \(more.children.count) more comment\(more.children.count != 1 ? "s":"")")
-                        Spacer()
-                        Image(systemName: "chevron.down")
+                .padding(.leading, UI.Comments.indentationFactor * CGFloat(more.depth))
+                
+                .foregroundColor(.blue)
+                .padding(.trailing)
+                .swipeActions {
+                    Button(action: {print("Swiper no swiping!")}) {
+                        Label("Print log", systemImage: "printer")
                     }
-                    .foregroundColor(.blue)
-                    .padding(.trailing)
                 }
-                Divider()
+                
             }
         }
-        .padding(.vertical, 5)
-
+        
     }
 }
 

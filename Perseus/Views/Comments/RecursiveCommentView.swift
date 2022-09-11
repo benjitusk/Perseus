@@ -8,19 +8,26 @@
 import SwiftUI
 
 struct RecursiveCommentView: View {
-    let commentTreeThing: CommentTreeable
+    let comment: Comment
     let parentSubmission: Submission
-    init(_ cTT: CommentTreeable, parentSubmission: Submission) {
-        self.commentTreeThing = cTT
+    init(_ comment: Comment, parentSubmission: Submission) {
+        self.comment = comment
         self.parentSubmission = parentSubmission
     }
     var body: some View {
-        VStack(alignment: .leading) {
-            if let comment = commentTreeThing as? Comment {
-                CommentView(comment, parentSubmission: parentSubmission)
-            } else if let more = commentTreeThing as? MoreComments, !more.children.isEmpty {
-                MoreCommentsView(more, parentSubmission: parentSubmission)
-            }
+        HStack {
+            RoundedRectangle(cornerRadius: 5)
+                .frame(width: UI.Comments.colorBarWidth)
+                .foregroundColor(comment.depth > 0 ?
+                                 UI.Comments.colors[(comment.depth - 1) % UI.Comments.colors.count] :
+                                    Color.clear
+                )
+                .padding(.vertical, UI.Comments.indentationFactor)
+            CommentView(comment, parentSubmission: parentSubmission)
+        }
+        .padding(.leading, UI.Comments.indentationFactor * CGFloat(comment.depth))
+        ForEach(comment.replyListing?.children ?? []) {
+            TreeableView($0.treeable, parentSubmission: parentSubmission)
         }
         
     }
@@ -28,14 +35,6 @@ struct RecursiveCommentView: View {
 
 struct RecursiveCommentView_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollView {
-            VStack {
-                ForEach(Comment.sampleTree) { comment in
-                    RecursiveCommentView(comment.commentOrMore, parentSubmission: .sample)
-                }
-            }
-            .padding(.vertical)
-            .padding(.leading)
-        }
+        CommentTree_Previews.previews
     }
 }

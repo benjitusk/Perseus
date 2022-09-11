@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0810479F28BEC51B0050F63E /* SingleCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0810479E28BEC51B0050F63E /* SingleCommentView.swift */; };
+		083D77FB28CAA18000D123BD /* TreeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D77FA28CAA18000D123BD /* TreeableView.swift */; };
 		083FAF9F28BD122400DD5358 /* MoreCommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */; };
 		084F50B328B85EFF00DC82E4 /* MoreCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */; };
 		0876F09328BBF2DB00C18581 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 0876F09228BBF2DB00C18581 /* Down */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		0810479E28BEC51B0050F63E /* SingleCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCommentView.swift; sourceTree = "<group>"; };
+		083D77FA28CAA18000D123BD /* TreeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeableView.swift; sourceTree = "<group>"; };
 		083FAF9E28BD122400DD5358 /* MoreCommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsModel.swift; sourceTree = "<group>"; };
 		084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommentsView.swift; sourceTree = "<group>"; };
 		0876F09428BC056200C18581 /* RecursiveCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveCommentView.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */,
 				0876F09428BC056200C18581 /* RecursiveCommentView.swift */,
 				0810479E28BEC51B0050F63E /* SingleCommentView.swift */,
+				083D77FA28CAA18000D123BD /* TreeableView.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				088864FA288DC8A800EF5B92 /* infrareddit.xcdatamodeld in Sources */,
 				08909127288E04CD00F2A2D2 /* UI.swift in Sources */,
 				83E584AC28A64C1700EF8F19 /* PostRowHeader.swift in Sources */,
+				083D77FB28CAA18000D123BD /* TreeableView.swift in Sources */,
 				0888650A288DE7F700EF5B92 /* Reddit.swift in Sources */,
 				08909134288F80CD00F2A2D2 /* Comment.swift in Sources */,
 				089091472897847700F2A2D2 /* AccountView.swift in Sources */,

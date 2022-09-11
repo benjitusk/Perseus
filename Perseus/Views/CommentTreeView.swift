@@ -18,27 +18,30 @@ struct CommentTreeView: View {
         self._listingModel = StateObject(wrappedValue: listingModel)
     }
     var body: some View {
-        VStack(alignment: .leading) {
-            if let commentsAndMore = listingModel.children {
-                ForEach(commentsAndMore) { commentOrMore in
-                    RecursiveCommentView(commentOrMore.commentOrMore, parentSubmission: parentSubmission)
+        // Get top level comments
+        if let children = listingModel.children?.filter({$0.treeable.depth == 0}) {
+            if children.count > 0 {
+                ForEach(children, id: \.id) { commentOrMore in
+                    let treeable = commentOrMore.treeable
+                    TreeableView(treeable, parentSubmission: parentSubmission)
+                        .padding(.leading, CGFloat(treeable.depth) * 10)
+                        .listRowInsets(.init())
                 }
-            } else {
-                ProgressView()
             }
-        }
-        .padding(.vertical)
-        .padding(.leading)
-        .onAppear {
-            self.model.initialLoad()
+        } else {
+            ProgressView()
+                .onAppear {
+                    model.initialLoad()
+                }
         }
     }
 }
 
 struct CommentTree_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollView {
+        List {
             CommentTreeView(of: .sample)
         }
+        .listStyle(.plain)
     }
 }
