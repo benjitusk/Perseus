@@ -23,11 +23,11 @@ class CommentsAndMore: RedditThing {
     let id: String
 //    let more: MoreComments?
 //    let comment: Comment?
-    let commentOrMore: CommentTreeable
+    let treeable: CommentTreeable
     
-    init(commentOrMore: any CommentTreeable) {
+    init(commentOrMore: CommentTreeable) {
         self.id = commentOrMore.id
-        self.commentOrMore = commentOrMore
+        self.treeable = commentOrMore
     }
     
     required init(from decoder: Decoder) throws {
@@ -40,11 +40,11 @@ class CommentsAndMore: RedditThing {
         case .comment:
             let commentOrMore = try rootContainer.decode(Comment.self, forKey: .data)
             id = commentOrMore.id
-            self.commentOrMore = commentOrMore
+            self.treeable = commentOrMore
         case .more:
             let commentOrMore = try rootContainer.decode(MoreComments.self, forKey: .data)
             id = commentOrMore.id
-            self.commentOrMore = commentOrMore
+            self.treeable = commentOrMore
         }
         
     }
