@@ -80,6 +80,7 @@ struct SubmissionView: View {
             .listRowSeparator(.hidden)
             
             CommentTreeView(of: model.submission)
+                .environmentObject(model.submission)
         }
         .listStyle(.plain)
         .navigationTitle("r/\(model.submission.subredditName)")

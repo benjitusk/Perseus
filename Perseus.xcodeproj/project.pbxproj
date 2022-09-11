@@ -184,14 +184,10 @@
 				834F7FAB28AA12D10038B7BE /* Discovery */,
 				836DE85D28A69B790010B60A /* Comments */,
 				83E584AA28A64BFD00EF8F19 /* Submission */,
-				83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */,
-				83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */,
 				83B2FB5528A4DFC9002553B5 /* HomeFeedView.swift */,
 				089091462897847700F2A2D2 /* AccountView.swift */,
-				087AF84228A0500400D568CC /* SubmissionView.swift */,
 				08B975A528A20F6900D7FC51 /* VoteButtonView.swift */,
 				08B975A728A3181C00D7FC51 /* SignInPromptView.swift */,
-				08E817E328B2E01400BE8B3A /* CommentTreeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,6 +246,7 @@
 		836DE85D28A69B790010B60A /* Comments */ = {
 			isa = PBXGroup;
 			children = (
+				08E817E328B2E01400BE8B3A /* CommentTreeView.swift */,
 				836DE85E28A69BA80010B60A /* CommentView.swift */,
 				084F50B228B85EFF00DC82E4 /* MoreCommentsView.swift */,
 				0876F09428BC056200C18581 /* RecursiveCommentView.swift */,
@@ -263,6 +260,9 @@
 			isa = PBXGroup;
 			children = (
 				83E584AB28A64C1700EF8F19 /* PostRowHeader.swift */,
+				83B2FB5328A4DFC9002553B5 /* SubmissionListView.swift */,
+				83B2FB5428A4DFC9002553B5 /* SubmissionTileView.swift */,
+				087AF84228A0500400D568CC /* SubmissionView.swift */,
 			);
 			path = Submission;
 			sourceTree = "<group>";

@@ -23,7 +23,7 @@ struct CommentTreeView: View {
             if children.count > 0 {
                 ForEach(children, id: \.id) { commentOrMore in
                     let treeable = commentOrMore.treeable
-                    TreeableView(treeable, parentSubmission: parentSubmission)
+                    TreeableView(treeable)
                         .padding(.leading, CGFloat(treeable.depth) * 10)
                         .listRowInsets(.init())
                 }
