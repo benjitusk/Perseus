@@ -20,11 +20,10 @@ class ListingModel<RedditData: RedditThing>: ObservableObject {
         self.queryParameters = queryParameters
     }
     
-    ///
-    func load(the direction: LoadDirection, _ count: Int, depth: Int = 10, completion: @escaping (_: RedditError?) -> Void) {
+    func load(the direction: LoadDirection, _ count: Int, depth: Int = 10, debugMode: Bool = false, completion: @escaping (_: RedditError?) -> Void) {
        // This works by internally requesting a listing containing
         // the next content, and appending or inserting the new element
-        Reddit.getCustomListing(type: RedditData.self, from: apiEndpoint, with: queryParameters, before: before, after: after, count: count, depth: depth) { result in
+        Reddit.getCustomListing(type: RedditData.self, from: apiEndpoint, with: queryParameters, before: before, after: after, count: count, depth: depth, debugMode: debugMode) { result in
             switch result {
             case .success(let listing):
                 DispatchQueue.main.async {

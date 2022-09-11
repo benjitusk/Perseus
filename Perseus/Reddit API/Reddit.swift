@@ -101,7 +101,7 @@ enum Reddit {
     ///   - after: Used for pagination, get items after the one with this ID
     ///   - depth: The maximum depth of nested comments, used for comments ONLY
     ///   - completion: Callback, contains `RedditResult<Listing<RedditThing>>`
-    static func getCustomListing<RedditData: RedditThing>(type: RedditData.Type, from apiPath: String, with options: [URLQueryItem]? = nil, before: String?, after: String?, count: Int = 20, depth: Int? = nil, completion: @escaping(_: RedditResult<Listing<RedditData>>) -> Void) {
+    static func getCustomListing<RedditData: RedditThing>(type: RedditData.Type, from apiPath: String, with options: [URLQueryItem]? = nil, before: String?, after: String?, count: Int = 20, depth: Int? = nil, debugMode: Bool = false, completion: @escaping(_: RedditResult<Listing<RedditData>>) -> Void) {
         var queryParameters = options ?? []
         if let after = after {
             queryParameters.append(URLQueryItem(name: "after", value: after))
@@ -114,7 +114,7 @@ enum Reddit {
             }
         }
         queryParameters.append(URLQueryItem(name: "limit", value: String(count)))
-        makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters) { result in
+        makeRedditAPIRequest(urlPath: apiPath, parameters: queryParameters, debugMode: debugMode) { result in
             switch result {
             case .success(var data):
                 // If it's a comment, the return data contains 2 listings, one with the submission, and one with the comments.
@@ -148,7 +148,7 @@ enum Reddit {
         }
     }
 
-    static func getMoreComments(from submissionID: String, using moreComments: MoreComments, completion: @escaping(_: RedditResult<[any CommentTreeable]>) ->  Void) {
+    static func getMoreComments(from submissionID: String, using moreComments: MoreComments, completion: @escaping(_: RedditResult<[CommentTreeable]>) ->  Void) {
         var loadMore: MoreComments? = nil
         var queryParameters: [URLQueryItem] = []
         queryParameters.append(URLQueryItem(name: "link_id", value: submissionID))
@@ -193,7 +193,7 @@ enum Reddit {
                 }
                 var treeableData: [CommentTreeable] = []
                 for comment in comments {
-                    treeableData.append(comment.commentOrMore)
+                    treeableData.append(comment.treeable)
                 }
                 if let loadMore = loadMore {
                     treeableData.append(loadMore)
