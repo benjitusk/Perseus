@@ -29,10 +29,14 @@ struct CommentTreeView: View {
                 }
             }
         } else {
-            ProgressView()
-                .onAppear {
-                    model.initialLoad()
-                }
+            HStack {
+                Spacer()
+                ProgressView()
+                    .onAppear{
+                        model.initialLoad()
+                    }
+                Spacer()
+            }
         }
     }
 }
