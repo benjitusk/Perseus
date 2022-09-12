@@ -34,6 +34,7 @@
 		089091382890976600F2A2D2 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091372890976600F2A2D2 /* Keychain.swift */; };
 		0890913A2892236E00F2A2D2 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091392892236E00F2A2D2 /* Listing.swift */; };
 		089091472897847700F2A2D2 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089091462897847700F2A2D2 /* AccountView.swift */; };
+		0898157128CE577B0003C6B9 /* CollapsedCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898157028CE577B0003C6B9 /* CollapsedCommentView.swift */; };
 		08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A528A20F6900D7FC51 /* VoteButtonView.swift */; };
 		08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A728A3181C00D7FC51 /* SignInPromptView.swift */; };
 		08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A928A3259600D7FC51 /* UserAccount.swift */; };
@@ -84,6 +85,7 @@
 		089091372890976600F2A2D2 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		089091392892236E00F2A2D2 /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		089091462897847700F2A2D2 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		0898157028CE577B0003C6B9 /* CollapsedCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsedCommentView.swift; sourceTree = "<group>"; };
 		08B975A528A20F6900D7FC51 /* VoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtonView.swift; sourceTree = "<group>"; };
 		08B975A728A3181C00D7FC51 /* SignInPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPromptView.swift; sourceTree = "<group>"; };
 		08B975A928A3259600D7FC51 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				0876F09428BC056200C18581 /* RecursiveCommentView.swift */,
 				0810479E28BEC51B0050F63E /* SingleCommentView.swift */,
 				083D77FA28CAA18000D123BD /* TreeableView.swift */,
+				0898157028CE577B0003C6B9 /* CollapsedCommentView.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				08909136288F9A9B00F2A2D2 /* RedditErrors.swift in Sources */,
 				088864EE288DC8A500EF5B92 /* perseusApp.swift in Sources */,
 				08B975A628A20F6900D7FC51 /* VoteButtonView.swift in Sources */,
+				0898157128CE577B0003C6B9 /* CollapsedCommentView.swift in Sources */,
 				087AF84328A0500400D568CC /* SubmissionView.swift in Sources */,
 				836DE85F28A69BA80010B60A /* CommentView.swift in Sources */,
 				08E817E428B2E01400BE8B3A /* CommentTreeView.swift in Sources */,
