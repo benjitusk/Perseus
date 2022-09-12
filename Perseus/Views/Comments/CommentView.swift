@@ -24,6 +24,16 @@ struct CommentView: View {
                 VStack(alignment: .trailing, spacing: 7) {
                     VStack(alignment: .leading) {
                         HStack(spacing: 3) {
+                            if comment.authorIsOP {
+                                Image(systemName: "crown")
+                                    .foregroundColor(.accentColor)
+                            } else if comment.distinguished == .moderator {
+                                Image(systemName: "shield.lefthalf.filled")
+                                    .foregroundColor(.green)
+                            } else if comment.distinguished == .admin {
+                                Image(systemName: "checkerboard.shield")
+                                    .foregroundColor(.red)
+                            }
                             Text(comment.author.username)
                                 .fontWeight(.semibold)
                             Text("•")

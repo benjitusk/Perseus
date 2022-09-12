@@ -6,7 +6,15 @@
 //
 
 import Foundation
-class Author {
+class Author: Hashable {
+    static func == (lhs: Author, rhs: Author) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     let username: String
     let id: String
     let isBlocked: Bool
