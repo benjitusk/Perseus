@@ -8,15 +8,10 @@
 import SwiftUI
 
 struct CommentView: View {
+    @EnvironmentObject var parentSumbission: Submission
     let comment: Comment
-    let parentSubmission: Submission
-    @State var isCollapsed = false
-    let shouldShowChildren: Bool
-    init(_ comment: Comment, parentSubmission: Submission, renderChildren: Bool = true) {
+    init(_ comment: Comment) {
         self.comment = comment
-        self.parentSubmission = parentSubmission
-        self.isCollapsed = comment.isCollapsed
-        self.shouldShowChildren = renderChildren
     }
     var body: some View {
         VStack(alignment: .leading) {

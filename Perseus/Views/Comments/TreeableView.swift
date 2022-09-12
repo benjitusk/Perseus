@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct TreeableView: View {
+    @EnvironmentObject var parentSubmission: Submission
     let treeableThing: CommentTreeable
-    let parentSubmission: Submission
-    init(_ treeable: CommentTreeable, parentSubmission: Submission) {
+    init(_ treeable: CommentTreeable) {
         self.treeableThing = treeable
-        self.parentSubmission = parentSubmission
     }
     var body: some View {
         if let comment = self.treeableThing as? Comment {
-            RecursiveCommentView(comment, parentSubmission: parentSubmission)
+            RecursiveCommentView(comment)
         } else if let more = self.treeableThing as? MoreComments, !more.children.isEmpty {
             MoreCommentsView(more, parentSubmission: parentSubmission)
         }
@@ -26,6 +25,7 @@ struct TreeableView: View {
 
 struct TreeableView_Previews: PreviewProvider {
     static var previews: some View {
-        TreeableView(Comment.sample, parentSubmission: .sample)
+        TreeableView(Comment.sample)
+            .environmentObject(Submission.sample)
     }
 }

@@ -19,8 +19,8 @@ struct MoreCommentsView: View {
     }
     var body: some View {
         if let children = model.children {
-            ForEach(children, id: \.id) { child in
-                TreeableView(child, parentSubmission: parentSubmission)
+            ForEach(children, id: \.id) { treeable in
+                TreeableView(treeable)
             }
         } else {
             Button {

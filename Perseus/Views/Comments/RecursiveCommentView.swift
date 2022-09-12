@@ -9,10 +9,11 @@ import SwiftUI
 
 struct RecursiveCommentView: View {
     let comment: Comment
-    let parentSubmission: Submission
-    init(_ comment: Comment, parentSubmission: Submission) {
+    @StateObject private var model = RecursiveCommentModel()
+    @State private var isCollapsed = false
+    init(_ comment: Comment) {
         self.comment = comment
-        self.parentSubmission = parentSubmission
+        self.isCollapsed = comment.isCollapsed
     }
     var body: some View {
         HStack {
@@ -23,13 +24,46 @@ struct RecursiveCommentView: View {
                                     Color.clear
                 )
                 .padding(.vertical, UI.Comments.indentationFactor)
-            CommentView(comment, parentSubmission: parentSubmission)
+            if !isCollapsed {
+                CommentView(comment)
+            } else {
+                CollapsedCommentView(comment: comment)
+            }
         }
         .padding(.leading, UI.Comments.indentationFactor * CGFloat(comment.depth))
-        ForEach(comment.replyListing?.children ?? []) {
-            TreeableView($0.treeable, parentSubmission: parentSubmission)
+        .onTapGesture {
+            withAnimation {
+                isCollapsed.toggle()
+            }
         }
-        
+        .swipeActions {
+            Button {
+                print("Not yet implemented")
+            } label: {
+                if isCollapsed {
+                    Label("Expand", systemImage: "arrow.up.and.down")
+                } else {
+                    Label("Collapse", systemImage: "arrow.up.to.line.compact")
+                }
+            }
+        }
+
+        if !isCollapsed {
+            ForEach(comment.replyListing?.children ?? []) {
+                TreeableView($0.treeable)
+            }
+        }
+    }
+    
+    private func setIsCollapsed(_ newState: Bool) {
+        self.isCollapsed = newState
+    }
+}
+
+fileprivate class RecursiveCommentModel: ObservableObject {
+    @Published var isCollapsed = true
+    func setCollapseState() {
+        self.isCollapsed = true
     }
 }
 
