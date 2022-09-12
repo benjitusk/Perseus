@@ -127,6 +127,7 @@ final class Comment: RedditThing, CommentTreeable {
     let scoreIsHidden: Bool
     let prefixedSubredditName: String
     let subredditName: String
+    let unavailableReason: UnavailableReason?
     
     enum CodingKeys: String, CodingKey {
         case awards = "all_awardings"
@@ -235,6 +236,17 @@ final class Comment: RedditThing, CommentTreeable {
             prefixedSubredditName = try container.decode(String.self, forKey: .prefixedSubredditName)
             isCollapsed = try container.decode(Bool.self, forKey: .isCollapsed)
             subredditName = try container.decode(String.self, forKey: .subredditName)
+            if author == .deletedUser {
+                if body == "[removed]" {
+                    unavailableReason = .removed
+                } else if body == "[deleted]" {
+                    unavailableReason = .deleted
+                } else {
+                    unavailableReason = nil
+                }
+            } else {
+                unavailableReason = nil
+            }
             // This will be true if there are no replies (denoted by an empty string in the JSON smh)
             if ((try? container.decodeIfPresent(String.self, forKey: .replies) != nil) != nil) {
                 self.replyListing = nil
@@ -250,6 +262,11 @@ final class Comment: RedditThing, CommentTreeable {
             throw error
         }
         
+    }
+    
+    enum UnavailableReason {
+        case deleted
+        case removed
     }
     
     func vote(_ vote: Reddit.VoteDirection) {
