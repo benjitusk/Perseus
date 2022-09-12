@@ -1,4 +1,4 @@
-# Orion for Reddit
+# Perseus for Reddit
 ### Cool name, but what is it?
 Orion is a new Reddit app for iOS.
 ### Ok, that sounds kinda neat, but don't we already have a bunch of those? The official Reddit app, and Apollo, to name a few. Why do we need another one?
