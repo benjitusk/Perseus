@@ -38,9 +38,9 @@ struct CommentView: View {
                             Spacer()
                             Menu {
                                 Button(action: {
-                                    withAnimation {
-                                        isCollapsed.toggle()
-                                    }
+//                                    withAnimation {
+//                                        isCollapsed.toggle()
+//                                    }
                                 }, label: {
                                     Text("Collapse")
                                 })
@@ -50,21 +50,8 @@ struct CommentView: View {
                                     .foregroundColor(.gray)
                             }
                         }.lineLimit(1)
-                        if !isCollapsed {
-                            Text(comment.body.toAttributedMarkdownString)
-                                .fixedSize(horizontal: false, vertical: true)
-                        } else {
-                            if let replies = comment.replyListing {
-                                Text("\(replies.children.count + 1) comment\(replies.children.count + 1 != 1 ? "s":"") collapsed.")
-                                    .italic()
-                                    .foregroundColor(.gray)
-                            } else {
-                                Text("1 comment collapsed.")
-                                    .italic()
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        
+                        Text(comment.body.toAttributedMarkdownString)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                     HStack {
                         Image(systemName: "arrowshape.left")
@@ -79,17 +66,7 @@ struct CommentView: View {
         .padding(.trailing)
         .backgroundColor(.init(uiColor: .systemBackground))
         .contextMenu {
-            Button {
-                withAnimation {
-                    isCollapsed.toggle()
-                }
-            } label: {
-                if isCollapsed {
-                    Label("Expand", systemImage: "mount")
-                } else {
-                    Label("Collapse", systemImage: "eject")
-                }
-            }
+
             Button {} label: {
                 Label("Upvote", systemImage: "arrow.up")
             }
