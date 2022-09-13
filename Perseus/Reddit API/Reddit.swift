@@ -391,18 +391,3 @@ enum Reddit {
         case DELETE
     }
 }
-
-
-
-protocol RedditThing: Decodable, Identifiable, Equatable {
-//    var id: String { get }
-//    var name: String { get }
-//    var kind: String { get }
-//    var data: AnyObject { get }
-    associatedtype CodingKeys: RawRepresentable where CodingKeys.RawValue: StringProtocol
-}
-
-protocol Subreddit {    
-    var displayName: String { get }
-    var apiURL: String { get }
-}

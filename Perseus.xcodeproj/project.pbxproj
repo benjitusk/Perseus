@@ -39,6 +39,7 @@
 		08B975A828A3181D00D7FC51 /* SignInPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A728A3181C00D7FC51 /* SignInPromptView.swift */; };
 		08B975AA28A3259600D7FC51 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B975A928A3259600D7FC51 /* UserAccount.swift */; };
 		08D135C0289B2FC500906EA1 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */; };
+		08D6231728D02C8900BB5F27 /* Misc Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6231628D02C8900BB5F27 /* Misc Protocols.swift */; };
 		08E817E428B2E01400BE8B3A /* CommentTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E817E328B2E01400BE8B3A /* CommentTreeView.swift */; };
 		08E817EA28B2E21000BE8B3A /* Submission.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817E928B2E21000BE8B3A /* Submission.json */; };
 		08E817EC28B3DC3C00BE8B3A /* Comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 08E817EB28B3DC3C00BE8B3A /* Comment.json */; };
@@ -90,6 +91,7 @@
 		08B975A728A3181C00D7FC51 /* SignInPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPromptView.swift; sourceTree = "<group>"; };
 		08B975A928A3259600D7FC51 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		08D135BF289B2FC500906EA1 /* SubmissionListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionListModel.swift; sourceTree = "<group>"; };
+		08D6231628D02C8900BB5F27 /* Misc Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Misc Protocols.swift"; sourceTree = "<group>"; };
 		08E817E328B2E01400BE8B3A /* CommentTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTreeView.swift; sourceTree = "<group>"; };
 		08E817E928B2E21000BE8B3A /* Submission.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Submission.json; sourceTree = "<group>"; };
 		08E817EB28B3DC3C00BE8B3A /* Comment.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Comment.json; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				087AF84028A03F8300D568CC /* Author.swift */,
 				08B975A928A3259600D7FC51 /* UserAccount.swift */,
 				08F7CE9C28AC546700420A58 /* ListingModel.swift */,
+				08D6231628D02C8900BB5F27 /* Misc Protocols.swift */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				08E817EE28B424B600BE8B3A /* CommentModel.swift in Sources */,
 				08909132288F66A900F2A2D2 /* Subreddit.swift in Sources */,
 				83B2FB5728A4DFC9002553B5 /* SubmissionTileView.swift in Sources */,
+				08D6231728D02C8900BB5F27 /* Misc Protocols.swift in Sources */,
 				088864F7288DC8A800EF5B92 /* Persistence.swift in Sources */,
 				087AF84128A03F8300D568CC /* Author.swift in Sources */,
 				08886504288DDE3700EF5B92 /* Class Extensions.swift in Sources */,

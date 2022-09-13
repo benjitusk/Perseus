@@ -104,7 +104,7 @@ final class MoreComments: RedditThing, CommentTreeable {
     }
 }
 
-final class Comment: RedditThing, CommentTreeable {
+final class Comment: RedditThing, HasAuthor, CommentTreeable {
     static func == (lhs: Comment, rhs: Comment) -> Bool {
         return lhs.id == rhs.id
     }

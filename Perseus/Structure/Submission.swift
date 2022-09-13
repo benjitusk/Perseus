@@ -6,7 +6,7 @@
 //
 
 import Foundation
-final class Submission: RedditThing, ObservableObject {
+final class Submission: RedditThing, HasAuthor, ObservableObject {
     static func == (lhs: Submission, rhs: Submission) -> Bool {
         return lhs.fullID == rhs.fullID
     }
